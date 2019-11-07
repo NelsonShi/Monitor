@@ -1,0 +1,14 @@
+D:\Project\WPF\botMonitor\botMonitor\bin\Release\botMonitor.exe.config
+D:\Project\WPF\botMonitor\botMonitor\bin\Release\botMonitor.exe
+D:\Project\WPF\botMonitor\botMonitor\bin\Release\botMonitor.pdb
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\MainWindow.g.cs
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\App.g.cs
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor_MarkupCompile.cache
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor_MarkupCompile.lref
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\MainWindow.baml
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.g.resources
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.Properties.Resources.resources
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.csproj.GenerateResource.Cache
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.exe
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.pdb
+D:\Project\WPF\botMonitor\botMonitor\obj\Release\botMonitor.csprojResolveAssemblyReference.cache

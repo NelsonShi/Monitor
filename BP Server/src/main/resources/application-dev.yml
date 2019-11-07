@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://chqrpa93.database.windows.net:1433;DatabaseName=RPA_BP_Sandbox_Asia
+    username: chqrpa93_admin
+    password: yn9VDs3WcC7W6DqK
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        ddl-auto: none
+        show-sql: true
+    database-platform: org.hibernate.dialect.SQLServerDialect
+
+netty:
+  tcp:
+    server:
+     host: 127.0.0.1
+     port: 7000
