@@ -1,8 +1,6 @@
 package com.blueprismserver.resoruce;
 
-import com.blueprismserver.entity.BPAResource;
-import com.blueprismserver.entity.BPAProcess;
-import com.blueprismserver.entity.BPAUser;
+import com.blueprismserver.entity.*;
 import com.blueprismserver.entity.vo.BPAResourceVo;
 import com.blueprismserver.entity.vo.ComputerData;
 import com.blueprismserver.service.IBPAResource;
@@ -65,6 +63,12 @@ public class ProcessResource {
         return computerDataList;
     }
 
+    @RequestMapping("/recentlySession")
+    public List<BPASession> recentlySession(){
+        List<BPASession> list=bpaSessionService.recentlySession();
+        return list;
+    }
+
     @RequestMapping("/start")
     public void StartProcess(){
         List<BPAProcess> customBpaProcessList=processService.findByProcessType("P");
@@ -76,14 +80,21 @@ public class ProcessResource {
         List<BPAResource> resourceList=bpaResourceService.findAll();
         List<BPAUser> userList=bpaUserService.getAll();
         List<ComputerData> computerDataList=cacheUtil.getAllBotList();
+        List<BPASession> runningInfo=bpaSessionService.recentlySession();
         Map<String,ComputerData> computerDataMap=new HashMap<>();
         Map<String,BPAUser> userMap=new HashMap<>();
+        Map<String,BPASession> runningInfoMap=new HashMap<>();
         for (ComputerData cd:computerDataList){
             computerDataMap.put(cd.getBotName(),cd);
         }
         for (BPAUser user:userList){
             userMap.put(user.getUserid(),user);
         }
-        return bpaResourceService.GenrateListWithResourceAndUser(computerDataMap,userMap,resourceList);
+        for (BPASession info:runningInfo){
+            runningInfoMap.put(info.getRunningresourceid(),info);
+        }
+        Map<String,BPAProcess> processMap=cacheUtil.getProcessList();
+        Map<String,BPAEnvironmentVar> envarMap=cacheUtil.getBPEnvVars();
+        return bpaResourceService.GenrateListWithResourceAndUser(computerDataMap,userMap,resourceList,runningInfoMap,processMap,envarMap);
     }
 }

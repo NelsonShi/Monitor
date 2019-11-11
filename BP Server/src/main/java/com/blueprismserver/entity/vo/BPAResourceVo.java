@@ -9,8 +9,10 @@ import java.util.Date;
 public class BPAResourceVo {
     private String resourceid;
     private String name;
-    private Integer processesrunning;
-    private Integer actionsrunning;
+    // 0:pending 1:running 2:Terminated 3:Stopped 4: completed 5:debugging 6:Archived 7: Stopping
+    private Integer processStatus;
+    private String processName;
+    private String timeSlot;
     private String lastupdated;
     private Integer AttributeID;
     private String FQDN;
@@ -36,21 +38,6 @@ public class BPAResourceVo {
         this.name = name;
     }
 
-    public Integer getProcessesrunning() {
-        return processesrunning;
-    }
-
-    public void setProcessesrunning(Integer processesrunning) {
-        this.processesrunning = processesrunning;
-    }
-
-    public Integer getActionsrunning() {
-        return actionsrunning;
-    }
-
-    public void setActionsrunning(Integer actionsrunning) {
-        this.actionsrunning = actionsrunning;
-    }
 
     public String getLastupdated() {
         return lastupdated;
@@ -114,5 +101,29 @@ public class BPAResourceVo {
 
     public void setIsNettyConnected(Integer isNettyConnected) {
         this.isNettyConnected = isNettyConnected;
+    }
+
+    public Integer getProcessStatus() {
+        return processStatus;
+    }
+
+    public void setProcessStatus(Integer processStatus) {
+        this.processStatus = processStatus;
+    }
+
+    public String getProcessName() {
+        return processName;
+    }
+
+    public void setProcessName(String processName) {
+        this.processName = processName;
+    }
+
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
     }
 }

@@ -51,43 +51,34 @@ class ResourceTable extends Component{
                               return(<Icon type={type} theme='twoTone' twoToneColor={tcolor}></Icon>)
                              }
                           }, 
-                          {title: 'Id', dataIndex: 'resourceid', key:'resourceid',width:200},
-                          { title: 'Name',dataIndex: 'name',key:'name',},
-                          
-                          {title: 'Process Running',dataIndex: 'processesrunning',key:'processesrunning',
-                          render:text=>                            
+                          { title: 'Name',dataIndex: 'name',key:'name',},                         
+                          {title: 'Process Name',dataIndex: 'processName',key:'processName',
+                          render:(text, row, index)=>                            
                                {
-                                // eslint-disable-next-line eqeqeq
-                                // eslint-disable-next-line default-case
                                 let ss={}
-                                switch(text){
-                                case 1:ss.content='processing';
-                                         ss.fncolor='green';
-                                         break;
-                                default:ss.content='no process';
-                                        ss.fncolor='#FFC125'
-                                        break  
+                                switch(row.processStatus){
+                                    case 0:ss.content=row.processName;
+                                           ss.fncolor="#FFA500"
+                                           break;
+                                    case 1:ss.content=row.processName;
+                                           ss.fncolor="#008000"
+                                           break;
+                                    case 7:ss.content=row.processName+"( Stopping )";
+                                           ss.fncolor="#FF4500"
+                                           break;
+                                    default:ss.content="No Process";
+                                            ss.fncolor="blue"
+                                           break;
                                 }
                                 return(<font size="3" color={ss.fncolor}>{ss.content}</font> );                                
                                }                                                                                                    
                           },
-                          {title: 'Action Running', dataIndex: 'actionsrunning', key: 'actionsrunning',
-                          render:text=>                            
-                          {
-                           // eslint-disable-next-line eqeqeq
-                           let hasaction=(text=='1');
-                           let fncolor=hasaction?'green':'#FFC125';
-                           let content=hasaction?'running':'no action'
-                           return(<font size="3" color={fncolor}>{content}</font> );                                
-                          }                                                       
-                          },
+                          { title: 'TimeSlot',dataIndex: 'timeSlot',key:'timeSlot',},
                           {title: 'Last Update',dataIndex: 'lastupdated',key: 'lastupdated'},
                           {title: 'UserName',dataIndex: 'userName',key: 'userName'},
-                          {title: 'Statusid',dataIndex: 'statusid',key: 'statusid'},
                           {title: 'DisplayStatus',dataIndex: 'displayStatus',key: 'displayStatus',render(text){return(<h3>{text}</h3>)}},
-                          {title: 'AttributeID',dataIndex: 'attributeID',key: 'attributeID'},
-                          {title: 'FQDN',dataIndex: 'fqdn',key: 'fqdn'},
-                          {title: 'Bot IP',dataIndex: 'botIp',key: 'botIp'},
+                        //   {title: 'FQDN',dataIndex: 'fqdn',key: 'fqdn'},
+                        //   {title: 'Bot IP',dataIndex: 'botIp',key: 'botIp'},
                         //   {title: 'Action',key: 'operation',render:()=><Button>detial</Button>},
                         ]
         return (

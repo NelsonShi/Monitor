@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -38,5 +39,14 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
          bpaSession.setStartparamsxml("<inputs/>");
          bpaSession.setStarttimezoneoffset(0);
          bpaSessionDao.save(bpaSession);
+    }
+
+    @Override
+    public List<BPASession> findRunningProcess(){
+        return bpaSessionDao.findByStatusid(1);
+    }
+
+    public List<BPASession> recentlySession(){
+        return bpaSessionDao.findRecentSession();
     }
 }

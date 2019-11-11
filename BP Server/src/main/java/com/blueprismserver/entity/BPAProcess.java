@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by sjlor on 2019/10/23.
+ * Created by Nelson on 2019/10/23.
  */
 @Entity
 @Table(name = "BPAProcess")

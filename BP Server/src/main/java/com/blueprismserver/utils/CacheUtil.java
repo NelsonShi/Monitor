@@ -1,7 +1,12 @@
 package com.blueprismserver.utils;
 
+import com.blueprismserver.dao.IBPAEnvironmentVarDao;
+import com.blueprismserver.entity.BPAEnvironmentVar;
+import com.blueprismserver.entity.BPAProcess;
 import com.blueprismserver.entity.BPAResource;
 import com.blueprismserver.entity.vo.ComputerData;
+import com.blueprismserver.service.IBPAEnviornmentVar;
+import com.blueprismserver.service.IBPAProcess;
 import com.blueprismserver.service.IBPAResource;
 import com.blueprismserver.sysConfig.CacheKey;
 import net.sf.ehcache.Cache;
@@ -21,10 +26,17 @@ import java.util.Map;
 public class CacheUtil {
       @Autowired
       private IBPAResource resourceService;
+      @Autowired
+      private IBPAEnviornmentVar enviornmentVarService;
+      @Autowired
+      private IBPAProcess ibpaProcessService;
+
 
       public void InitCache(){
           initResources();
           InitConnectBot();
+          initEnvironmentVar();
+          initProcess();
       }
 
     public void InitConnectBot(){
@@ -38,6 +50,28 @@ public class CacheUtil {
         List<BPAResource> resourceList = resourceService.findAll();
         Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
         Element element = new Element(CacheKey.ResourcesCacheKey, resourceList);
+        cache.put(element);
+    }
+
+    public void initEnvironmentVar() {
+        List<BPAEnvironmentVar> envVarlist = enviornmentVarService.findAll();
+        Map<String,BPAEnvironmentVar> envVarMap=new HashMap<>();
+        for (BPAEnvironmentVar bpaEnvironmentVar:envVarlist){
+            envVarMap.put(bpaEnvironmentVar.getName(),bpaEnvironmentVar);
+        }
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = new Element(CacheKey.BluePrismEnvVAR, envVarMap);
+        cache.put(element);
+    }
+
+    public void initProcess() {
+       List<BPAProcess> processList=ibpaProcessService.findByProcessType("P");
+       Map<String,BPAProcess> processMap=new HashMap<>();
+       for(BPAProcess process:processList){
+           processMap.put(process.getProcessid(),process);
+       }
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = new Element(CacheKey.BluePrismProcessList, processMap);
         cache.put(element);
     }
 
@@ -94,5 +128,25 @@ public class CacheUtil {
             element = cache.get(CacheKey.ResourcesCacheKey);
         }
         return (List<BPAResource>) element.getObjectValue();
+    }
+
+    public Map<String,BPAEnvironmentVar> getBPEnvVars() {
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = cache.get(CacheKey.BluePrismEnvVAR);
+        if (element == null || cache.isExpired(element)) {
+            initEnvironmentVar();
+            element = cache.get(CacheKey.BluePrismEnvVAR);
+        }
+        return (Map<String, BPAEnvironmentVar>) element.getObjectValue();
+    }
+
+    public Map<String,BPAProcess> getProcessList() {
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = cache.get(CacheKey.BluePrismProcessList);
+        if (element == null || cache.isExpired(element)) {
+            initEnvironmentVar();
+            element = cache.get(CacheKey.BluePrismProcessList);
+        }
+        return (Map<String, BPAProcess>) element.getObjectValue();
     }
 }

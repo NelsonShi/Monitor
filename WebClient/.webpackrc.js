@@ -5,12 +5,12 @@ export default{
  
   proxy: {
   "/bpServer": {
-    "target": "http://localhost:8080/",
+    "target": "http://localhost:49200/",
     "changeOrigin": true,
     "pathRewrite": { "^/bpServer" : "" }
    },
    "/localServer": {
-    "target": "http://localhost:8080/",
+    "target": "http://localhost:49200/",
     "changeOrigin": true,
     "pathRewrite": { "^/localServer" : "" }
    }

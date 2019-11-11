@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Project\WPF\botMonitor\botMonitor\obj\Release\
+D:\Codes\Monitor\botMonitor\botMonitor\obj\Release\
 botMonitor
 none
 false
 TRACE
-D:\Project\WPF\botMonitor\botMonitor\App.xaml
-11151548125
+D:\Codes\Monitor\botMonitor\botMonitor\App.xaml
+2-220222858
 
 9-1203746819
-18-1031168379
-MainWindow.xaml;
+19-1171627143
+MainWindow.xaml;Style\UIStyle.xaml;
 
 False
 
