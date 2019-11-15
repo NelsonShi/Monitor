@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class BPATask {
     @Id
     private Integer id;
-    private Integer sheduleid;
+    private Integer scheduleid;
     private String name;
     private String description;
     private Integer onsuccess;
@@ -28,12 +28,12 @@ public class BPATask {
         this.id = id;
     }
 
-    public Integer getSheduleid() {
-        return sheduleid;
+    public Integer getScheduleid() {
+        return scheduleid;
     }
 
-    public void setSheduleid(Integer sheduleid) {
-        this.sheduleid = sheduleid;
+    public void setScheduleid(Integer scheduleid) {
+        this.scheduleid = scheduleid;
     }
 
     public String getName() {

@@ -25,6 +25,9 @@ export function findAllResources () {
 export function findAllResourcesSecondly () {
   return request('/bpServer/process/resourceListForWeb'); //get方法请求
 }
+export function findResourceScheduleList () {
+  return request('/bpServer/process/scheduleVos'); //get方法请求
+}
 
 export function findAllBots () {
   return request('/bpServer/process/bots'); //get方法请求

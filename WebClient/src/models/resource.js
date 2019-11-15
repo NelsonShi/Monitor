@@ -8,6 +8,7 @@ export default {
         list: [],
         total: 0,
         page: 0,
+        schedules:[]
     },
 
     reducers: {
@@ -16,7 +17,10 @@ export default {
       },     
       getbots(state, { payload: { bots } }){
         return{...state,bots}
-      }
+      },
+      getSchedules(state, { payload: { schedules } }){
+        return{...state,schedules}
+      },
     },
     effects: {
       *fetch({ payload: value }, { call, put }) {
@@ -36,8 +40,22 @@ export default {
             list: value.value  //网络返回的要保留的数据
           }
         })
+      },
+
+      *findSchedules({ payload: value }, { call, put }){
+        const result = yield call(resourceService.findResourceScheduleList, value)
+        console.log(result.data);
+        yield put({
+          type: 'getSchedules',  //reducers中的方法名
+          payload:{
+            schedules: result.data  //网络返回的要保留的数据
+          }
+        })
       }
+
     },
+
+
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
       },

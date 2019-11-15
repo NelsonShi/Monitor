@@ -3,10 +3,8 @@ package com.blueprismserver.resoruce;
 import com.blueprismserver.entity.*;
 import com.blueprismserver.entity.vo.BPAResourceVo;
 import com.blueprismserver.entity.vo.ComputerData;
-import com.blueprismserver.service.IBPAResource;
-import com.blueprismserver.service.IBPASession;
-import com.blueprismserver.service.IBPAUser;
-import com.blueprismserver.service.IBPAProcess;
+import com.blueprismserver.entity.vo.ScheduleVo;
+import com.blueprismserver.service.*;
 import com.blueprismserver.utils.CacheUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +31,15 @@ public class ProcessResource {
     private CacheUtil cacheUtil;
     @Autowired
     private IBPASession bpaSessionService;
+    @Autowired
+    private IBPASchedule ibpaScheduleService;
+    @Autowired
+    private IBPAScheduleTrigger scheduleTriggerSevice;
+    @Autowired
+    private IBPATask taskService;
+    @Autowired
+    private IBPATaskSession taskSessionService;
+
     @RequestMapping("/hello")
     public String hello(){
         return "helloWord";
@@ -74,6 +81,34 @@ public class ProcessResource {
         List<BPAProcess> customBpaProcessList=processService.findByProcessType("P");
         List<BPAUser> userList=bpaUserService.getAll();
         List<BPAResource> resourceList=bpaResourceService.findAll();
+    }
+
+    @RequestMapping("/scheduleVos")
+    public List<ScheduleVo> GetResourceSchedules(){
+        List<BPASchedule> scheduleList=ibpaScheduleService.findUnRetireScheduleList();
+        List<BPAScheduleTrigger> bpaScheduleTriggerList=scheduleTriggerSevice.findAll();
+        List<BPATask> taskList=taskService.findAll();
+        List<BPATaskSession> taskSessionList=taskSessionService.findAll();
+        List<BPAResource> resourceList=cacheUtil.getResourceList();
+        Map<String,BPAScheduleTrigger> triggerMap=new HashMap<>();
+        Map<String,BPATask> taskMap=new HashMap<>();
+        Map<String,BPATaskSession> taskSessionMap=new HashMap<>();
+        Map<String,BPAResource> resourceMap=new HashMap<>();
+        for (BPAScheduleTrigger trigger:bpaScheduleTriggerList){
+            triggerMap.put(trigger.getScheduleid().toString(),trigger);
+        }
+        for (BPATask task:taskList){
+            taskMap.put(task.getScheduleid().toString(),task);
+        }
+        for (BPATaskSession taskSession:taskSessionList){
+            taskSessionMap.put(taskSession.getTaskid().toString(),taskSession);
+        }
+        for (BPAResource resource:resourceList){
+            resourceMap.put(resource.getName(),resource);
+        }
+        Map<String,BPAProcess> processMap=cacheUtil.getProcessList();
+        Map<String,BPAEnvironmentVar> envarMap=cacheUtil.getBPEnvVars();
+        return ibpaScheduleService.GenrateResourceScheduleVos(scheduleList,triggerMap,processMap,envarMap,taskMap,taskSessionMap,resourceMap);
     }
 
     private List<BPAResourceVo> GenrateBPAResourceVo(){

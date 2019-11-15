@@ -1,5 +1,6 @@
 package com.blueprismserver.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ public class BPASchedule {
     private String name;
     private String description;
     private Integer initialtaskid;
+    @Column(name="retired")
     private boolean retired;
     private  Integer versionno;
     private String deletedname;

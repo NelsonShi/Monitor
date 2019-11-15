@@ -8,8 +8,6 @@ import { Table, Button, Icon  } from 'antd'
 import styles from './Resource.css'
 import ResourceExpander from './ResourceExpander'
 
-// import { PAGE_SIZE } from '../../constants'
-// import { Record } from '_immutable@3.8.2@immutable'
 
 class ResourceTable extends Component{
     
@@ -18,9 +16,12 @@ class ResourceTable extends Component{
       }
 
     componentDidMount() {
-        const { dispatch, list } = this.props
+        const { dispatch, list,schedules } = this.props
         if (list.length <= 0) {
             dispatch({ type: 'resource/fetch', payload: { page: 1 } })
+        }
+        if(schedules.length<=0){
+            dispatch({ type: 'resource/findSchedules', payload: { page: 1 } })
         }
         this.timer = setInterval(() =>{this.fleshResources()} , 2000);
     }
@@ -88,7 +89,7 @@ class ResourceTable extends Component{
                     columns={columns}
                     dataSource={dataSource}
                     loading={loading}
-                    expandedRowRender={record=><ResourceExpander BotName={record.name}/>}             
+                    expandedRowRender={record=><ResourceExpander BotName={record.name} schedules={this.props.schedules}/>}             
                 />            
             </div>
         </div>
@@ -112,6 +113,7 @@ function mapStateToProps(state) {
         total: parseInt(total, 10),
         page,
         vos:state.timer.vos,
+        schedules:state.resource.schedules,
     }
 }
 
