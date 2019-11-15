@@ -35,7 +35,8 @@ class ResourceExpander extends Component {
            <div style={{background:'#FAFAD2',height:'30PX',width:'100%'}}>   
            {
              schedule[0].timeSlots.map((r)=>
-               <div style={{background:'#90EE90',height:'28PX',border:'1px solid #3CB371',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}/>
+               <div style={{background:'#90EE90',height:'29PX',border:'1px solid #3CB371',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}
+               title={r.processName+' ('+r.timeSpan+')'}/>
              )
            }
            </div>

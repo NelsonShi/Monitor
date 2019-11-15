@@ -293,7 +293,7 @@ public class ScheduleTimeSlotModule {
         }
         long length=inputEndDate.getTime()-inputStartDate.getTime();
         long runTime=scheduleRunTime*1000;
-        DecimalFormat sd=new DecimalFormat("0");
+        DecimalFormat sd=new DecimalFormat("0.00");
         String width=sd.format((runTime*100.0)/(length*1.0)<1?1:(runTime*100.0)/(length*1.0));
 //        String marginLeft=sd.format((intervalTime*60*1000-runTime)*100.0/(length*1.0));
         scheduleSlotList=new ArrayList<>();
@@ -320,7 +320,7 @@ public class ScheduleTimeSlotModule {
               ScheduleTimeSlot vo=new ScheduleTimeSlot();
               vo.setTrggerName(triggerName);
 //              vo.setMarginLeft("0");
-              String width1=sd.format(lastEndTime*1000.0/(length*1.0)<1?1:lastEndTime*1000.0/(length*1.0));
+              String width1=sd.format(lastEndTime*100000.0/(length*1.0)<1?1:lastEndTime*100000.0/(length*1.0));
               int endMinite=lastEndTime/60;
               if(lastEndTime*1000>=length){
                   endMinite=new Long(length/(1000*60)).intValue();
