@@ -1,8 +1,6 @@
 package com.blueprismserver.utils.ComputationalModule;
 
 import com.blueprismserver.entity.vo.ScheduleTimeSlot;
-import com.blueprismserver.entity.vo.ScheduleVo;
-import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -43,6 +41,10 @@ public class ScheduleTimeSlotModule {
    private Integer result;
    //报错结果
    private String resultStr;
+   //schedule betweenTime 的起始时间（秒数） 距离凌晨
+   private Integer startPoint;
+    //schedule betweenTime 的截止时间（秒数） 距离凌晨
+   private Integer endPoint;
 
    private List<ScheduleTimeSlot> scheduleSlotList;
 
@@ -158,14 +160,31 @@ public class ScheduleTimeSlotModule {
         this.scheduleSlotList = scheduleSlotList;
     }
 
+    public Integer getStartPoint() {
+        return startPoint;
+    }
 
-    public ScheduleTimeSlotModule(Date inputStartDate,Date inputEndDate,Date triigerStartTime,long scheduleRunTime,Integer period,Integer scheduleType){
+    public void setStartPoint(Integer startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public Integer getEndPoint() {
+        return endPoint;
+    }
+
+    public void setEndPoint(Integer endPoint) {
+        this.endPoint = endPoint;
+    }
+
+    public ScheduleTimeSlotModule(Date inputStartDate, Date inputEndDate, Date triigerStartTime, long scheduleRunTime, Integer period, Integer scheduleType, Integer startPoint, Integer endPoint){
           this.inputStartDate=inputStartDate;
           this.inputEndDate=inputEndDate;
           this.triigerStartTime=triigerStartTime;
           this.scheduleRunTime=scheduleRunTime;
           this.period=period;
           this.scheduleType=scheduleType;
+          this.startPoint=startPoint;
+          this.endPoint=endPoint;
           GenrateRunntimeBetweentInputTimes();
     }
 
@@ -177,10 +196,12 @@ public class ScheduleTimeSlotModule {
             needToStart=false;
             return;
         }
+        //如果类型是 minutely hourly daily weekly 定时周期
        if(scheduleType==1||scheduleType==2||scheduleType==3||scheduleType==6){
            CreateTimeSlotsWithPeriod();
            return;
        }
+        //如果类型是 once monthly yealy 不定时周期（时间间隔不固定）
        if(scheduleType==0||scheduleType==4||scheduleType==5){
            CreateTimeSlotsMonthlyAndYealyAndOnece();
            return;
@@ -192,6 +213,7 @@ public class ScheduleTimeSlotModule {
 
     //最小计算单位是秒 此计算只支持 mintely hourly daily weekly
     private void CreateTimeSlotsWithPeriod(){
+        //计算出 周期间隔 单位是秒
         long intervalTime=period*60;
         switch (scheduleType){
             case 1:intervalTime=intervalTime*60;
@@ -202,9 +224,14 @@ public class ScheduleTimeSlotModule {
                    break;
             default:break;
         }
-       long betweenTime=((inputStartDate.getTime()-triigerStartTime.getTime())/1000);
-       long remainder=betweenTime%intervalTime;
-       long beginTime=intervalTime-remainder;
+        //计算出 起始时间距离第一次执行的 时间跨度
+        long betweenTime=((inputStartDate.getTime()-triigerStartTime.getTime())/1000);
+        long remainder=betweenTime%intervalTime;
+        // 计算出最近一次执行时间 距离 inputSatrtTime的秒数 如果betweent time 为负数 则trigger 为最近的执行时间
+        long beginTime=intervalTime-remainder;
+        if(betweenTime<0&&(inputEndDate.getTime()>triigerStartTime.getTime())){
+            beginTime=(int)Math.ceil((triigerStartTime.getTime()-inputStartDate.getTime())*1.0/1000);
+        }
        if(beginTime-((inputEndDate.getTime()-inputStartDate.getTime())/1000)>0){
            needToStart=false;
            result=-1;
@@ -214,12 +241,13 @@ public class ScheduleTimeSlotModule {
            result=1;
            beginToRun=new Long(beginTime).intValue();
        }
-       lastToToday=scheduleRunTime-remainder>0;
+       lastToToday=remainder>=0?scheduleRunTime-remainder>0:false;
        if(lastToToday){
            lastEndTime=new Long(scheduleRunTime-remainder).intValue();
        }
        long timeSpan=inputEndDate.getTime()-inputStartDate.getTime();
        double count=(timeSpan*1.0/1000)/intervalTime;
+       // 计算出指定时间段内的 执行次数
         runCounts=(int)(Math.ceil(count));
     }
 
@@ -256,9 +284,13 @@ public class ScheduleTimeSlotModule {
             if(!days.contains(endCalendar.get(Calendar.DAY_OF_MONTH))){
                 days.add(endCalendar.get(Calendar.DAY_OF_MONTH));
             }
+            //是否在其中的一天 如果在 只需判断是时分 是否包含触发
             if(days.contains(triigerStartCalendar.get(Calendar.DAY_OF_MONTH))){
+                //当天的分钟数
                 int beginMintes=beginCalendar.get(Calendar.MINUTE)+beginCalendar.get(Calendar.HOUR_OF_DAY)*60;
-                int endMintes=beginMintes+((int)Math.floor((inputEndDate.getTime()-inputStartDate.getTime())/(1000*60*60)));
+                //此次结束 结束的分钟数
+                int endMintes=beginMintes+((int)Math.floor((inputEndDate.getTime()-inputStartDate.getTime())/(1000*60)));
+                //距离指定时间段 触发的分钟数
                 int startMints=triigerStartCalendar.get(Calendar.MINUTE)+triigerStartCalendar.get(Calendar.HOUR_OF_DAY)*60;
                 if(startMints>=beginMintes&&startMints<=endMintes){
                     needToStart=true;
@@ -301,6 +333,8 @@ public class ScheduleTimeSlotModule {
               ScheduleTimeSlot vo=new ScheduleTimeSlot();
               vo.setTrggerName(triggerName);
               int beginMinutes=beginToRun/60+intervalTime*i;
+              Integer beginSecondsFormZero=ComputeSeconds(beginMinutes);
+              if(beginSecondsFormZero<startPoint||beginSecondsFormZero>endPoint)continue;
               if(beginMinutes*60*1000>=length)continue;
               vo.setSatrtMinutes(beginMinutes);
               int endMinutes=beginMinutes+new Long(scheduleRunTime/60).intValue();
@@ -316,7 +350,7 @@ public class ScheduleTimeSlotModule {
 //              vo.setMarginLeft(marginLeft);
               scheduleSlotList.add(vo);
           }
-          if(lastToToday){
+          if(lastToToday!=null&&lastToToday){
               ScheduleTimeSlot vo=new ScheduleTimeSlot();
               vo.setTrggerName(triggerName);
 //              vo.setMarginLeft("0");
@@ -334,6 +368,18 @@ public class ScheduleTimeSlotModule {
               vo.setTimeSpan(spanBegin+"--"+spanEnd);
               scheduleSlotList.add(vo);
           }
+    }
+
+    /*
+      scheduleBeginTime: 单位是分
+      计算出开始时间的秒数（距离当天凌晨）
+    * */
+    private Integer ComputeSeconds(Integer scheduleBeginTime){
+       Date beginTime=new Date(inputStartDate.getTime()+scheduleBeginTime*1000*60);
+       Calendar calendar=Calendar.getInstance();
+       calendar.setTime(beginTime);
+       Integer seconds=calendar.get(Calendar.HOUR_OF_DAY)*60*60+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND);
+       return seconds;
     }
 
 }

@@ -11,3 +11,8 @@
 .table{
     width: 100%;
 }
+.panel{
+    background: rgb(204, 196, 196);
+    height: 30px;
+    width: 100%;
+}

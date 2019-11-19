@@ -19,7 +19,7 @@ import java.util.*;
  */
 @Service
 public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IBPASchedule {
-    private static SimpleDateFormat sdf = new SimpleDateFormat("dd HH:mm");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
     @Autowired
     private IBPAScheduleDao scheduleDao;
 
@@ -43,9 +43,7 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         Date timeTodayZero = calendar.getTime();
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
+        calendar.add(Calendar.DAY_OF_MONTH,1);
         dateEnd = calendar.getTime();
         for (BPASchedule schedule : scheduleList) {
             BPAScheduleTrigger refTrigger = triggerMap.get(schedule.getId().toString());
@@ -95,7 +93,7 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
         Integer hour = Integer.parseInt(times[0].split("\\.")[1]);
         Integer mins = Integer.parseInt(times[1]);
         long runSeconds = day * 24 * 60 * 60 + hour * 60 * 60 + mins * 60;
-        ScheduleTimeSlotModule module = new ScheduleTimeSlotModule(inputbegin, inputEnd, trigger.getStartdate(), runSeconds, trigger.getPeriod(), trigger.getUnittype());
+        ScheduleTimeSlotModule module = new ScheduleTimeSlotModule(inputbegin, inputEnd, trigger.getStartdate(), runSeconds, trigger.getPeriod(), trigger.getUnittype(),trigger.getStartpoint(),trigger.getEndpoint());
         module.GenrateScheduleList(processName, sdf, trggerName);
         return module;
     }

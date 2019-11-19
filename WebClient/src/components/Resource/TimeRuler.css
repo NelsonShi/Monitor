@@ -1,0 +1,32 @@
+.rulerWrapper{
+    background: #f1eeee;
+    height: 18px;
+    overflow: hidden;
+    position: relative;
+}
+.rulerWrapper  ul{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    padding:0;
+    width:100%;
+    height: 18px;
+    position: relative;
+
+}
+.rulerWrapper  li{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    list-style: none;
+    width: 4.1666%;
+    float: left;
+    border-right:1px solid rgb(155, 153, 153);
+    height: 18px;
+    line-height :18px;
+}
+
+.rulerWrapper  li span{
+ color: rgb(129, 124, 124); 
+ margin-left: 2px;
+}

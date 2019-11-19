@@ -6,6 +6,6 @@ const equelize = {
   port: '3306',
   username: 'root',
   underscored: true,
-  password: 'mysql@ccms#',
+  password: 'root',
 };
 module.exports = equelize;

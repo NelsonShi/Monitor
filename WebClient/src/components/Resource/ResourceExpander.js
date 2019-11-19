@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { connect } from "dva";
 import { Table, Row, Col } from "antd";
+import TimeRuler from './TimeRuler' 
+import styles from './Resource.css'
 
 class ResourceExpander extends Component {
   componentDidMount() {
@@ -20,11 +22,11 @@ class ResourceExpander extends Component {
 
   getScheduleComponet() {
     const { schedules,BotName } = this.props;
-    let schedule = schedules.filter(item => item.resourcename == BotName);
+    let schedule = schedules.filter(item => item.resourcename === BotName);
     if(schedule[0]==null||schedule[0].timeSlots==null||schedule[0].timeSlots.length<=0){
       return(<Row>     
         <Col span={24} type="flex" justify="space-arround">
-          <div style={{background:'#FAFAD2',height:'30PX',width:'100%'}}>          
+          <div style={{background:'#BBBBBB',height:'30PX',width:'100%'}}>          
           </div>
         </Col>    
      </Row>)
@@ -32,10 +34,10 @@ class ResourceExpander extends Component {
       return(
         <Row>     
          <Col span={24} type="flex" justify="space-arround">
-           <div style={{background:'#FAFAD2',height:'30PX',width:'100%'}}>   
+           <div className={styles.panel}>   
            {
              schedule[0].timeSlots.map((r)=>
-               <div style={{background:'#90EE90',height:'29PX',border:'1px solid #3CB371',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}
+               <div style={{background:'#27B42E',height:'29PX',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}
                title={r.processName+' ('+r.timeSpan+')'}/>
              )
            }
@@ -43,9 +45,7 @@ class ResourceExpander extends Component {
          </Col>    
        </Row>    
       )            
-    }
-    
-  
+    }  
   }
 
   render() {
@@ -65,15 +65,16 @@ class ResourceExpander extends Component {
         );
       } else {
         const colums = [
-          { title: "Name", dataIndex: "BotName", key: "BotName" },
+          { title: "Name", dataIndex: "BotName", key: "BotName",width:'20%' },
           //    {title:'CPU',dataIndex:'CPUCount',key:'CPUCount'},
-          { title: "CPU", dataIndex: "CPUUseRate", key: "CPUUseRate" },
-          { title: "RAM", dataIndex: "RAMUseRate", key: "RAMUseRate" },
-          { title: "Resolution", dataIndex: "Resolution", key: "Resolution" },
+          { title: "CPU", dataIndex: "CPUUseRate", key: "CPUUseRate",width:'15%' },
+          { title: "RAM", dataIndex: "RAMUseRate", key: "RAMUseRate",width:'15%' },
+          { title: "Resolution", dataIndex: "Resolution", key: "Resolution",width:'20%' },
           {
             title: "Application Status",
             dataIndex: "processList",
             key: "processList",
+            width:'30%',
             render(content) {
               if (content == null || content <= 0) {
                 return (
@@ -99,7 +100,7 @@ class ResourceExpander extends Component {
         );
       }
     }
-    return <div>{botComponent} {scheduleCompontent}</div>;
+    return <div>{botComponent} {scheduleCompontent}<TimeRuler/></div>;
   }
 }
 
