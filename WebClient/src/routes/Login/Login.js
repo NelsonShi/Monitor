@@ -6,24 +6,27 @@ import styles from './Login.css';
 class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
+    const {dispatch}=this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        dispatch({ type: "login/login", payload: { user: values } });
       }
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    let faildStr= (this.props.loginStatus.logined&&!this.props.loginStatus.loginSuccess)?'login in failed':'';
     return (
       <div className={styles.normal}>
-       <h2>Please Login In</h2>
+       <h2>Login In</h2>
        <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input
+            <Input className={styles.input}
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
             />,
@@ -33,25 +36,22 @@ class Login extends Component {
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
-            <Input
+            <Input className={styles.input}
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="Password"
             />,
           )}
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+        <Form.Item>         
+          <Button type="primary" htmlType="submit" className="login-form-button" style={{width:'80%'}}>
             Log in
           </Button>
-          Or <a href="">register now!</a>
+           <p style={{color:'	#00BFFF'}}>
+             <span style={{margin:'10px'}}>Username: Nelson</span>
+             <span style={{margin:'10px'}}>Password: 1</span>
+            </p>          
+           <p style={{color:'red'}}>{faildStr}</p>                  
         </Form.Item>
       </Form>
       </div>
@@ -59,6 +59,13 @@ class Login extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  // 得到modal中的state)
+  return {
+      loginStatus: state.login.loginStatus,
+  }
+}
+
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
 
-export default connect()(WrappedNormalLoginForm);
+export default connect(mapStateToProps)(WrappedNormalLoginForm);

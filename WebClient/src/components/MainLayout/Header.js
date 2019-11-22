@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Icon } from 'antd'
+import { Menu, Icon,Row, Col } from 'antd'
 import { connect } from 'dva'
 import { Link, routerRedux } from 'dva/router'
 import qs from 'qs'
@@ -17,9 +17,16 @@ class Header extends Component{
         )
     }
 
+    outClick=()=>{
+        this.props.dispatch({ type:"login/logout"})
+    }
+
     render() {
         const { location } = this.props
+        const username=sessionStorage.getItem("username")==null?'':sessionStorage.getItem("username")
         return (
+            <Row style={{width:'100%'}}>
+            <Col span={21} type="flex" justify="space-arround">
             <Menu selectedKeys={[location.pathname]}
                 mode="horizontal"
                 theme="dark"
@@ -31,10 +38,29 @@ class Header extends Component{
                 </Menu.Item>              
                 <Menu.Item key="/process">
                     Process
-                 </Menu.Item>
+                </Menu.Item>
             </Menu>
+            </Col>
+            <Col span={2} style={{background:'#001529',height:'100%'}} type="flex" justify="space-arround">
+                <div style={{width:'50%',height:'50%',position:'absolute',marginTop:'10%'}}>
+                    <spn style={{color:'#0088FF',height:'100%',lineHeight:'100%'}}>{username}</spn>
+                </div>
+            </Col>
+            <Col span={1} style={{background:'#001529',height:'100%'}} type="flex" justify="space-arround">
+                <div style={{width:'50%',height:'50%',position:'absolute',marginTop:'20%'}}>
+                    <a onClick={this.outClick} style={{color:'#0088FF',height:'100%',lineHeight:'100%'}}>Out</a>
+                </div>
+            </Col>
+            </Row>
         )
     }
 }
 
-export default connect()(Header)
+function mapStateToProps(state) {
+    // 得到modal中的state)
+    return {
+        login: state.login.loginStatus,
+    }
+  }
+
+export default connect(mapStateToProps)(Header)

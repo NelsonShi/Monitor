@@ -14,5 +14,17 @@ class UserService extends Service {
     return userList;
   }
 
+  async findUser(user){
+    const { ctx, app } = this;
+    let userList = {};
+    try {
+        userList = await app.model.User.findOne({where:{login_name:user.username,password:user.password}});
+    } catch (err) {
+      ctx.logger.error(err);
+    }
+    console.log(userList);
+    return userList;
+  }
+
 }
 module.exports = UserService;

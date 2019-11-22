@@ -8,6 +8,18 @@ class UserController extends Controller {
     ctx.body = await ctx.service.userService.findAll();
   }
 
+  async findAllRoles() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.roleService.findAll();
+  }
+
+  async UserLogin(){
+    const{ctx}=this;
+    console.log(ctx.request.body);
+    let user=await ctx.service.userService.findUser(ctx.request.body.user);
+    ctx.body=user;     
+  }
+
 }
 
 module.exports = UserController;

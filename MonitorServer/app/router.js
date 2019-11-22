@@ -8,4 +8,6 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/resources', controller.resourceController.findAll);
   router.get('/users', controller.userController.findAll);
+  router.get('/roles', controller.userController.findAllRoles);
+  router.post('/login', controller.userController.UserLogin);
 };
