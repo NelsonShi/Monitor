@@ -23,7 +23,7 @@ class ResourceTable extends Component{
         if(schedules.length<=0){
             dispatch({ type: 'resource/findSchedules', payload: { page: 1 } })
         }
-        this.timer = setInterval(() =>{this.fleshResources()} , 2000);
+        this.timer = setInterval(() =>{this.fleshResources()} , 4000);
     }
 
     componentWillUnmount(){

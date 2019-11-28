@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react'
-import {Switch, Redirect, routerRedux, Route } from 'dva/router'
+import {Switch, routerRedux, Route } from 'dva/router'
 import PrivateRoute from './routes/PrivateRouter'
 import App from './routes/App'
 
@@ -14,6 +14,12 @@ function RouterConfig({ history, app }) {
         component: () => import('./routes/Pages/Process')
     })
 
+    const errorPage = dynamic({
+        app,
+        component: () => import('./routes/Pages/404')
+    })
+
+
     const Login = dynamic({
         app,
         component: () => import('./routes/Login/Login')
@@ -23,16 +29,18 @@ function RouterConfig({ history, app }) {
         component: () => import('./routes/Pages/Resource')
     })
     return (
-      <ConnectedRouter history={history}>
-      <App>
+      <ConnectedRouter history={history}>    
           <Switch>
               <Route path="/login" exact component={Login} />
-              <PrivateRoute path="/process" exact component={Process} />
-              <PrivateRoute path="/resource" exact component={Resource} />
-              <Route path="*" render={() => <Redirect to="Resource" />} />
+              <App>
+                 <Switch>
+                   <PrivateRoute path="/process" exact component={Process} />
+                   <PrivateRoute path="/resource" exact component={Resource} /> 
+                   <PrivateRoute  exact component={errorPage} />   
+                 </Switch>          
+              </App>          
           </Switch>
-      </App>
-  </ConnectedRouter>
+      </ConnectedRouter>
     )
 }
 

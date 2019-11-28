@@ -1,0 +1,99 @@
+.logo {
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      width: 40px;
+      margin-right: 8px;
+    }
+  
+    span {
+      vertical-align: text-bottom;
+      font-size: 16px;
+      text-transform: uppercase;
+      display: inline-block;
+      font-weight: 700;     
+      white-space: nowrap;
+      :local {
+        animation: fadeLeftIn 500ms linear;
+        animation-fill-mode: both;
+      }
+    }
+  }
+
+  .button {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+      color: #1890ff;
+      background-color: fade(#1890ff, 15%);
+    }
+  }
+
+  .rightWarpper {
+    display: flex;
+    padding-right: 16px;
+  }
+
+
+.header {
+  :global {
+    .ant-menu-submenu-title {
+      height: 56px;
+    }
+
+    .ant-menu-horizontal {
+      line-height: 56px;
+
+      & > .ant-menu-submenu:hover {
+        color: #1890ff;
+        background-color: rgba(24, 144, 255, 0.15);
+      }
+    }
+
+    .ant-menu {
+      border-bottom: none;
+      height: 56px;
+    }
+
+    .ant-menu-horizontal > .ant-menu-submenu {
+      top: 0;
+      margin-top: 0;
+    }
+
+    .ant-menu-horizontal > .ant-menu-item,
+    .ant-menu-horizontal > .ant-menu-submenu {
+      border-bottom: none;
+    }
+
+    .ant-menu-horizontal > .ant-menu-item-active,
+    .ant-menu-horizontal > .ant-menu-item-open,
+    .ant-menu-horizontal > .ant-menu-item-selected,
+    .ant-menu-horizontal > .ant-menu-item:hover,
+    .ant-menu-horizontal > .ant-menu-submenu-active,
+    .ant-menu-horizontal > .ant-menu-submenu-open,
+    .ant-menu-horizontal > .ant-menu-submenu-selected,
+    .ant-menu-horizontal > .ant-menu-submenu:hover {
+      border-bottom: none;
+    }
+  }
+
+  box-shadow: 4px 4px 40px 0 rgba(0,0,0,0.05);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+  z-index: 9;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+

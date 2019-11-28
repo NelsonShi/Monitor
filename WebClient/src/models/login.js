@@ -25,7 +25,7 @@ export default {
                 loginStatus: {logined:true,loginSuccess:true}              
               }
             })
-            sessionStorage.setItem('hasLogin', 'true');
+            sessionStorage.setItem('hasLogin', true);
             sessionStorage.setItem('username', result.data.login_name);
             yield put((routerRedux.push('/Resource')));
        }else{
@@ -35,7 +35,7 @@ export default {
                 loginStatus: {logined:true,loginSuccess:false}              
               }
             })
-            sessionStorage.setItem('hasLogin', 'false');
+            sessionStorage.setItem('hasLogin', false);
        }  
       },
 

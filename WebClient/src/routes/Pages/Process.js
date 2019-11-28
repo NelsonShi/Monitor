@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
+import ProcessHeaderCards from '../../components/Process/ProcessHeaderCards';
+import ProcessTable from '../../components/Process/ProcessTable';
 
 
 class Process extends Component {
     render() {
         return (
-            <div>
-                <h4> this is process page! Waiting for coding!</h4>
+            <div style={{height:'100%',background:'#F0F2F5'}}>
+              <ProcessHeaderCards></ProcessHeaderCards>
+              <ProcessTable></ProcessTable>
             </div>
         )
     }
