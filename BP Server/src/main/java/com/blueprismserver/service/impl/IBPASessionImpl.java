@@ -6,14 +6,14 @@ import com.blueprismserver.entity.BPAResource;
 import com.blueprismserver.entity.BPASession;
 import com.blueprismserver.entity.BPAUser;
 import com.blueprismserver.entity.BPAProcess;
+import com.blueprismserver.entity.QueryVo.BPASessionLogs;
 import com.blueprismserver.service.IBPASession;
+import com.blueprismserver.utils.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by sjlor on 2019/10/29.
@@ -41,11 +41,14 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
          bpaSessionDao.save(bpaSession);
     }
 
-    @Override
-    public List<BPASession> findRunningProcess(){
-        return bpaSessionDao.findByStatusid(1);
+
+    public List<BPASessionLogs> findErrorSessionAndLogs(String date){
+        List<Object[]> list=bpaSessionDao.findErrorSessionAndLogs(date);
+        List<BPASessionLogs> sessionLogsList= EntityUtils.castEntity(list,BPASessionLogs.class,new BPASessionLogs());
+        return sessionLogsList;
     }
 
+    @Override
     public List<BPASession> recentlySession(){
         return bpaSessionDao.findRecentSession();
     }

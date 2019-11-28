@@ -1,5 +1,6 @@
 package com.blueprismserver.resoruce;
 
+import com.blueprismserver.base.BaseResource;
 import com.blueprismserver.entity.*;
 import com.blueprismserver.entity.vo.BPAResourceVo;
 import com.blueprismserver.entity.vo.ComputerData;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/process")
-public class ProcessResource {
+public class ProcessResource extends BaseResource {
     @Autowired
     private IBPAProcess processService;
     @Autowired

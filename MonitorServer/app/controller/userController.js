@@ -15,7 +15,6 @@ class UserController extends Controller {
 
   async UserLogin(){
     const{ctx}=this;
-    console.log(ctx.request.body);
     let user=await ctx.service.userService.findUser(ctx.request.body.user);
     ctx.body=user;     
   }
