@@ -35,7 +35,7 @@ public class ResourcesResoure extends BaseResource {
         Date dateNow=new Date();
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(dateNow);
-        calendar.add(Calendar.DAY_OF_MONTH,-2);
+        calendar.add(Calendar.DAY_OF_MONTH,-1);
         Date  querydate=calendar.getTime();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<BPASessionLogs> list= ibpaSessionService.findErrorSessionAndLogs(sdf.format(querydate));

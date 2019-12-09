@@ -9,9 +9,7 @@ export default {
     processCount: 0,
     errorCount: 0,
     undefinedCount: 0,
-    errorChartList:[],
-    errorCodeList:[],
-    errorLogs:[]
+    currentP:{}
   },
 
   reducers: {
@@ -24,8 +22,8 @@ export default {
     ) {
       return { ...state, processCount, errorCount, undefinedCount };
     },
-    saveErrors(state,{payload:{errorChartList,errorCodeList,errorLogs}}){
-      return { ...state, errorChartList,errorCodeList,errorLogs };
+    saveErrors(state,{payload:{currentP}}){
+      return { ...state,currentP};
     }
   },
   effects: {
@@ -68,9 +66,7 @@ export default {
         yield put({
           type: "saveErrors", //reducers中的方法名
           payload: {
-            errorChartList:p[0].errorChart,
-            errorCodeList:p[0].errorCodes,
-            errorLogs: p[0].logs//网络返回的要保留的数据
+            currentP:p[0]
           }
         });}
       }

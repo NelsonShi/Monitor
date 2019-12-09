@@ -99,7 +99,7 @@ class ProcessHeaderCards extends Component {
 }
 function mapStateToProps(state) {
   // 得到modal中的state)
-  const {  processCount,errorCount,undefinedCount}=state.process;
+  const {processCount,errorCount,undefinedCount}=state.process;
   return {
     processCount,
     errorCount,
