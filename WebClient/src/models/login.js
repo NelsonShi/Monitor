@@ -17,7 +17,7 @@ export default {
 
     effects: {
       *login({ payload: value }, { call, put,select}) {
-        const result = yield call(loginService.Login,value.user)
+        const result = yield call(loginService.Login,value.user)     
         if(result.data!=null){       
             yield put({
               type:'setIslogin',
@@ -25,8 +25,9 @@ export default {
                 loginStatus: {logined:true,loginSuccess:true}              
               }
             })
+            console.log(result.data)
             sessionStorage.setItem('hasLogin', true);
-            sessionStorage.setItem('username', result.data.login_name);
+            sessionStorage.setItem('username', result.data.loginName);
             yield put((routerRedux.push('/Resource')));
        }else{
             yield put({

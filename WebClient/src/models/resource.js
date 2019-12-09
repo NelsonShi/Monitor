@@ -44,7 +44,6 @@ export default {
 
       *findSchedules({ payload: value }, { call, put }){
         const result = yield call(resourceService.findResourceScheduleList, value)
-        console.log(result.data);
         yield put({
           type: 'getSchedules',  //reducers中的方法名
           payload:{

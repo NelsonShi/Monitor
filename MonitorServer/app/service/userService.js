@@ -22,7 +22,6 @@ class UserService extends Service {
     } catch (err) {
       ctx.logger.error(err);
     }
-    console.log(userList);
     return userList;
   }
 

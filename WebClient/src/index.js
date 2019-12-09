@@ -1,15 +1,16 @@
 import dva from 'dva'
-import createHistory from 'history/createBrowserHistory'
 // import createLogger from 'redux-logger'
 import createLoading from 'dva-loading'
 import { message } from 'antd'
 import './index.css'
+// const createHistory = require("history").createHashHistory
+import { createBrowserHistory } from 'history';
 
 const ERROR_MSG_DURATION = 3
 
 // 1. Initialize
 const app = dva({
-    history: createHistory(),
+    history: createBrowserHistory(),
     ...createLoading({ effects: true }),
     initialState: {
         '@@dva': {
@@ -32,6 +33,7 @@ const app = dva({
 app.model(require('./models/resource').default);
 app.model(require('./models/timer').default);
 app.model(require('./models/login').default);
+app.model(require('./models/process').default);
 
 // 4. Router
 app.router(require('./router').default);

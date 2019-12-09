@@ -26,7 +26,7 @@ class ResourceExpander extends Component {
     if(schedule[0]==null||schedule[0].timeSlots==null||schedule[0].timeSlots.length<=0){
       return(<Row>     
         <Col span={24} type="flex" justify="space-arround">
-          <div style={{background:'#BBBBBB',height:'30PX',width:'100%'}}>          
+          <div className={styles.panel}>          
           </div>
         </Col>    
      </Row>)
@@ -37,7 +37,7 @@ class ResourceExpander extends Component {
            <div className={styles.panel}>   
            {
              schedule[0].timeSlots.map((r)=>
-               <div style={{background:'#27B42E',height:'29PX',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}
+               <div key={r.index} style={{background:'#73d13d',height:'29PX',display:'inline-block',width:r.width+'%',marginLeft:r.marginLeft+'%'}}
                title={r.processName+' ('+r.timeSpan+')'}/>
              )
            }
@@ -92,6 +92,7 @@ class ResourceExpander extends Component {
         ];
         botComponent = (
           <Table
+            rowKey={record=>record.Name}
             loading={false}
             columns={colums}
             dataSource={bot}

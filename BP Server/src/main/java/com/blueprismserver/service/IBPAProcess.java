@@ -6,6 +6,7 @@ import com.blueprismserver.entity.BPASessionLogNonUnicode;
 import com.blueprismserver.entity.QueryVo.BPASessionLogs;
 import com.blueprismserver.entity.vo.BPAProcessVo;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +18,5 @@ public interface IBPAProcess extends IService<BPAProcess> {
 
     List<BPAProcess> findAll();
 
-    List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String, BPAProcess> processMap);
+    List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String, BPAProcess> processMap, Date queryDate,Date now);
 }

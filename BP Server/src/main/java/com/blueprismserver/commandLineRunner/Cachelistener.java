@@ -1,8 +1,6 @@
 package com.blueprismserver.commandLineRunner;
 
-import com.blueprismserver.entity.BPAResource;
-import com.blueprismserver.service.IBPAResource;
-import com.blueprismserver.sysConfig.CacheConfig;
+
 import com.blueprismserver.utils.CacheUtil;
 import com.blueprismserver.utils.TCPServer.NettyServer;
 import io.netty.channel.ChannelFuture;
@@ -12,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-
-import java.util.Date;
 
 
 /**

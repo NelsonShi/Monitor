@@ -1,4 +1,4 @@
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Alert } from 'antd';
 import React, { Component } from 'react'
 import { connect } from 'dva';
 import styles from './Login.css';
@@ -9,7 +9,6 @@ class Login extends Component {
     const {dispatch}=this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         dispatch({ type: "login/login", payload: { user: values } });
       }
     });
@@ -17,13 +16,21 @@ class Login extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    let faildStr= (this.props.loginStatus.logined&&!this.props.loginStatus.loginSuccess)?'login in failed':'';
+    let loginfailed= (this.props.loginStatus.logined&&!this.props.loginStatus.loginSuccess);
+    let alter;
+    if(loginfailed){
+      alter=<div style={{height:'10%'}}><Alert message="Login failed" type="error" /></div>
+    }else{
+      alter=<div style={{height:'10%'}}></div>
+    }
     return (
+      <div style={{background:'#f5f5f5',height:'100%'}}>
+        {alter}
       <div className={styles.normal}>
-       <h2>Login In</h2>
+       <h2 style={{color:'#1890ff'}}>Login In</h2>
        <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('loginName', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input className={styles.input}
@@ -47,13 +54,13 @@ class Login extends Component {
           <Button type="primary" htmlType="submit" className="login-form-button" style={{width:'80%'}}>
             Log in
           </Button>
-           <p style={{color:'	#00BFFF'}}>
-             <span style={{margin:'10px'}}>Username: Nelson</span>
-             <span style={{margin:'10px'}}>Password: 1</span>
-            </p>          
-           <p style={{color:'red'}}>{faildStr}</p>                  
-        </Form.Item>
+           <p style={{color:'#bfbfbf'}}>
+             <span style={{margin:'0px 10px 0 10px'}}>Username: Nelson</span>
+             <span style={{margin:'0px 10px 0 10px'}}>Password: 1</span>
+           </p>                        
+         </Form.Item>
       </Form>
+      </div>
       </div>
     );
   }

@@ -19,6 +19,7 @@ public class BPASessionLogs {
     private Integer statusid;
     private Date stoprequested;
     private Date lastupdated;
+    private long logid;
     private String laststage;
     private String stagename;
     private String pagename;
@@ -30,7 +31,7 @@ public class BPASessionLogs {
 
     }
 
-    public BPASessionLogs(String sessionid, Date startdatetime, Date enddatetime, String processid, String starterresourceid, Integer statusid, Date stoprequested, Date lastupdated, String laststage, String stagename, String pagename, String objectname, String actionname, String result) {
+    public BPASessionLogs(String sessionid, Date startdatetime, Date enddatetime, String processid, String starterresourceid, Integer statusid, Date stoprequested, Date lastupdated, long logid, String laststage, String stagename, String pagename, String objectname, String actionname, String result) {
         this.sessionid = sessionid;
         this.startdatetime = startdatetime;
         this.enddatetime = enddatetime;
@@ -39,6 +40,7 @@ public class BPASessionLogs {
         this.statusid = statusid;
         this.stoprequested = stoprequested;
         this.lastupdated = lastupdated;
+        this.logid = logid;
         this.laststage = laststage;
         this.stagename = stagename;
         this.pagename = pagename;
@@ -157,5 +159,13 @@ public class BPASessionLogs {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public long getLogid() {
+        return logid;
+    }
+
+    public void setLogid(long logid) {
+        this.logid = logid;
     }
 }

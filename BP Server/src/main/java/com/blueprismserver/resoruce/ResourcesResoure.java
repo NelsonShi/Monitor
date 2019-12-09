@@ -31,21 +31,22 @@ public class ResourcesResoure extends BaseResource {
     private IBPAProcess processService;
     @Autowired
     private CacheUtil cacheUtil;
-    @Autowired
-    private IBPASessionLogNonUnicode ibpaSessionLogNonUnicodeService;
+
 
 
     @RequestMapping("/errorProcessVos")
     public List<BPAProcessVo> finderrorProcessVos(){
-        Date date=new Date();
+        Date dateNow=new Date();
         Calendar calendar=Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_MONTH,-6);
-        date=calendar.getTime();
-        List<BPASessionLogs> list= ibpaSessionService.findErrorSessionAndLogs(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
-        List<BPAProcessVo> voList=processService.GenerateUnCompetedProcessVos(list,cacheUtil.getProcessList());
+        calendar.setTime(dateNow);
+        calendar.add(Calendar.DAY_OF_MONTH,-2);
+        Date  querydate=calendar.getTime();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<BPASessionLogs> list= ibpaSessionService.findErrorSessionAndLogs(sdf.format(querydate));
+        List<BPAProcessVo> voList=processService.GenerateUnCompetedProcessVos(list,cacheUtil.getProcessList(),querydate,dateNow);
         for (BPAProcessVo vo:voList){
             vo.InitMessage();
+            vo.setLastTimeStr(vo.getLastTime()==null?"":sdf.format(vo.getLastTime()));
         }
         return voList;
     }

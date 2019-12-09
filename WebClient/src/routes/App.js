@@ -1,4 +1,4 @@
-import React, { Component, Children } from "react";
+import React, { Component } from "react";
 import { connect } from "dva";
 import { withRouter } from "dva/router";
 import { Layout, Menu, Breadcrumb, Icon, BackTop } from "antd";
@@ -6,22 +6,17 @@ import style from "./App.less";
 import { routerRedux } from "dva/router";
 import qs from "qs";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
+const icons = new Map();
 
 class App extends Component {
   state = {
     collapsed: false,
-    itemInfo: {},
     menufold: "menu-fold"
   };
 
-  menuClick = ({ item, key, keyPath }) => {
-    let itemInfo = {
-      type: item.props.children[0].props.type,
-      name: item.props.children[1].props.children
-    };
-    this.setState({ itemInfo });
+  menuClick = ({ key }) => {
     this.props.dispatch(
       routerRedux.push({
         pathname: key,
@@ -29,6 +24,13 @@ class App extends Component {
       })
     );
   };
+
+  componentDidMount() {
+    icons.set("Resource", "desktop");
+    icons.set("Process", "project");
+    icons.set("Users", "team");
+    icons.set("Detial", "bar-chart");
+  }
 
   onCollapse = () => {
     let collapsed = !this.state.collapsed;
@@ -38,14 +40,20 @@ class App extends Component {
     this.setState({ collapsed });
   };
 
-  outClick=()=>{
-    this.props.dispatch({ type:"login/logout"})
-}
+  outClick = () => {
+    this.props.dispatch({ type: "login/logout" });
+  };
 
   render() {
-    let { children, location } = this.props;
-    let  itemInfo  = this.state.itemInfo.type==null?{type:'desktop',name:'Resource'}:this.state.itemInfo
-    const username=sessionStorage.getItem("username")==null?'':sessionStorage.getItem("username")
+    const { children, location } = this.props;
+    const pathNames = location.pathname
+      .split("/")
+      .filter(item => item.length > 0);
+    const selectedkey = "/" + pathNames[0];
+    const username =
+      sessionStorage.getItem("username") == null
+        ? ""
+        : sessionStorage.getItem("username");
     return (
       <div>
         <Layout style={{ minHeight: "100vh" }}>
@@ -57,7 +65,7 @@ class App extends Component {
               theme="dark"
               defaultSelectedKeys={["Resource"]}
               mode="inline"
-              selectedKeys={[location.pathname]}
+              selectedKeys={[selectedkey]}
               onClick={this.menuClick}
             >
               <Menu.Item key="/Resource">
@@ -84,7 +92,7 @@ class App extends Component {
                 <Icon type={this.state.menufold} />
               </div>
               <div className={style.rightWarpper}>
-                <Menu  mode="horizontal">
+                <Menu mode="horizontal">
                   <SubMenu
                     style={{
                       float: "right"
@@ -95,28 +103,39 @@ class App extends Component {
                         {username}
                       </span>
                     }
-                   >
-                    <Menu.Item key="logout" onClick={this.outClick}>Sign out</Menu.Item>
+                  >
+                    <Menu.Item key="logout" onClick={this.outClick}>
+                      Sign out
+                    </Menu.Item>
                   </SubMenu>
                 </Menu>
               </div>
             </Header>
-            <Content style={{ margin: "0 16px",background:'white' }} location={location}>
-              <Breadcrumb >
-                <Breadcrumb.Item>
-                  <Menu mode="horizontal" style={{ background: "#F0F2F5",borderBottom:'none'}}>
-                    <Menu.Item key={"/" + itemInfo.name}>
-                      <Icon type={itemInfo.type} />
-                      <span>{itemInfo.name}</span>
-                    </Menu.Item>
-                  </Menu>
-                </Breadcrumb.Item>
+            <Content
+              style={{ margin: "0 16px", background: "white", height: "100%" }}
+              location={location}
+            >
+              <Breadcrumb
+                separator=">"
+                style={{ height: "56px", background: "#F0F2F5" }}
+              >
+                {pathNames.map(item => {
+                  let type = icons.get(item);
+                  return (
+                    <Breadcrumb.Item key={item}>
+                      <Icon type={type}></Icon>
+                      <span style={{ lineHeight: "56px", fontSize: "14px" }}>
+                        {item}
+                      </span>
+                    </Breadcrumb.Item>
+                  );
+                })}
               </Breadcrumb>
               {children}
             </Content>
-            <Footer style={{ textAlign: "center",height:'5%'}}>
+            {/* <Footer style={{ textAlign: "center",height:'5%'}}>
                 <h5>BP Dashboard ©2019 Created by RPA Platform</h5>
-            </Footer>
+            </Footer> */}
           </Layout>
         </Layout>
       </div>
@@ -129,6 +148,6 @@ App.propTypes = {};
 export default withRouter(
   connect(({ app, loading }) => ({
     app,
-    loading,
+    loading
   }))(App)
 );

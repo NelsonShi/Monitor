@@ -77,13 +77,6 @@ public class ProcessResource extends BaseResource {
         return list;
     }
 
-    @RequestMapping("/start")
-    public void StartProcess(){
-        List<BPAProcess> customBpaProcessList=processService.findByProcessType("P");
-        List<BPAUser> userList=bpaUserService.getAll();
-        List<BPAResource> resourceList=bpaResourceService.findAll();
-    }
-
     @RequestMapping("/scheduleVos")
     public List<ScheduleVo> GetResourceSchedules(){
         List<BPASchedule> scheduleList=ibpaScheduleService.findUnRetireScheduleList();

@@ -1,3 +1,4 @@
+const publicPath = '/';
 export default{
   extraBabelPlugins: [
    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
@@ -10,16 +11,19 @@ export default{
     "pathRewrite": { "^/bpServer" : "" }
    },
    "/localServer": {
-    "target": "http://127.0.0.1:7001/",
+    "target": "http://localhost:49200/",
     "changeOrigin": true,
     "pathRewrite": { "^/localServer" : "" }
    }
   },
 
+  publicPath,
+
   define: {
     'process.env': {},
     'process.env.NODE_ENV': process.env.NODE_ENV,
     'process.env.API_ENV': process.env.API_ENV,
+     publicPath
    },
-  
+
 }

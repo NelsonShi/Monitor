@@ -13,6 +13,7 @@ public class ScheduleTimeSlot {
    private String width;
    private String marginLeft;
    private String trggerName;
+   private Integer index;
 
     public Integer getSatrtMinutes() {
         return satrtMinutes;
@@ -68,5 +69,13 @@ public class ScheduleTimeSlot {
 
     public void setTrggerName(String trggerName) {
         this.trggerName = trggerName;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 }

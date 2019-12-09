@@ -18,16 +18,45 @@ public class BPAProcessVo {
     private Integer errorCount;
     private Integer undefinedCount;
     private Date lastTime;
+    private String lastTimeStr;
     private String message;
     private boolean requestedStoped;
     private String requestedTime;
     private boolean terminated;
+    private List<ErrorChartVo> errorChart;
+    private List<ProcessErrorInfoVo> errorCodes;
+    private List<ProcessErrorLogVo> logs;
+
 
     public BPAProcessVo(String processId, String processName, Integer errorCount, Integer undefinedCount) {
         this.processId = processId;
         this.processName = processName;
         this.errorCount = errorCount;
         this.undefinedCount = undefinedCount;
+    }
+
+    public List<ErrorChartVo> getErrorChart() {
+        return errorChart;
+    }
+
+    public void setErrorChart(List<ErrorChartVo> errorChart) {
+        this.errorChart = errorChart;
+    }
+
+    public List<ProcessErrorInfoVo> getErrorCodes() {
+        return errorCodes;
+    }
+
+    public void setErrorCodes(List<ProcessErrorInfoVo> errorCodes) {
+        this.errorCodes = errorCodes;
+    }
+
+    public List<ProcessErrorLogVo> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<ProcessErrorLogVo> logs) {
+        this.logs = logs;
     }
 
     public String getProcessId() {
@@ -100,6 +129,14 @@ public class BPAProcessVo {
 
     public void setRequestedTime(String requestedTime) {
         this.requestedTime = requestedTime;
+    }
+
+    public String getLastTimeStr() {
+        return lastTimeStr;
+    }
+
+    public void setLastTimeStr(String lastTimeStr) {
+        this.lastTimeStr = lastTimeStr;
     }
 
     public void InitMessage(){

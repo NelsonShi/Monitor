@@ -1,6 +1,5 @@
 package com.blueprismserver.utils;
 
-import com.blueprismserver.dao.IBPAEnvironmentVarDao;
 import com.blueprismserver.entity.BPAEnvironmentVar;
 import com.blueprismserver.entity.BPAProcess;
 import com.blueprismserver.entity.BPAResource;

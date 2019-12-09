@@ -77,6 +77,7 @@ public class ScheduleVo {
            }
            double marginLeft=(timeSlots.get(i).getSatrtMinutes()-lastEndTime)*100.0/timeSpan;
            timeSlots.get(i).setMarginLeft(sd.format(marginLeft));
+           timeSlots.get(i).setIndex(i);
         }
    }
 }
