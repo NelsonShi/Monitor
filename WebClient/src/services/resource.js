@@ -1,11 +1,5 @@
 import request from '../utils/request';
 
-// export function findAllDonates() {
-//   return request('http://127.0.0.1:7001/donates');
-// }
-
-
-
 export function findAllResources () {
   return request('/bpServer/process/resourceList'); //get方法请求
     /*
@@ -31,4 +25,18 @@ export function findResourceScheduleList () {
 
 export function findAllBots () {
   return request('/bpServer/process/bots'); //get方法请求
+}
+
+export function operation (params) {
+  console.log(params)
+  return request('/bpServer/operation/command',{
+   method: 'post',
+   headers: {
+     'Content-Type': 'application/json; charset=utf-8'
+   },
+   body: JSON.stringify(
+    params
+   )
+ })
+ 
 }

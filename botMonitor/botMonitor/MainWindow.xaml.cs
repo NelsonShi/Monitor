@@ -5,8 +5,13 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Media;
+using System.Xml.Linq;
+using botMonitor.entity;
 using ThreadState = System.Threading.ThreadState;
 
 namespace botMonitor
@@ -30,6 +35,9 @@ namespace botMonitor
         private DeviceMonitor dm;
         private SocketClient sc;
         private Thread reconnectT;
+        private ProcessControl pc;
+        private List<ProcessConf> processConfs;
+
 
         //window_onLoaded
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -65,8 +73,10 @@ namespace botMonitor
         private void InitTimerAndBaseData(int second)
         {
             if (timer != null) return;
+            pc = new ProcessControl();
             cd = new ComputerData();
             dm = new DeviceMonitor();
+            processConfs = LoadProcessConfs(AppDomain.CurrentDomain.BaseDirectory + @"Conf\NessaryProcessConfig.xml");
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, second);
             timer.Tick += ReadLocalData;
@@ -77,7 +87,44 @@ namespace botMonitor
         {
 
             if (sc == null) sc = new SocketClient();
+            sc.acceptMsgEvent += DelCommand;
             sc.SocketStart(ipAddress, port);
+        }
+
+
+        private void DelCommand(BotCommand command)
+        {
+            if (command == null || string.IsNullOrEmpty(command.type)) return;
+            switch (command.type)
+            {
+                case "Close":
+                    WriteToTextBox("begin close process---id :" + command.processId);
+                    pc.CloseProcess(Convert.ToInt32(command.processId));
+                    break;
+                case "ReStart":
+                    WriteToTextBox("begin restart process---id :" + command.processId);
+                    var restartP = processConfs.FirstOrDefault(d => d.Key.Equals(command.processId));
+                    if (restartP == null)
+                    {
+                        WriteToTextBox("can not find process ,key:  "+command.processId );
+                        break;
+                    }
+                    pc.ReStartProcess(Convert.ToInt32(command.processId), restartP.StartPath);
+                    break;
+                case "Start":
+                    WriteToTextBox("begin start");
+                    var startP = processConfs.FirstOrDefault(d => d.Key.Equals(command.processId));
+                    if (startP == null)
+                    {
+                        WriteToTextBox("can not find process ,key:  " + command.processId);
+                    }
+                    else
+                    {
+                        var res = pc.StartProcess(startP.StartPath);
+                        WriteToTextBox("start process result :    " + res);
+                    }                 
+                    break;
+            }
         }
 
         //读取本机数据，并且存入对象中，序列化为JSON数据
@@ -95,10 +142,10 @@ namespace botMonitor
             {
                 cd.BotName = botName;
             }
-            cd.BotIP = dm.IP;
+            cd.BotIP = dm.IP[0].ToString();
             cd.Resolution = ReadResolution();
             var processArray = DeviceMonitor.GetAllProcesses();
-            var resultLits = FindProcessListWithNames(new string[] { "Automate", "ScreenConnect", "WeChat" }, processArray);
+            var resultLits = FindProcessListWithNames( processArray);
             if (resultLits != null || resultLits.Count > 0) { cd.processList = resultLits; } else { cd.processList = null; }
             this.Dispatcher.Invoke(new Action(() => {
                 FillDataToUI(cd);
@@ -125,19 +172,28 @@ namespace botMonitor
             return SW + " * " + SH;
         }
 
-        //查找对应的process 读取他们的运行状态（BP，ConnectedWise）
-        private List<ProcessInfo> FindProcessListWithNames(string[] processNames, Process[] processList)
+        //查找对应的process 读取他们的运行状态（BP）
+        private List<ProcessInfo> FindProcessListWithNames(Process[] processList)
         {
             List<ProcessInfo> resultProcess = new List<ProcessInfo>();
-            foreach (Process p in processList)
+            foreach (var conf in processConfs)
             {
-                foreach (string name in processNames)
+                bool founded = false;
+                foreach (Process p in processList)
                 {
-                    if (p.ProcessName.Contains(name))
+                    if (p.ProcessName.Equals(conf.ProcessName)||(!string.IsNullOrEmpty(p.MainWindowTitle)&&p.MainWindowTitle.Contains(conf.WindowTitleKey)))
                     {
-                        ProcessInfo info = new ProcessInfo(p.ProcessName, p.Responding.ToString(), p.Id.ToString());
+                        founded = true;
+                        ProcessInfo info = new ProcessInfo(p.ProcessName,p.MainWindowTitle, p.Responding?1:0, p.Id.ToString());
+                        conf.Key = p.Id.ToString();
                         resultProcess.Add(info);
+                        break;
                     }
+                }
+                if (!founded)
+                {
+                    ProcessInfo info = new ProcessInfo(conf.DisplayName,"",0,conf.Key);
+                    resultProcess.Add(info);
                 }
             }
             return resultProcess;
@@ -168,5 +224,47 @@ namespace botMonitor
             if (sc != null) sc.StopSocket();
             if (reconnectT != null) reconnectT.Abort();
         }
+
+        private void WriteToTextBox(string message)
+        {
+            if (TextBox.LineCount >= 100)
+            {
+                TextBox.Text = string.Empty;
+            }
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                TextBox.Text += DateTime.Now + " : " + message + "\r\n";
+            }));
+        }
+
+        private List<ProcessConf> LoadProcessConfs(string path)
+        {
+            if (!File.Exists(path)) return null;
+            try
+            {
+                XDocument document = XDocument.Load(path);
+                //获取到XML的根元素进行操作
+                XElement root = document.Root;
+                List<ProcessConf> list=new List<ProcessConf>();
+                var ProcessInfos = root.Elements("ProcessInfo");
+                foreach (var processInfo in ProcessInfos)
+                {
+                    var processConf=new ProcessConf();
+                    processConf.ProcessName = processInfo.Element("ProcessName").Value;
+                    processConf.DisplayName = processInfo.Element("DisplayName").Value;
+                    processConf.StartPath = processInfo.Element("StartPath").Value;
+                    processConf.WindowTitleKey = processInfo.Element("WindowTitleKey").Value;
+                    processConf.Key =processInfo.Element("Key").Value ;
+                    list.Add(processConf);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms. MessageBox.Show(e.Message);
+                return null;
+            }
+          
+        } 
     }
 }

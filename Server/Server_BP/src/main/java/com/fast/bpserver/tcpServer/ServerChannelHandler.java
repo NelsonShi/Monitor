@@ -36,9 +36,12 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
 //        System.out.println("Netty tcp server receive msg : " + msg);
         //response to client
         //ctx.channel().writeAndFlush(" response msg ").syncUninterruptibly();
+        if(ctx==null||msg==null)return;
         ComputerData cd= JsonToObjectUtil.jsonToPojo(msg.toString(),ComputerData.class);
+        if(cd==null)return;
         cd.setBotIP(getIPString(ctx));
         cacheUtil.UpdateComputerData(cd);
+        ctx.flush();
     }
 
     /**
@@ -97,17 +100,18 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        String socketString = ctx.channel().remoteAddress().toString();
+        String ipString=getIPString(ctx);
+        cacheUtil.DeleteComputerData(ipString);
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) evt;
             if (event.state() == IdleState.READER_IDLE) {
-                log.info("Client: " + socketString + " READER_IDLE 读超时");
+                log.info("Client: " + ipString + " READER_IDLE 读超时");
                 ctx.disconnect();//断开
             } else if (event.state() == IdleState.WRITER_IDLE) {
-                log.info("Client: " + socketString + " WRITER_IDLE 写超时");
+                log.info("Client: " + ipString + " WRITER_IDLE 写超时");
                 ctx.disconnect();
             } else if (event.state() == IdleState.ALL_IDLE) {
-                log.info("Client: " + socketString + " ALL_IDLE 总超时");
+                log.info("Client: " + ipString + " ALL_IDLE 总超时");
                 ctx.disconnect();
             }
         }

@@ -43,7 +43,7 @@ public class JsonToObjectUtil {
             T t = MAPPER.readValue(jsonData, beanType);
             return t;
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
         return null;
     }

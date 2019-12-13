@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage": ".",
   "scripts": {
     "start": "set port=49400 &&roadhog server",
     "build": "roadhog build",

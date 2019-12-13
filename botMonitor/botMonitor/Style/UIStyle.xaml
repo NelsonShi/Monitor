@@ -23,7 +23,7 @@
     <Style x:Key="DataGridStyle"  TargetType="{x:Type DataGrid}">
         <Setter Property="RowHeight" Value="20"></Setter>
         <Setter Property="VerticalScrollBarVisibility" Value="Auto"></Setter>
-        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Disabled}"></Setter>
         <Setter Property="IsReadOnly" Value="True"></Setter>
         <!--<Setter Property="AlternatingRowBackground" Value="{StaticResource Background}"></Setter>-->
@@ -31,8 +31,7 @@
             <Setter.Value>
                 <Style  TargetType="DataGridColumnHeader">
                     <Setter Property="Height" Value="20"></Setter>
-                    <Setter Property="FontSize" Value="15"></Setter>
-                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="FontSize" Value="13"></Setter>
                     <Setter Property="BorderThickness" Value="0"></Setter>
                     <Setter Property="Background" Value="#66171B27"></Setter>
                     <Setter Property="Foreground" Value="{StaticResource Disabled}"></Setter>

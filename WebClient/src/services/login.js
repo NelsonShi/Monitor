@@ -1,7 +1,7 @@
 import request from '../utils/request';
 
 export function Login (user) { 
-   return request('/localServer/user/login',{
+   return request('/bpServer/user/login',{
     method: 'post',
     headers: {
       'Content-Type': 'application/json; charset=utf-8'

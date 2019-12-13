@@ -62,6 +62,7 @@ function Sales({ data }) {
               boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.05)"
             }}
             content={content => {
+              if(content.payload==null)return;
               const list = content.payload.map((item, key) => (
                 <li key={key} className={styles.tipitem}>
                   <span

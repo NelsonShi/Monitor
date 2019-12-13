@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using botMonitor.entity;
 
 namespace botMonitor
 {
@@ -12,6 +13,10 @@ namespace botMonitor
         /// 负责通信的Socket
         /// </summary>
         Socket socketSend;
+
+        public delegate void DelAcceptMsg(BotCommand bc);
+
+        public event DelAcceptMsg acceptMsgEvent;
 
         public bool IsConnect;
         public bool HasReturn;
@@ -70,7 +75,7 @@ namespace botMonitor
                 td.Start();
                 IsConnect = true;
             }
-            catch (Exception ex)
+            catch
             {
                 IsConnect = false;
             }
@@ -93,7 +98,10 @@ namespace botMonitor
                     }
                     HasReturn = true;
                     //信息显示
-                    ReturnStr = Encoding.ASCII.GetString(buffer, 0, r);
+                    ReturnStr = Encoding.UTF8.GetString(buffer, 0, r);
+                    if(string.IsNullOrEmpty(ReturnStr))break;
+                    var botCommand = JsonJavaScriptSerializer.FromJSON<BotCommand>(ReturnStr);
+                    acceptMsgEvent?.Invoke(botCommand);
                 }
             }
             catch
@@ -106,7 +114,7 @@ namespace botMonitor
             if (socketSend == null) return;
             try
             {
-                byte[] buffer = Encoding.ASCII.GetBytes(message);
+                byte[] buffer = Encoding.UTF8.GetBytes(message);
                 //将字节数组传递给客户端
                 socketSend.Send(buffer);
             }

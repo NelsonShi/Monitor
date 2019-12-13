@@ -50,6 +50,11 @@ export default {
             schedules: result.data  //网络返回的要保留的数据
           }
         })
+      },
+
+      *control({payload:value},{call}){
+        const result = yield call(resourceService.operation,value)
+        console.log(result);
       }
 
     },

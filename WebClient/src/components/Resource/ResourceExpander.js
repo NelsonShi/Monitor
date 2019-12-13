@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "dva";
-import { Table, Row, Col } from "antd";
+import { Table, Row, Col,Menu, Dropdown, Icon,message} from "antd";
 import TimeRuler from './TimeRuler' 
 import styles from './Resource.css'
 
@@ -19,6 +19,12 @@ class ResourceExpander extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
+
+  onClick = (processId,botIp,{key}) => {
+    const{dispatch}=this.props
+    message.info(`trigger :  ${botIp}, ${key},${processId}`);
+    dispatch({type:"resource/control",payload:{ip:botIp,type:key,processId:processId}})
+  };
 
   getScheduleComponet() {
     const { schedules,BotName } = this.props;
@@ -48,6 +54,8 @@ class ResourceExpander extends Component {
     }  
   }
 
+  
+
   render() {
     const { BotName, bots } = this.props;
     let botComponent;
@@ -64,6 +72,24 @@ class ResourceExpander extends Component {
           </div>
         );
       } else {
+        const menu =({processId,botIp})=> (
+          <Menu onClick={this.onClick.bind(this,processId,botIp)}>
+            <Menu.Item key="ReStart">
+               ReStart
+            </Menu.Item>
+            <Menu.Item key="Close">
+               Close
+            </Menu.Item>
+          </Menu>
+        );
+
+        const falseMenu =({processId,botIp})=> (
+          <Menu onClick={this.onClick.bind(this,processId,botIp)}>
+            <Menu.Item key="Start">
+               Start
+            </Menu.Item>
+          </Menu>
+        );
         const colums = [
           { title: "Name", dataIndex: "BotName", key: "BotName",width:'20%' },
           //    {title:'CPU',dataIndex:'CPUCount',key:'CPUCount'},
@@ -75,24 +101,26 @@ class ResourceExpander extends Component {
             dataIndex: "processList",
             key: "processList",
             width:'30%',
-            render(content) {
+            render(content,record) {
               if (content == null || content <= 0) {
                 return (
                   <div style={{ color: "red" }}>no application running</div>
                 );
               } else {
                 return content.map(r => (
-                  <div style={{ color: "blue" }}>
-                    {r.ProcessName} running Status: {r.ProcessRunningStatus}
-                  </div>
-                ));
+                  <Dropdown key={r.processId} overlay={r.processRunningStatus===1?menu({processId:r.processId,botIp:record.BotIP}):falseMenu({processId:r.processId,botIp:record.BotIP})} placement="bottomCenter" trigger={['click']}>
+                    <div style={{width:'50%'}}>           
+                       <a className="ant-dropdown-link" style={r.processRunningStatus===1?{color:'#5b8c00'}:{color:'#ad2102'}}>{r.ProcessName}<Icon type="down" /></a>
+                     </div>
+                  </Dropdown>
+                ))              
               }
             }
           }
         ];
         botComponent = (
           <Table
-            rowKey={record=>record.Name}
+            rowKey={record=>record.BotIP}
             loading={false}
             columns={colums}
             dataSource={bot}

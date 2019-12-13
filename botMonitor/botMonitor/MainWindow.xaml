@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:botMonitor" Closed="MainWindow_OnClosed"
         mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="Bot Monitor" Height="400" Width="550">
+        Title="Bot Monitor" Height="450" Width="600">
     <DockPanel Background="#242C37">
         <Grid Background="#553399ff" >
             <Grid.RowDefinitions>
@@ -45,13 +45,15 @@
                 <TextBlock VerticalAlignment="Center" FontSize="14" Text="Resolution :" Margin="5" Foreground="{DynamicResource Primary}"/>
                 <TextBlock VerticalAlignment="Center" FontSize="14" Margin="5" x:Name="Resolution_Text"></TextBlock>
             </StackPanel>
-            <DataGrid Grid.Column="0" x:Name="ProcessGrid" Grid.Row="4" Grid.ColumnSpan="2"  GridLinesVisibility="None" HorizontalAlignment="Left" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}"  HeadersVisibility="Column"  ItemsSource="{Binding OrderInfos}"  BorderThickness="0" Background="#55171B27" Margin="5">
+            <DataGrid Grid.Column="0" x:Name="ProcessGrid" Grid.Row="4"   GridLinesVisibility="None" HorizontalAlignment="Left" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}"  HeadersVisibility="Column"  ItemsSource="{Binding OrderInfos}"  BorderThickness="0" Background="#55171B27" Margin="5">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Width="*" Binding="{Binding ProcessId}" ></DataGridTextColumn>
-                    <DataGridTextColumn Header="NAME" Width="*" Binding="{Binding ProcessName}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="NAME" Width="2*" Binding="{Binding ProcessName}" ></DataGridTextColumn>
                     <DataGridTextColumn Header="STATUS" Width="*" Binding="{Binding ProcessRunningStatus}" ></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <TextBox x:Name="TextBox" Padding="3" FontSize="11" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="4" Grid.Column="1"  Margin="5" Background="#55171B27" Foreground="White" VerticalScrollBarVisibility="Auto" IsReadOnly="True">
+            </TextBox>
         </Grid>
     </DockPanel>
 </Window>

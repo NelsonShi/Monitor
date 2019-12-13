@@ -16,19 +16,18 @@ namespace botMonitor
 
     public class ProcessInfo
     {
-        public ProcessInfo(string name,string status,string id)
+        public ProcessInfo(string name,string windowTitle, int status,string id)
         {
             this.ProcessName = name;
             this.ProcessRunningStatus = status;
+            this.WindowTitle = windowTitle;
             this.ProcessId = id;
         }
         public string ProcessName { get; set; }
-        public string ProcessRunningStatus { get; set; }
+        //0 未运行 1 在运行
+        public int ProcessRunningStatus { get; set; }
         public string ProcessId { get; set; }
+        public string WindowTitle { get; set; }
 
-        public override string ToString()
-        {
-            return "ID: " + ProcessId + " Running:  " + ProcessRunningStatus + " Name: " + ProcessName;
-        }
     }
 }

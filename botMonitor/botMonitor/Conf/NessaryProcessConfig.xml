@@ -1,0 +1,18 @@
+﻿<ProcessConf>
+  <ProcessInfo>
+    <ProcessName>Automate</ProcessName>
+    <!--程序窗体Title 关键词，系统会查找包含此关键词的第一个进程-->
+    <WindowTitleKey>prot</WindowTitleKey>
+    <DisplayName>Blue Prism Listener</DisplayName>
+    <!--建议使用特殊格式 防止和已存在的process id 冲突-->
+    <Key>1</Key>
+    <StartPath></StartPath>
+  </ProcessInfo>
+  <ProcessInfo>
+    <ProcessName>WeChat</ProcessName>
+    <WindowTitleKey>微信</WindowTitleKey>
+    <DisplayName>微信</DisplayName>
+    <Key>2</Key>
+    <StartPath>D:\Program Files (x86)\WeChat\WeChat.exe</StartPath>
+  </ProcessInfo>
+</ProcessConf>

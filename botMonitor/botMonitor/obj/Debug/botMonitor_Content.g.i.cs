@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("m.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("conf/nessaryprocessconfig.xml")]
 
 

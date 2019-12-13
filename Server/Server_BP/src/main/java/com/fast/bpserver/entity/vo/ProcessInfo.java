@@ -7,8 +7,9 @@ package com.fast.bpserver.entity.vo;
  */
 public class ProcessInfo {
     public String ProcessName;
-    public String ProcessRunningStatus;
+    public Integer ProcessRunningStatus;
     public String ProcessId;
+    public String WindowTitle;
 
     public String getProcessName() {
         return ProcessName;
@@ -18,11 +19,12 @@ public class ProcessInfo {
         ProcessName = processName;
     }
 
-    public String getProcessRunningStatus() {
+
+    public Integer getProcessRunningStatus() {
         return ProcessRunningStatus;
     }
 
-    public void setProcessRunningStatus(String processRunningStatus) {
+    public void setProcessRunningStatus(Integer processRunningStatus) {
         ProcessRunningStatus = processRunningStatus;
     }
 
@@ -32,5 +34,13 @@ public class ProcessInfo {
 
     public void setProcessId(String processId) {
         ProcessId = processId;
+    }
+
+    public String getWindowTitle() {
+        return WindowTitle;
+    }
+
+    public void setWindowTitle(String windowTitle) {
+        WindowTitle = windowTitle;
     }
 }

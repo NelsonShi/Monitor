@@ -9,16 +9,10 @@ export default{
     "target": "http://localhost:49200/",
     "changeOrigin": true,
     "pathRewrite": { "^/bpServer" : "" }
-   },
-   "/localServer": {
-    "target": "http://localhost:49200/",
-    "changeOrigin": true,
-    "pathRewrite": { "^/localServer" : "" }
    }
   },
 
   publicPath,
-
   define: {
     'process.env': {},
     'process.env.NODE_ENV': process.env.NODE_ENV,

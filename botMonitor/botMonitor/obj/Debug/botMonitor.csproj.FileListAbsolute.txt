@@ -27,4 +27,5 @@ D:\Codes\Monitor\botMonitor\botMonitor\obj\Debug\botMonitor.pdb
 D:\Codes\Monitor\botMonitor\botMonitor\bin\Debug\botMonitor.pdb
 D:\Codes\Monitor\botMonitor\botMonitor\obj\Debug\Style\UIStyle.baml
 D:\Codes\Monitor\botMonitor\botMonitor\obj\Debug\App.baml
+D:\Codes\Monitor\botMonitor\botMonitor\bin\Debug\Conf\NessaryProcessConfig.xml
 D:\Codes\Monitor\botMonitor\botMonitor\obj\Debug\botMonitor.csprojResolveAssemblyReference.cache

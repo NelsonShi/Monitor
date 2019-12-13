@@ -37,7 +37,7 @@ namespace botMonitor
 
         public string HostName => Dns.GetHostName();
 
-        public string IP=> new IPAddress(Dns.GetHostByName(Dns.GetHostName()).AddressList[0].Address).ToString();
+        public IPAddress[] IP=>  Dns.GetHostByName(Dns.GetHostName()).AddressList;
 
         #endregion
 
