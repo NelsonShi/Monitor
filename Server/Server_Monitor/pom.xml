@@ -15,7 +15,7 @@
 	<artifactId>monitorserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>monitorserver</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Web Monitor for Blue Prism</description>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -56,8 +56,6 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.18</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>

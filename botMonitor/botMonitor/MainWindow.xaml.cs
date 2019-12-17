@@ -7,11 +7,11 @@ using System.Windows.Threading;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Media;
 using System.Xml.Linq;
 using botMonitor.entity;
+using botMonitor.Helper;
 using ThreadState = System.Threading.ThreadState;
 
 namespace botMonitor
@@ -109,7 +109,7 @@ namespace botMonitor
                         WriteToTextBox("can not find process ,key:  "+command.processId );
                         break;
                     }
-                    pc.ReStartProcess(Convert.ToInt32(command.processId), restartP.StartPath);
+                    pc.ReStartProcess(Convert.ToInt32(command.processId), restartP.StartPath,restartP.StartParam);
                     break;
                 case "Start":
                     WriteToTextBox("begin start");
@@ -120,7 +120,7 @@ namespace botMonitor
                     }
                     else
                     {
-                        var res = pc.StartProcess(startP.StartPath);
+                        var res = pc.StartProcess(startP.StartPath,startP.StartParam);
                         WriteToTextBox("start process result :    " + res);
                     }                 
                     break;
@@ -181,7 +181,7 @@ namespace botMonitor
                 bool founded = false;
                 foreach (Process p in processList)
                 {
-                    if (p.ProcessName.Equals(conf.ProcessName)||(!string.IsNullOrEmpty(p.MainWindowTitle)&&p.MainWindowTitle.Contains(conf.WindowTitleKey)))
+                    if (p.ProcessName.Equals(conf.ProcessName)&&(!string.IsNullOrEmpty(p.MainWindowTitle)&&p.MainWindowTitle.ToUpper().Contains(conf.WindowTitleKey.ToUpper())))
                     {
                         founded = true;
                         ProcessInfo info = new ProcessInfo(p.ProcessName,p.MainWindowTitle, p.Responding?1:0, p.Id.ToString());
@@ -192,7 +192,7 @@ namespace botMonitor
                 }
                 if (!founded)
                 {
-                    ProcessInfo info = new ProcessInfo(conf.DisplayName,"",0,conf.Key);
+                    ProcessInfo info = new ProcessInfo(conf.ProcessName,conf.DisplayName,0,conf.Key);
                     resultProcess.Add(info);
                 }
             }
@@ -231,6 +231,7 @@ namespace botMonitor
             {
                 TextBox.Text = string.Empty;
             }
+            LogHelper.Write(DateTime.Now + " : " + message,"CommandLogs");
             this.Dispatcher.Invoke(new Action(() =>
             {
                 TextBox.Text += DateTime.Now + " : " + message + "\r\n";
@@ -255,13 +256,14 @@ namespace botMonitor
                     processConf.StartPath = processInfo.Element("StartPath").Value;
                     processConf.WindowTitleKey = processInfo.Element("WindowTitleKey").Value;
                     processConf.Key =processInfo.Element("Key").Value ;
+                    processConf.StartParam = processInfo.Element("StartParam").Value;
                     list.Add(processConf);
                 }
                 return list;
             }
             catch (Exception e)
             {
-                System.Windows.Forms. MessageBox.Show(e.Message);
+                LogHelper.Write(e.Message, "LoadProcessConfsError");
                 return null;
             }
           

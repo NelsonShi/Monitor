@@ -110,7 +110,7 @@ class ResourceExpander extends Component {
                 return content.map(r => (
                   <Dropdown key={r.processId} overlay={r.processRunningStatus===1?menu({processId:r.processId,botIp:record.BotIP}):falseMenu({processId:r.processId,botIp:record.BotIP})} placement="bottomCenter" trigger={['click']}>
                     <div style={{width:'50%'}}>           
-                       <a className="ant-dropdown-link" style={r.processRunningStatus===1?{color:'#5b8c00'}:{color:'#ad2102'}}>{r.ProcessName}<Icon type="down" /></a>
+                       <a className="ant-dropdown-link" style={r.processRunningStatus===1?{color:'#5b8c00'}:{color:'#ad2102'}}>{r.WindowTitle}<Icon type="down" /></a>
                      </div>
                   </Dropdown>
                 ))              

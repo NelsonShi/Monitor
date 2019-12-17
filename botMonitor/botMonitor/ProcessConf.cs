@@ -13,5 +13,7 @@ namespace botMonitor
         public string WindowTitleKey { get; set; }
         public string Key { get; set; }
         public string StartPath { get; set; }
+
+        public string StartParam { get; set; }
     }
 }

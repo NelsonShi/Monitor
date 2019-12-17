@@ -13,6 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.SocketChannel;
+
+
 /**
  * description:
  * author:
@@ -32,17 +38,23 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      * @throws Exception
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg)  {
 //        System.out.println("Netty tcp server receive msg : " + msg);
         //response to client
         //ctx.channel().writeAndFlush(" response msg ").syncUninterruptibly();
-        if(ctx==null||msg==null)return;
-        ComputerData cd= JsonToObjectUtil.jsonToPojo(msg.toString(),ComputerData.class);
-        if(cd==null)return;
-        cd.setBotIP(getIPString(ctx));
-        cacheUtil.UpdateComputerData(cd);
-        ctx.flush();
+        try {
+            if(ctx==null||msg==null)return;
+            ComputerData cd= JsonToObjectUtil.jsonToPojo(msg.toString(),ComputerData.class);
+            if(cd==null)return;
+            cd.setBotIP(getIPString(ctx));
+            cacheUtil.UpdateComputerData(cd);
+            ctx.flush();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
+
+
 
     /**
      * 活跃的、有效的通道
@@ -52,11 +64,14 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      * @throws Exception
      */
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx)  {
+        try{
         super.channelActive(ctx);
         log.info("tcp client " + getRemoteAddress(ctx) + " connect success");
         //往channel map中添加channel信息
-        NettyServer.map.put(getIPString(ctx), ctx.channel());
+        NettyServer.map.put(getIPString(ctx), ctx.channel());}catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -68,11 +83,14 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        try{
         log.info("tcp client " + getRemoteAddress(ctx) + " 链接断开，即将删除链接");
         //删除Channel Map中的失效Client
         NettyServer.map.remove(getIPString(ctx));
         ctx.close();
-        cacheUtil.DeleteComputerData(getIPString(ctx));
+        cacheUtil.DeleteComputerData(getIPString(ctx));}catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -84,12 +102,17 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        try{
         //发生异常，关闭连接
         log.error("引擎 {} 的通道发生异常，即将断开连接", getRemoteAddress(ctx));
         ctx.close();//再次建议close
-        cacheUtil.DeleteComputerData(getIPString(ctx));
+        cacheUtil.DeleteComputerData(getIPString(ctx));}
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
+
+
 
     /**
      * 心跳机制，超时处理
@@ -100,6 +123,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        try{
         String ipString=getIPString(ctx);
         cacheUtil.DeleteComputerData(ipString);
         if (evt instanceof IdleStateEvent) {
@@ -114,6 +138,8 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                 log.info("Client: " + ipString + " ALL_IDLE 总超时");
                 ctx.disconnect();
             }
+        }}catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 

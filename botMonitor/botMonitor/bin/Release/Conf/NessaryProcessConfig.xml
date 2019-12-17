@@ -7,7 +7,6 @@
     <!--建议使用特殊格式 防止和已存在的process id 冲突-->
     <Key>1</Key>
     <StartPath>C:\Program Files\Blue Prism Limited\Blue Prism Automate\Automate.exe</StartPath>
-    <!--程序启动参数-->
     <StartParam> /resourcepc /public /port 8181</StartParam>
   </ProcessInfo>
   <ProcessInfo>
