@@ -17,5 +17,5 @@ public interface IBPAProcess extends IService<BPAProcess> {
 
     List<BPAProcess> findAll();
 
-    List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String, BPAProcess> processMap, Date queryDate, Date now);
+    List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String, BPAProcess> processMap, Date queryDate, Date now,Integer timeZone);
 }

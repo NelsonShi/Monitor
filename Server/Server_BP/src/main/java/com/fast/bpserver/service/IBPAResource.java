@@ -15,5 +15,5 @@ public interface IBPAResource extends IService<BPAResource> {
     List<BPAResource> findAll();
     List<BPAResourceVo> GenrateListWithResourceAndUser(Map<String, ComputerData> computerDataMap, Map<String, BPAUser> userMap,
                                                        List<BPAResource> resourceList, Map<String, BPASession> sessionMap, Map<String, BPAProcess> processMap,
-                                                       Map<String, BPAEnvironmentVar> envMap);
+                                                       Map<String, BPAEnvironmentVar> envMap,Integer timeSpan);
 }

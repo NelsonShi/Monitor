@@ -7,8 +7,9 @@ import style from "./ProcessTable.less";
 class ProcessTable extends Component {
   componentDidMount() {
     const { dispatch, list } = this.props;
+    let time=new Date().getTimezoneOffset()/60
     if (list != null && list.length <= 0) {
-      dispatch({ type: "process/fetch", payload: { page: 1 } });
+      dispatch({ type: "process/fetch", payload: { requestTimeZone: time } });
     }
   }
 

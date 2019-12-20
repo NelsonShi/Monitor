@@ -46,6 +46,8 @@ public class ScheduleTimeSlotModule {
     //schedule betweenTime 的截止时间（秒数） 距离凌晨
    private Integer endPoint;
 
+   private Integer timeZone;
+
    private List<ScheduleTimeSlot> scheduleSlotList;
 
     public Date getInputStartDate() {
@@ -176,7 +178,7 @@ public class ScheduleTimeSlotModule {
         this.endPoint = endPoint;
     }
 
-    public ScheduleTimeSlotModule(Date inputStartDate, Date inputEndDate, Date triigerStartTime, long scheduleRunTime, Integer period, Integer scheduleType, Integer startPoint, Integer endPoint){
+    public ScheduleTimeSlotModule(Date inputStartDate, Date inputEndDate, Date triigerStartTime, long scheduleRunTime, Integer period, Integer scheduleType, Integer startPoint, Integer endPoint,Integer timeZone){
           this.inputStartDate=inputStartDate;
           this.inputEndDate=inputEndDate;
           this.triigerStartTime=triigerStartTime;
@@ -185,6 +187,7 @@ public class ScheduleTimeSlotModule {
           this.scheduleType=scheduleType;
           this.startPoint=startPoint;
           this.endPoint=endPoint;
+          this.timeZone=timeZone;
           GenrateRunntimeBetweentInputTimes();
     }
 
@@ -343,8 +346,8 @@ public class ScheduleTimeSlotModule {
               }
               vo.setEndMinutes(endMinutes);
               vo.setProcessName(processName);
-              String spanBegin=sdf.format(new Date(inputStartDate.getTime()+beginMinutes*60*1000));
-              String spanEnd=(inputStartDate.getTime()+endMinutes*60*1000)>=inputEndDate.getTime()?sdf.format(inputEndDate):sdf.format(new Date(inputStartDate.getTime()+endMinutes*60*1000));
+              String spanBegin=sdf.format(new Date(inputStartDate.getTime()+beginMinutes*60*1000-timeZone*60*60*1000));
+              String spanEnd=(inputStartDate.getTime()+endMinutes*60*1000)>=inputEndDate.getTime()?sdf.format(new Date(inputEndDate.getTime()-timeZone*60*60*1000)):sdf.format(new Date(inputStartDate.getTime()+endMinutes*60*1000-timeZone*60*60*1000));
               vo.setTimeSpan(spanBegin+"--"+spanEnd);
               vo.setWidth(width);
 //              vo.setMarginLeft(marginLeft);
@@ -363,8 +366,8 @@ public class ScheduleTimeSlotModule {
               vo.setSatrtMinutes(0);
               vo.setProcessName(processName);
               vo.setEndMinutes(endMinite);
-              String spanBegin=sdf.format(new Date(inputStartDate.getTime()));
-              String spanEnd=(inputStartDate.getTime()+lastEndTime*1000)>=inputEndDate.getTime()?sdf.format(inputEndDate):sdf.format(new Date(inputStartDate.getTime()+lastEndTime*1000));
+              String spanBegin=sdf.format(new Date(inputStartDate.getTime()-timeZone*60*60*1000));
+              String spanEnd=(inputStartDate.getTime()+lastEndTime*1000)>=inputEndDate.getTime()?sdf.format(new Date(inputEndDate.getTime()-timeZone*60*60*1000)):sdf.format(new Date(inputStartDate.getTime()+lastEndTime*1000-timeZone*60*60*1000));
               vo.setTimeSpan(spanBegin+"--"+spanEnd);
               scheduleSlotList.add(vo);
           }

@@ -37,6 +37,7 @@ namespace botMonitor
         private Thread reconnectT;
         private ProcessControl pc;
         private List<ProcessConf> processConfs;
+        private ComputerData lastComputerData;
 
 
         //window_onLoaded
@@ -75,6 +76,7 @@ namespace botMonitor
             if (timer != null) return;
             pc = new ProcessControl();
             cd = new ComputerData();
+            lastComputerData=new ComputerData();
             dm = new DeviceMonitor();
             processConfs = LoadProcessConfs(AppDomain.CurrentDomain.BaseDirectory + @"Conf\NessaryProcessConfig.xml");
             timer = new DispatcherTimer();
@@ -130,9 +132,9 @@ namespace botMonitor
         //读取本机数据，并且存入对象中，序列化为JSON数据
         private void ReadLocalData(object sender, EventArgs e)
         {
-            cd.CPUUseRate = Math.Round(dm.CpuLoad, 2) + "%";
+            cd.CPUUseRate = Math.Round(dm.CpuLoad, 2);
             var systemUsedRam = dm.SystemMemoryUsed / 1024.00 / 1024.00 / 1024.00;
-            cd.RAMUseRate = Math.Round(systemUsedRam / (dm.PhysicalMemory / (1024.00 * 1024 * 1024)) * 100, 2) + "%";
+            cd.RAMUseRate = Math.Round(systemUsedRam / (dm.PhysicalMemory / (1024.00 * 1024 * 1024)) * 100, 2) ;
             cd.CPUCount = dm.ProcessorCount.ToString();
             if (string.IsNullOrEmpty(botName))
             {
@@ -147,11 +149,28 @@ namespace botMonitor
             var processArray = DeviceMonitor.GetAllProcesses();
             var resultLits = FindProcessListWithNames( processArray);
             if (resultLits != null || resultLits.Count > 0) { cd.processList = resultLits; } else { cd.processList = null; }
-            this.Dispatcher.Invoke(new Action(() => {
-                FillDataToUI(cd);
-            }));
-            var jsonData = JsonJavaScriptSerializer.ToJSON(cd);
-            SendDataToServer(jsonData);
+            bool needTosend= cd.NeedToSend(lastComputerData);
+            if (needTosend)
+            {
+                this.Dispatcher.Invoke(new Action(() => {
+                         FillDataToUI(cd);
+                }));
+                var jsonData = JsonJavaScriptSerializer.ToJSON(cd);
+                SendDataToServer(jsonData);
+                CopyDataToObject(cd, lastComputerData);
+            }
+        }
+
+        private void CopyDataToObject(ComputerData source,ComputerData dest)
+        {
+            if(dest==null)dest=new ComputerData();
+            dest.BotName = source.BotName;
+            dest.CPUUseRate = source.CPUUseRate;
+            dest.RAMUseRate = source.RAMUseRate;
+            dest.Coefficient = source.Coefficient;
+            dest.BotIP = source.BotIP;
+            dest.Resolution = source.Resolution;
+            dest.processList = new List<ProcessInfo>(source.processList);
         }
 
 
@@ -205,8 +224,8 @@ namespace botMonitor
             CPU_Text.Text = cd.CPUCount;
             HostName_Text.Text = cd.BotName;
             IP_Text.Text = cd.BotIP;
-            CPUUseRate_Text.Text = cd.CPUUseRate;
-            RAMUseRate_Text.Text = cd.RAMUseRate;
+            CPUUseRate_Text.Text = cd.CPUUseRate+"%";
+            RAMUseRate_Text.Text = cd.RAMUseRate+"%";
             Resolution_Text.Text = cd.Resolution;
             ProcessGrid.ItemsSource = cd.processList;
             if (sc.IsConnect)

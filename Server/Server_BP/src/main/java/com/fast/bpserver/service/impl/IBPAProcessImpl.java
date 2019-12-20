@@ -9,6 +9,7 @@ import com.fast.bpserver.entity.vo.ErrorChartVo;
 import com.fast.bpserver.entity.vo.ProcessErrorInfoVo;
 import com.fast.bpserver.entity.vo.ProcessErrorLogVo;
 import com.fast.bpserver.service.IBPAProcess;
+import com.fast.bpserver.utils.TimeZoneUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,12 +41,12 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
     }
 
     //根据session 以及session log 生成ProcessVo
-    public List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String,BPAProcess> processMap,Date queryDate,Date now){
-        List<BPAProcessVo> unCompletedVos=GenrateProcessVoWithUncompletedSession(uncompletedSessionList,processMap,queryDate,now);
+    public List<BPAProcessVo> GenerateUnCompetedProcessVos(List<BPASessionLogs> uncompletedSessionList, Map<String,BPAProcess> processMap,Date queryDate,Date now,Integer timeZone){
+        List<BPAProcessVo> unCompletedVos=GenrateProcessVoWithUncompletedSession(uncompletedSessionList,processMap,queryDate,now,timeZone);
         return unCompletedVos;
     }
 
-    private List<BPAProcessVo> GenrateProcessVoWithUncompletedSession(List<BPASessionLogs> uncompletedSessionList, Map<String,BPAProcess> processMap,Date queryDate,Date now){
+    private List<BPAProcessVo> GenrateProcessVoWithUncompletedSession(List<BPASessionLogs> uncompletedSessionList, Map<String,BPAProcess> processMap,Date queryDate,Date now,Integer timeZone){
         Map<String,BPAProcessVo> voMap=new HashMap<>();
         //按照processId 分类
         Map<String,List<BPASessionLogs>> sessionLogMap=new HashMap<>();
@@ -64,11 +65,11 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
                   vo=new BPAProcessVo(process.getProcessid(),process.getName(),0,0);
                   voMap.put(vo.getProcessId(),vo);
               }
-            SetProcessVoError(sessionLog.getSessionid(),sessionLog.getResult(),sessionLog.getEnddatetime(),vo);
+            SetProcessVoError(sessionLog.getSessionid(),sessionLog.getResult(),sessionLog.getEnddatetime(),vo,timeZone);
         }
         List<BPAProcessVo> processVoList=new ArrayList<>(voMap.values());
         for (BPAProcessVo vo:processVoList){
-            SetProcessErrorList(vo,sessionLogMap.get(vo.getProcessId()),queryDate,now);
+            SetProcessErrorList(vo,sessionLogMap.get(vo.getProcessId()),queryDate,now,timeZone);
         }
         return processVoList;
     }
@@ -77,11 +78,11 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
     /**
      *设置processVo error数据
      */
-    private void SetProcessVoError(String stageName,String result,Date endTime,BPAProcessVo vo){
+    private void SetProcessVoError(String stageName,String result,Date endTime,BPAProcessVo vo,Integer timeZone){
         Boolean definedError=StringUtils.isEmpty(stageName)?false:(stageName.toUpperCase().startsWith("BE:")||stageName.toUpperCase().startsWith("SE:"));
         Boolean undefinedError=StringUtils.isEmpty(result)?false:result.toUpperCase().contains("ERROR:");
         if(vo.getLastTime()==null||(endTime!=null&&vo.getLastTime().getTime()<=endTime.getTime())){
-            vo.setLastTime(endTime);
+            vo.setLastTime(TimeZoneUtil.formateDateToZone(endTime,timeZone));
         }
         if(definedError||undefinedError){
             vo.setErrorCount(vo.getErrorCount()==null?1:vo.getErrorCount()+1);
@@ -94,10 +95,10 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
     /**
      * 设置processVo 的3个子集合
      */
-    private void SetProcessErrorList(BPAProcessVo vo,List<BPASessionLogs> subSessionLogs,Date queryDate,Date now){
+    private void SetProcessErrorList(BPAProcessVo vo,List<BPASessionLogs> subSessionLogs,Date queryDate,Date now,Integer timeZone){
         if(subSessionLogs==null||subSessionLogs.size()<=0)return;
          SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd:HH");
-         List<ErrorChartVo> errorChartVoList= CreatedLast24TimeSpanChart(queryDate,now);
+         List<ErrorChartVo> errorChartVoList= CreatedLast24TimeSpanChart(queryDate,now,timeZone);
          Integer hours=errorChartVoList.get(0).getTimeSpan();
          Map<String,ProcessErrorInfoVo> errorCodeMap=new HashMap<>();
          //设置查询时间保留至小时，计算error 所处区间使用
@@ -134,7 +135,7 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
                      errorCode.setErrorCount(errorCode.getErrorCount()+1);
                  }
                  //设置 log
-                 logs.add(new ProcessErrorLogVo(i,sdf.format(log.getStartdatetime()),log.getStagename(),log.getResult()));
+                 logs.add(new ProcessErrorLogVo(i,sdf.format(TimeZoneUtil.formateDateToZone(log.getStartdatetime(),timeZone)),log.getStagename(),log.getResult()));
                  i++;
              }
              vo.setErrorChart(errorChartVoList);
@@ -164,7 +165,7 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
         return null;
     }
 
-    private List<ErrorChartVo> CreatedLast24TimeSpanChart(Date quertDate,Date timeNow){
+    private List<ErrorChartVo> CreatedLast24TimeSpanChart(Date quertDate,Date timeNow,Integer timeZone){
         int hours=(int)Math.ceil((timeNow.getTime()-quertDate.getTime())*1.0/(24*1000*60*60.0));
         SimpleDateFormat simpleDateFormat=hours>1?new SimpleDateFormat("dd-HH"):new SimpleDateFormat("HH");
         List<ErrorChartVo> chartVoList=new ArrayList<>();
@@ -173,7 +174,7 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
         for (int i=0;i<24;i++){
             Date beginDate=calendar.getTime();
             calendar.add(Calendar.HOUR_OF_DAY,hours);
-            String beginStr=simpleDateFormat.format(beginDate);
+            String beginStr=simpleDateFormat.format(TimeZoneUtil.formateDateToZone(beginDate,timeZone));
             ErrorChartVo vo=new ErrorChartVo(beginStr,0,hours,i);
             chartVoList.add(vo);
         }

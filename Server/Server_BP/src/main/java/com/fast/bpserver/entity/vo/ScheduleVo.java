@@ -67,7 +67,7 @@ public class ScheduleVo {
 
    public void SetSlotMargins(){
         if(timeSpan<=0||timeSlots==null)return;
-       DecimalFormat sd=new DecimalFormat("0.00");
+        DecimalFormat sd=new DecimalFormat("0.00");
         for(int i=0;i<timeSlots.size();i++){
            Integer lastEndTime;
            if(i==0){

@@ -6,6 +6,7 @@ import com.fast.bpserver.entity.*;
 import com.fast.bpserver.entity.vo.BPAResourceVo;
 import com.fast.bpserver.entity.vo.ComputerData;
 import com.fast.bpserver.service.IBPAResource;
+import com.fast.bpserver.utils.TimeZoneUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
 
     @Override
     public List<BPAResourceVo> GenrateListWithResourceAndUser(Map<String,ComputerData> computerDataMap, Map<String,BPAUser> userMap, List<BPAResource> resourceList,
-                                                              Map<String,BPASession> sessionMap, Map<String,BPAProcess> processMap, Map<String,BPAEnvironmentVar> envMap){
+                                                              Map<String,BPASession> sessionMap, Map<String,BPAProcess> processMap, Map<String,BPAEnvironmentVar> envMap,Integer timeSpan){
         List<BPAResourceVo> bpaResourceVoList=new ArrayList<>();
         for (BPAResource resource:resourceList){
             BPAResourceVo vo=new BPAResourceVo();
@@ -45,13 +46,14 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
                 if(p!=null){
                     vo.setProcessStatus(session.getStatusid());
                     vo.setProcessName(p.getName());
-                    if(session.getStatusid()==0||session.getStatusid()==1||session.getStatusid()==2){
-                        String timeSlot=sdf.format(session.getStartdatetime());
+                    if(session.getStatusid()==0||session.getStatusid()==1){
+                        Date startTime= TimeZoneUtil.formateDateToZone(session.getStartdatetime(),timeSpan);
+                        String timeSlot=sdf.format(startTime);
                         BPAEnvironmentVar enVar=envMap.get("RT - "+p.getName());
                         if(enVar==null){
                             timeSlot+="--- Undefined";
                         }else {
-                            timeSlot+=("---"+DateAddTimeWithString(session.getStartdatetime(),enVar.getValue()));
+                            timeSlot+=("---"+DateAddTimeWithString(startTime,enVar.getValue()));
                         }
                         vo.setTimeSlot(timeSlot);
                     }
@@ -68,7 +70,7 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
                 vo.setProcessName("");
                 vo.setTimeSlot("");
             }
-            vo.setLastupdated(sdf.format(resource.getLastupdated()));
+            vo.setLastupdated(sdf.format(TimeZoneUtil.formateDateToZone(resource.getLastupdated(),timeSpan)));
             vo.setAttributeID(resource.getAttributeID());
             vo.setFQDN(resource.getFQDN());
             vo.setUserName(resource.getUserID()==null?"":userMap.get(resource.getUserID())==null?"":userMap.get(resource.getUserID()).getUsername());

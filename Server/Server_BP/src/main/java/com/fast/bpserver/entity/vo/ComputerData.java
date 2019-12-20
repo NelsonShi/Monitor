@@ -9,9 +9,9 @@ import java.util.List;
 public class ComputerData {
     public String BotName;
     public String BotIP;
-    public String CPUUseRate;
+    public Double CPUUseRate;
     public String Resolution;
-    public String RAMUseRate;
+    public Double RAMUseRate;
     public String CPUCount;
     public List<ProcessInfo> processList;
 
@@ -31,14 +31,6 @@ public class ComputerData {
         BotIP = botIP;
     }
 
-    public String getCPUUseRate() {
-        return CPUUseRate;
-    }
-
-    public void setCPUUseRate(String CPUUseRate) {
-        this.CPUUseRate = CPUUseRate;
-    }
-
     public String getResolution() {
         return Resolution;
     }
@@ -47,11 +39,19 @@ public class ComputerData {
         Resolution = resolution;
     }
 
-    public String getRAMUseRate() {
+    public Double getCPUUseRate() {
+        return CPUUseRate;
+    }
+
+    public void setCPUUseRate(Double CPUUseRate) {
+        this.CPUUseRate = CPUUseRate;
+    }
+
+    public Double getRAMUseRate() {
         return RAMUseRate;
     }
 
-    public void setRAMUseRate(String RAMUseRate) {
+    public void setRAMUseRate(Double RAMUseRate) {
         this.RAMUseRate = RAMUseRate;
     }
 

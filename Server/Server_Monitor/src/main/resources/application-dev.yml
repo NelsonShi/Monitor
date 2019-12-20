@@ -39,10 +39,13 @@ spring:
 
 server:
   maxHttpHeaderSize: 8192
+  props:
+      timeZone: -8
 
 netty:
   tcp:
     server:
      host: 127.0.0.1
      port: 49300
+
 

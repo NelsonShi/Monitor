@@ -15,11 +15,13 @@ class ResourceTable extends Component {
 
   componentDidMount() {
     const { dispatch, list, schedules } = this.props;
-    if (list.length <= 0) {
-      dispatch({ type: "resource/fetch", payload: { page: 1 } });
+    let dateNow=new Date();
+    let time=dateNow.getTimezoneOffset()/60
+    if (list!=null&&list.length <= 0) {
+      dispatch({ type: "resource/fetch", payload: { requestTimeZone: time } });
     }
     if (schedules.length <= 0) {
-      dispatch({ type: "resource/findSchedules", payload: { page: 1 } });
+      dispatch({ type: "resource/findSchedules", payload: {dateNow:dateNow, requestTimeZone: time } });
     }
     this.timer = setInterval(() => {
       this.fleshResources();
@@ -32,7 +34,8 @@ class ResourceTable extends Component {
 
   fleshResources() {
     const { dispatch } = this.props;
-    dispatch({ type: "timer/fleshResource", payload: { page: 1 } });
+    let time=new Date().getTimezoneOffset()/60
+    dispatch({ type: "timer/fleshResource", payload: { requestTimeZone: time } });
     const vos = this.props.vos;
     if (vos != null && vos.length > 0) {
       dispatch({ type: "resource/fleshList", payload: { value: vos } });

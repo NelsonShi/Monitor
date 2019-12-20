@@ -21,6 +21,7 @@ public class BPASession {
     private String starteruserid;
     private String runningresourceid;
     private String runningosusername;
+   // 0. Pending ; 1.Running ; 2. Terminated ; 3. Stopped ; 4. Completed ; 5. Debugging ; 6. Archived ;7. Stopping
     private Integer statusid;
     private String startparamsxml;
     private String logginglevelsxml;

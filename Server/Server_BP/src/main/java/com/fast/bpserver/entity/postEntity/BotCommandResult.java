@@ -1,4 +1,4 @@
-package com.fast.bpserver.entity.vo;
+package com.fast.bpserver.entity.postEntity;
 
 /**
  * Created by Nelson on 2019/12/11.

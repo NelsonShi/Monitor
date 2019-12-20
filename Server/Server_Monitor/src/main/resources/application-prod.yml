@@ -1,9 +1,34 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blueprism?Unicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
-    password: root
+   primary:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/monitor?Unicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+     username: root
+     password: root
+   secondary:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: jdbc:sqlserver://chqrpa93.database.windows.net:1433;DatabaseName=RPA_BP_Sandbox_Asia
+      username: chqrpa93_admin
+      password: yn9VDs3WcC7W6DqK
+
+   type: com.alibaba.druid.pool.DruidDataSource
+   platform: mysql
+   initialSize: 5
+   minIdle: 3
+   maxActive: 20
+   maxWait: 60000
+   timeBetweenEvictionRunsMillis: 60000
+   minEvictableIdleTimeMillis: 30000
+   validationQuery: select 'x'
+   testWhileIdle: true
+   testOnBorrow: false
+   testOnReturn: false
+   poolPreparedStatements: true
+   maxPoolPreparedStatementPerConnectionSize: 20
+   filters: stat,wall,slf4j
+   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+   useGlobalDataSourceStat: true
+
   jpa:
     hibernate:
       naming:
@@ -14,10 +39,13 @@ spring:
 
 server:
   maxHttpHeaderSize: 8192
+  props:
+      timeZone: 0
 
 netty:
   tcp:
     server:
      host: 127.0.0.1
      port: 49300
+
 

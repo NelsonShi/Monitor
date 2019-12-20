@@ -6,13 +6,16 @@
     <DisplayName>BP Listener</DisplayName>
     <!--建议使用特殊格式 防止和已存在的process id 冲突-->
     <Key>1</Key>
-    <StartPath></StartPath>
+    <StartPath>C:\Program Files\Blue Prism Limited\Blue Prism Automate\Automate.exe</StartPath>
+    <!--程序启动参数-->
+    <StartParam> /resourcepc /public /port 8181</StartParam>
   </ProcessInfo>
   <ProcessInfo>
     <ProcessName>WeChat</ProcessName>
-    <WindowTitleKey>WeChat</WindowTitleKey>
+    <WindowTitleKey>微信</WindowTitleKey>
     <DisplayName>WeChat</DisplayName>
     <Key>2</Key>
     <StartPath>C:\Users\sjlor\Desktop\微信.lnk</StartPath>
+    <StartParam></StartParam>
   </ProcessInfo>
 </ProcessConf>

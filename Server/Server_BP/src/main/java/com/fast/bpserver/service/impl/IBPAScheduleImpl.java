@@ -34,17 +34,9 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
     }
 
     public List<ScheduleVo> GenrateResourceScheduleVos(List<BPASchedule> scheduleList, Map<String, BPAScheduleTrigger> triggerMap, Map<String, BPAProcess> processMap, Map<String, BPAEnvironmentVar> environmentVarMap,
-                                                       Map<String, BPATask> taskMap, Map<String, BPATaskSession> taskSessionMap, Map<String, BPAResource> resourceNameMap) {
+                                                       Map<String, BPATask> taskMap, Map<String, BPATaskSession> taskSessionMap, Map<String, BPAResource> resourceNameMap,Date startTime,Date endTime,Integer timeZone) {
         Map<String, ScheduleVo> voMap = new HashMap<>();
-        Date dateEnd = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dateEnd);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        Date timeTodayZero = calendar.getTime();
-        calendar.add(Calendar.DAY_OF_MONTH,1);
-        dateEnd = calendar.getTime();
+
         for (BPASchedule schedule : scheduleList) {
             BPAScheduleTrigger refTrigger = triggerMap.get(schedule.getId().toString());
             BPATask refTask = taskMap.get(schedule.getId().toString());
@@ -52,10 +44,10 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
             BPATaskSession refTaskSession = taskSessionMap.get(refTask.getId().toString());
             ScheduleVo vo = voMap.get(refTaskSession.getResourcename());
             String runTime = environmentVarMap.get("RT - " + processMap.get(refTaskSession.getProcessid()).getName()).getValue();
-            ScheduleTimeSlotModule module = createModule(timeTodayZero, dateEnd, refTrigger, runTime, processMap.get(refTaskSession.getProcessid()).getName(), refTrigger.getId().toString());
+            ScheduleTimeSlotModule module = createModule(startTime, endTime, refTrigger, runTime, processMap.get(refTaskSession.getProcessid()).getName(), refTrigger.getId().toString(),timeZone);
             if (vo == null && module.getNeedToStart()) {
                 vo = new ScheduleVo();
-                vo.setTimeSpan(new Long((dateEnd.getTime() - timeTodayZero.getTime()) / (1000 * 60)).intValue());
+                vo.setTimeSpan(new Long((endTime.getTime() - startTime.getTime()) / (1000 * 60)).intValue());
                 vo.setResourcename(refTaskSession.getResourcename());
                 vo.setResourceid(resourceNameMap.get(refTaskSession.getResourcename()).getResourceid());
                 vo.setTimeSlots(module.getScheduleSlotList());
@@ -87,13 +79,13 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
         }
     }
 
-    private ScheduleTimeSlotModule createModule(Date inputbegin, Date inputEnd, BPAScheduleTrigger trigger, String runtime, String processName, String trggerName) {
+    private ScheduleTimeSlotModule createModule(Date inputbegin, Date inputEnd, BPAScheduleTrigger trigger, String runtime, String processName, String trggerName,Integer timeZone) {
         String[] times = runtime.split(":");
         Integer day = Integer.parseInt(times[0].split("\\.")[0]);
         Integer hour = Integer.parseInt(times[0].split("\\.")[1]);
         Integer mins = Integer.parseInt(times[1]);
         long runSeconds = day * 24 * 60 * 60 + hour * 60 * 60 + mins * 60;
-        ScheduleTimeSlotModule module = new ScheduleTimeSlotModule(inputbegin, inputEnd, trigger.getStartdate(), runSeconds, trigger.getPeriod(), trigger.getUnittype(),trigger.getStartpoint(),trigger.getEndpoint());
+        ScheduleTimeSlotModule module = new ScheduleTimeSlotModule(inputbegin, inputEnd, trigger.getStartdate(), runSeconds, trigger.getPeriod(), trigger.getUnittype(),trigger.getStartpoint(),trigger.getEndpoint(),timeZone);
         module.GenrateScheduleList(processName, sdf, trggerName);
         return module;
     }

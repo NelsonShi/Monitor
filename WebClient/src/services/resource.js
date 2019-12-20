@@ -1,7 +1,7 @@
 import request from '../utils/request';
 
-export function findAllResources () {
-  return request('/bpServer/process/resourceList'); //get方法请求
+export function findAllResources (value) { 
+  return request('/bpServer/resource/resourceList?requestTimeZone='+value.requestTimeZone); //get方法请求
     /*
    return request(`接口地址`,{
     method: 'post',
@@ -16,19 +16,28 @@ export function findAllResources () {
   
 }
 
-export function findAllResourcesSecondly () {
-  return request('/bpServer/process/resourceListForWeb'); //get方法请求
+export function findAllResourcesSecondly (value) {
+  return request('/bpServer/resource/resourceListForWeb?requestTimeZone='+value.requestTimeZone); //get方法请求
 }
-export function findResourceScheduleList () {
-  return request('/bpServer/process/scheduleVos'); //get方法请求
+export function findResourceScheduleList (value) {
+  console.log('findResourceScheduleList')
+  console.log(value)
+  return request('/bpServer/resource/scheduleVos',{
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(
+      value
+    )
+  }); //get方法请求
 }
 
 export function findAllBots () {
-  return request('/bpServer/process/bots'); //get方法请求
+  return request('/bpServer/resource/bots'); //get方法请求
 }
 
 export function operation (params) {
-  console.log(params)
   return request('/bpServer/operation/command',{
    method: 'post',
    headers: {

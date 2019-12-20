@@ -46,11 +46,12 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
             if(ctx==null||msg==null)return;
             ComputerData cd= JsonToObjectUtil.jsonToPojo(msg.toString(),ComputerData.class);
             if(cd==null)return;
-            cd.setBotIP(getIPString(ctx));
+            String ip=getIPString(ctx);
+            if(!NettyServer.map.containsKey(ip)) NettyServer.map.put(getIPString(ctx), ctx.channel());
+            cd.setBotIP(ip);
             cacheUtil.UpdateComputerData(cd);
-            ctx.flush();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
     }
 
@@ -70,7 +71,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
         log.info("tcp client " + getRemoteAddress(ctx) + " connect success");
         //往channel map中添加channel信息
         NettyServer.map.put(getIPString(ctx), ctx.channel());}catch (Exception e){
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
     }
 
@@ -89,7 +90,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
         NettyServer.map.remove(getIPString(ctx));
         ctx.close();
         cacheUtil.DeleteComputerData(getIPString(ctx));}catch (Exception e){
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
     }
 
@@ -108,7 +109,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
         ctx.close();//再次建议close
         cacheUtil.DeleteComputerData(getIPString(ctx));}
         catch (Exception e){
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
     }
 
@@ -139,7 +140,7 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
                 ctx.disconnect();
             }
         }}catch (Exception e){
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
     }
 

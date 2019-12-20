@@ -2,6 +2,6 @@ import request from '../utils/request';
 
 
 
-export function findErrorProcess () {
-  return request('/bpServer/resource/errorProcessVos'); //get方法请求
+export function findErrorProcess (value) {
+  return request('/bpServer/process/errorProcessVos?requestTimeZone='+value.requestTimeZone); //get方法请求
 }
