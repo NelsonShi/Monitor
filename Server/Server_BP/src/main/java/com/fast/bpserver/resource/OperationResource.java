@@ -1,7 +1,9 @@
 package com.fast.bpserver.resource;
 
+import com.fast.bpserver.base.BaseResource;
 import com.fast.bpserver.entity.postEntity.BotCommand;
 import com.fast.bpserver.entity.postEntity.BotCommandResult;
+import com.fast.bpserver.nettyServer.GlobalUserUtil;
 import com.fast.bpserver.tcpServer.NettyServer;
 import com.fast.bpserver.utils.JsonToObjectUtil;
 import io.netty.channel.Channel;
@@ -17,11 +19,11 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/operation")
-public class OperationResource {
+public class OperationResource extends BaseResource {
     private static final Logger log= LoggerFactory.getLogger(OperationResource.class);
     @RequestMapping(value = "/command",method = RequestMethod.POST)
     public BotCommandResult Command(@RequestBody BotCommand vo, HttpServletRequest request){
-        Map<String,Channel> chanelMap= NettyServer.map;
+        Map<String,Channel> chanelMap= GlobalUserUtil.tcpChannelMap;
         Channel channel=chanelMap.get(vo.getIp());
         BotCommandResult br;
         if(channel==null){

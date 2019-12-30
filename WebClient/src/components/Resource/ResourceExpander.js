@@ -10,15 +10,8 @@ class ResourceExpander extends Component {
     if (bots <= 0) {
       dispatch({ type: "timer/getBots", payload: { page: 1 } });
     }
-    this.timer = setInterval(
-      () => dispatch({ type: "timer/getBots", payload: { page: 1 } }),
-      1000
-    );
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
 
   onClick = (processId, botIp, { key }) => {
     const { dispatch } = this.props;

@@ -23,24 +23,9 @@ class ResourceTable extends Component {
     if (schedules.length <= 0) {
       dispatch({ type: "resource/findSchedules", payload: {dateNow:dateNow, requestTimeZone: time } });
     }
-    this.timer = setInterval(() => {
-      this.fleshResources();
-    }, 4000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
 
-  fleshResources() {
-    const { dispatch } = this.props;
-    let time=new Date().getTimezoneOffset()/60
-    dispatch({ type: "timer/fleshResource", payload: { requestTimeZone: time } });
-    const vos = this.props.vos;
-    if (vos != null && vos.length > 0) {
-      dispatch({ type: "resource/fleshList", payload: { value: vos } });
-    }
-  }
 
   render() {
     const { list: dataSource, loading} = this.props;
@@ -141,7 +126,6 @@ function mapStateToProps(state) {
     list,
     total: parseInt(total, 10),
     page,
-    vos: state.timer.vos,
     schedules: state.resource.schedules
   };
 }

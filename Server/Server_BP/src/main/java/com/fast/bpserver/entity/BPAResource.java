@@ -18,7 +18,7 @@ public class BPAResource {
     private Integer actionsrunning;
     private Integer unitsallocated;
     private Date lastupdated;
-    private Integer AttributeID;
+    private Integer attributeID;
     private String pool;
     private String controller;
     private Integer diagnostics;
@@ -78,11 +78,11 @@ public class BPAResource {
     }
 
     public Integer getAttributeID() {
-        return AttributeID;
+        return attributeID;
     }
 
     public void setAttributeID(Integer attributeID) {
-        AttributeID = attributeID;
+        this.attributeID = attributeID;
     }
 
     public String getPool() {

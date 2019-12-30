@@ -13,5 +13,6 @@ public final class CacheKey {
     public static String BotCacheKey = "BotCacheKey";
     public static String BluePrismEnvVAR = "BluePrismEnvVAR";
     public static String BluePrismProcessList="BluePrismProcessList";
+    public static String ResourceFreshData = "ResourceFreshData";
 
 }

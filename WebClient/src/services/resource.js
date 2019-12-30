@@ -20,8 +20,6 @@ export function findAllResourcesSecondly (value) {
   return request('/bpServer/resource/resourceListForWeb?requestTimeZone='+value.requestTimeZone); //get方法请求
 }
 export function findResourceScheduleList (value) {
-  console.log('findResourceScheduleList')
-  console.log(value)
   return request('/bpServer/resource/scheduleVos',{
     method: 'post',
     headers: {

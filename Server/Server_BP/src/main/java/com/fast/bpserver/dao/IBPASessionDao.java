@@ -18,4 +18,7 @@ public interface IBPASessionDao extends JpaRepository<BPASession,String> {
     @Query(value = "SELECT a.sessionid,b.startdatetime,a.enddatetime,a.processid,a.starterresourceid,a.statusid,a.stoprequested,a.lastupdated,a.laststage,b.stagename,b.pagename,b.objectname,b.actionname,b.result " +
             "FROM BPASession a RIGHT JOIN BPASessionLog_NonUnicode b on a.sessionnumber=b.sessionnumber where a.startdatetime>=?1 and(a.statusid=2 or a.statusid= 3 or b.stagename like '%BE:%'or b.stagename like '%SE:%' or b.result like '%ERROR:%')",nativeQuery = true)
     List<Object[]> findErrorSessionAndLogs(String date);
+
+    @Query(value = "SELECT MAX(S.lastupdated) FROM BPASession S")
+    Object[] findMaxLastUpdatedItem();
 }

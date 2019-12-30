@@ -1,6 +1,7 @@
 package com.fast.monitorserver.commandLineRunner;
 
 
+import com.fast.bpserver.nettyServer.NettyDeviceServer;
 import com.fast.bpserver.tcpServer.NettyServer;
 import com.fast.bpserver.utils.CacheUtil;
 import io.netty.channel.ChannelFuture;
@@ -25,17 +26,12 @@ public class Cachelistener implements CommandLineRunner {
     @Autowired
     private CacheUtil cacheUtil;
     @Autowired
-    private NettyServer nettyServer;
+    private NettyDeviceServer nettyServer;
     @Override
     public void run(String... args) throws Exception {
          log.info("--------------------- init system cache -------------------------");
          cacheUtil.InitCache();
          log.info("---------------------cache init completed ------------------------");
-         log.info("---------------------start TCP server -------------------------");
-         ChannelFuture start = nettyServer.start();
-         log.info("---------------------TCP server started---------------------");
-        //服务端管道关闭的监听器并同步阻塞,直到channel关闭,线程才会往下执行,结束进程
-         start.channel().closeFuture().syncUninterruptibly();
 
     }
 }

@@ -17,7 +17,7 @@ function Sales({ data }) {
   return (
     <div className={styles.sales}>
       <div className={styles.title}>
-        {data.processName}-- Horuly
+        {data.processName}-- Hourly
       </div>
       <ResponsiveContainer minHeight={250}>
         <LineChart data={data.errorChart}>

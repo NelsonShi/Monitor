@@ -42,7 +42,7 @@ class ProcessTable extends Component {
         title: "Action",
         width: "10%",
         render(record,text) {   
-          return (<Link to={`Process/Detial?Id=${text.processId}`}>Detial</Link>);
+          return (<Link to={`Process/Detial?Id=${text.processId}`}>Detail</Link>);
         }
       }
     ];

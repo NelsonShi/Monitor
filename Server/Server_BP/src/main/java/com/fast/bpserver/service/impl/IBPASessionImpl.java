@@ -7,12 +7,22 @@ import com.fast.bpserver.entity.BPAResource;
 import com.fast.bpserver.entity.BPASession;
 import com.fast.bpserver.entity.BPAUser;
 import com.fast.bpserver.entity.QueryVo.BPASessionLogs;
+import com.fast.bpserver.entity.postEntity.WebSocketCommand;
+import com.fast.bpserver.nettyServer.GlobalUserUtil;
+import com.fast.bpserver.schedules.ResourceFlagSchedule;
 import com.fast.bpserver.service.IBPASession;
+import com.fast.bpserver.utils.CacheUtil;
 import com.fast.bpserver.utils.EntityUtils;
+import com.fast.bpserver.utils.JsonToObjectUtil;
+import io.netty.channel.Channel;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +32,12 @@ import java.util.UUID;
  */
 @Service
 public class IBPASessionImpl extends AbstractService<BPASession> implements IBPASession {
+    private static Logger log= LoggerFactory.getLogger(IBPASessionImpl.class);
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
     @Autowired
     private IBPASessionDao bpaSessionDao;
+    @Autowired
+    private CacheUtil cacheUtil;
 
     @Override
     public JpaRepository<BPASession,String> getRepository(){return bpaSessionDao;}
@@ -54,4 +68,5 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
     public List<BPASession> recentlySession(){
         return bpaSessionDao.findRecentSession();
     }
+
 }
