@@ -3,6 +3,8 @@ package com.fast.bpserver.tcpServer;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -29,10 +31,8 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
         pipeline.addLast("idleStateHandler",
                 new IdleStateHandler(15, 0, 0, TimeUnit.MINUTES));
         //字符串编解码器
-        pipeline.addLast(
-                new StringDecoder(),
-                new StringEncoder()
-        );
+        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4));
+        pipeline.addLast(new StringDecoder(),new StringEncoder());
         //自定义Handler
         pipeline.addLast("serverChannelHandler", serverChannelHandler);
     }

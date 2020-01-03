@@ -1,6 +1,5 @@
 export function wsConnect(dispatch) {
   const ws = new WebSocket("ws://localhost:49300/websocket");
-
   ws.onopen = () => {
    
   };
@@ -27,4 +26,8 @@ export function wsConnect(dispatch) {
   ws.onclose = function(e) {
   
   };
+  
+  ws.onerror=(e)=>{
+    console.log('webSocket on Error')
+  }
 }

@@ -120,8 +120,8 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
         return sdf.format(calendar.getTime());
     }
 
-    public void UpdateCacheResourceList() {
-        if(GlobalUserUtil.socketChannels.size()<=0)return;
+    public boolean UpdateCacheResourceList() {
+        if(GlobalUserUtil.socketChannels.size()<=0)return false;
         Map<String,Object[]> existMap=cacheUtil.getResourceFreshData();
         List<Object[]> datas=bpaResourceDao.findResourceFreshDatas();
         boolean needToupDate = false;
@@ -152,6 +152,7 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
                 channel.writeAndFlush(new TextWebSocketFrame(JsonToObjectUtil.objectToJson(command)));
             }
         }
+        return  needToupDate;
     }
 
     private String GenerateKey(Object[] obj){

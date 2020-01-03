@@ -28,4 +28,3 @@ D:\Codes\Monitor\botMonitor\botMonitor\obj\Release\botMonitor.g.resources
 D:\Codes\Monitor\botMonitor\botMonitor\obj\Release\botMonitor.Properties.Resources.resources
 D:\Codes\Monitor\botMonitor\botMonitor\obj\Release\botMonitor.csproj.GenerateResource.Cache
 D:\Codes\Monitor\botMonitor\botMonitor\bin\Release\Conf\NessaryProcessConfig.xml
-D:\Codes\Monitor\botMonitor\botMonitor\obj\Release\botMonitor.csprojResolveAssemblyReference.cache

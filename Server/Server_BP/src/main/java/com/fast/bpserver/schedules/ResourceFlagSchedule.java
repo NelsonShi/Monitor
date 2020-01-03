@@ -22,13 +22,12 @@ public class ResourceFlagSchedule {
     private static Logger log= LoggerFactory.getLogger(ResourceFlagSchedule.class);
     @Autowired
     private IBPAResource ibpaResourceService;
-    @Autowired
-    private IBPASession sessionService;
 
     @Scheduled(initialDelay=1000,fixedDelay=5000)
     private void run(){
          Date dateBegin=new Date();
-         ibpaResourceService.UpdateCacheResourceList();
-         log.info("schedule 耗时：：{}",new Date().getTime()-dateBegin.getTime());
+         Boolean updated=ibpaResourceService.UpdateCacheResourceList();
+         if(updated) log.info("schedule 耗时：：{}",new Date().getTime()-dateBegin.getTime());
+
     }
 }

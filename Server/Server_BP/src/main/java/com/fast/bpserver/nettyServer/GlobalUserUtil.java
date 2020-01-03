@@ -17,4 +17,5 @@ public class GlobalUserUtil {
     public static ChannelGroup socketChannels = new DefaultChannelGroup(GlobalEventExecutor
             .INSTANCE);
     public static Map<String, Channel> tcpChannelMap = new ConcurrentHashMap<String, Channel>();
+
 }

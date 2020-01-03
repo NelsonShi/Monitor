@@ -27,59 +27,69 @@ public class NettyChannelHandler extends SimpleChannelInboundHandler<Object> {
     private static final Logger logger = LoggerFactory.getLogger(NettyChannelHandler.class);
     private static final String URI = "websocket";
 
-    private WebSocketServerHandshaker handshaker ;
+    private WebSocketServerHandshaker handshaker;
 
     /**
      * 接收到Client 传来的数据后 触发的事件
-     *实现channelRead 后此函数不被触发 但是必须实现
+     * 实现channelRead 后此函数不被触发 但是必须实现
+     *
      * @param ctx
      * @param msg
      * @throws Exception
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg)  {
-
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
+        logger.info(msg.toString());
     }
 
     /**
      * 接收到数据后 触发的事件
+     *
      * @param ctx
      * @param msg
      * @throws Exception
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if(msg instanceof HttpRequest){
+        if (msg instanceof HttpRequest) {
             //http 协议处理 webSockt 第一次建立连接时 会使用HTTP 协议
-            logger.info("Http Request");
-            doHandlerHttpRequest(ctx,(HttpRequest) msg);
-        }else if(msg instanceof WebSocketFrame) {
+//            logger.info("Http Request");
+            doHandlerHttpRequest(ctx, (HttpRequest) msg);
+        } else if (msg instanceof WebSocketFrame) {
             //websocket 协议处理 webSocket 通讯时 使用该协议
-            doHandlerWebSocketFrame(ctx,(WebSocketFrame) msg);
-        }else {
+            doHandlerWebSocketFrame(ctx, (WebSocketFrame) msg);
+        } else {
             // 其他协议 默认为TCP/IP 协议  程序需要校验数据结构 如果不符合则不处理
             logger.info("receive TCP/IP data");
-            doTCPData(ctx,msg);
-            MessageWebClient();
+            if (doTCPData(ctx, msg)) MessageWebClient();
         }
     }
 
-    private void doTCPData(ChannelHandlerContext ctx, Object msg){
+    private boolean doTCPData(ChannelHandlerContext ctx, Object msg) {
+        if (ctx == null || msg == null) {
+            return false;
+        }
         try {
-            if(ctx==null||msg==null)return;
-            ComputerData cd= JsonToObjectUtil.jsonToPojo(msg.toString(),ComputerData.class);
-            if(cd==null)return;
-            String ip=getIPString(ctx);
-            if(!GlobalUserUtil.tcpChannelMap.containsKey(ip)) GlobalUserUtil.tcpChannelMap.put(getIPString(ctx), ctx.channel());
+            String content = new String((byte[]) msg, "utf-8");
+            if (content.equals("1")) {
+                return false;
+            }
+            ComputerData cd = JsonToObjectUtil.jsonToPojo(content, ComputerData.class);
+            if (cd == null) return false;;
+            String ip = getIPString(ctx);
+            if (!GlobalUserUtil.tcpChannelMap.containsKey(ip))
+                GlobalUserUtil.tcpChannelMap.put(getIPString(ctx), ctx.channel());
             cd.setBotIP(ip);
             cacheUtil.UpdateComputerData(cd);
-        }catch (Exception e){
+            return true;
+        } catch (Exception e) {
             logger.info(e.getMessage());
+            return false;
         }
     }
 
-    private void MessageWebClient(){
-        WebSocketCommand command=new WebSocketCommand();
+    private void MessageWebClient() {
+        WebSocketCommand command = new WebSocketCommand();
         command.setComponentName("bots");
         command.setCommandType("fresh");
         for (Channel channel : GlobalUserUtil.socketChannels) {
@@ -89,57 +99,61 @@ public class NettyChannelHandler extends SimpleChannelInboundHandler<Object> {
 
     /**
      * websocket消息处理
+     *
      * @param ctx
      * @param msg
      */
     private void doHandlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame msg) {
         //判断msg 是哪一种类型  分别做出不同的反应
-        if(msg instanceof CloseWebSocketFrame){
+        if (msg instanceof CloseWebSocketFrame) {
             logger.info("【Websocket close】");
             handshaker.close(ctx.channel(), (CloseWebSocketFrame) msg);
-            return ;
+            return;
         }
-        if(msg instanceof PingWebSocketFrame){
+        if (msg instanceof PingWebSocketFrame) {
             logger.info("【Websocket ping】");
             PongWebSocketFrame pong = new PongWebSocketFrame(msg.content().retain());
             ctx.channel().writeAndFlush(pong);
-            return ;
+            return;
         }
-        if(msg instanceof PongWebSocketFrame){
+        if (msg instanceof PongWebSocketFrame) {
             logger.info("【Websocket pong】");
             PingWebSocketFrame ping = new PingWebSocketFrame(msg.content().retain());
             ctx.channel().writeAndFlush(ping);
-            return ;
+            return;
         }
-        if((msg instanceof TextWebSocketFrame)){
-            String message=((TextWebSocketFrame) msg).text();
-            logger.info("WebSocket:::"+message);
+        if ((msg instanceof TextWebSocketFrame)) {
+            String message = ((TextWebSocketFrame) msg).text();
+            logger.info("WebSocket:::" + message);
         }
     }
 
 
     /**
      * wetsocket第一次连接握手
+     *
      * @param ctx
      * @param msg
      */
     private void doHandlerHttpRequest(ChannelHandlerContext ctx, HttpRequest msg) {
         // http 解码失败
-        if(!msg.getDecoderResult().isSuccess() || (!"websocket".equals(msg.headers().get("Upgrade")))){
-            sendHttpResponse(ctx, (FullHttpRequest) msg,new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,HttpResponseStatus.BAD_REQUEST));
+        if (!msg.getDecoderResult().isSuccess() || (!"websocket".equals(msg.headers().get("Upgrade")))) {
+            sendHttpResponse(ctx, (FullHttpRequest) msg, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
+            return;
         }
         //可以获取msg的uri来判断
         String uri = msg.getUri();
-        if(!uri.substring(1).equals(URI)){
+        if (!uri.substring(1).equals(URI)) {
             ctx.close();
+            return;
         }
         ctx.attr(AttributeKey.valueOf("type")).set(uri);
         //可以通过url获取其他参数
         WebSocketServerHandshakerFactory factory = new WebSocketServerHandshakerFactory(
-                "ws://"+msg.headers().get("Host")+"/"+URI+"",null,false
+                "ws://" + msg.headers().get("Host") + "/" + URI + "", null, false
         );
         handshaker = factory.newHandshaker(msg);
-        if(handshaker == null){
+        if (handshaker == null) {
             WebSocketServerHandshakerFactory.sendUnsupportedWebSocketVersionResponse(ctx.channel());
         }
         //进行连接

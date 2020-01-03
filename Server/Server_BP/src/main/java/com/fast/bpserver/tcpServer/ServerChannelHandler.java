@@ -6,6 +6,8 @@ import com.fast.bpserver.utils.JsonToObjectUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
@@ -53,6 +55,11 @@ public class ServerChannelHandler extends SimpleChannelInboundHandler<Object> {
         }catch (Exception e){
             log.info(e.getMessage());
         }
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        log.info(msg.toString());
     }
 
 

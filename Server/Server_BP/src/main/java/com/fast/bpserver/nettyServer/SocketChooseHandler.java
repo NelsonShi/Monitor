@@ -5,6 +5,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.MessageToByteEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -34,10 +36,9 @@ public class SocketChooseHandler extends ByteToMessageDecoder {
             springContextUtil.getBean(PipelineAdd.class).websocketAdd(ctx);
             //对于 webSocket ，不设置超时断开
             ctx.pipeline().remove(IdleStateHandler.class);
+            ctx.pipeline().remove(MessagePacketDecoder.class);
             ctx.pipeline().remove(StringEncoder.class);
-            ctx.pipeline().remove(StringDecoder.class);
             GlobalUserUtil.socketChannels.add(channel);
-            String ss="";
         }else {
             String ip=getIPString(ctx);
             GlobalUserUtil.tcpChannelMap.put(ip,channel);

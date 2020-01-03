@@ -35,6 +35,7 @@ namespace botMonitor
         private DeviceMonitor dm;
         private SocketClient sc;
         private Thread reconnectT;
+        private Thread Heartbeat;
         private ProcessControl pc;
         private List<ProcessConf> processConfs;
         private ComputerData lastComputerData;
@@ -59,8 +60,12 @@ namespace botMonitor
                         Thread.Sleep(second * 1000);
                         if (sc == null || sc.IsConnect) continue;
                         StartSocketClient();
+                        if (sc.IsConnect&&lastComputerData!=null)
+                        {
+                            sc.SendMessageToServer(JsonJavaScriptSerializer.ToJSON(lastComputerData));
+                        }
                     }
-                    catch (Exception ce)
+                    catch 
                     {
 
                     }
@@ -68,6 +73,22 @@ namespace botMonitor
 
             });
             reconnectT.Start();
+            Heartbeat=new Thread(() =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Thread.Sleep(60 * 1000);
+                        sc.SendMessageToServer("1");
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            });
+            Heartbeat.Start();
         }
 
         //初始化Timer和基础类
@@ -242,6 +263,7 @@ namespace botMonitor
         {
             if (sc != null) sc.StopSocket();
             if (reconnectT != null) reconnectT.Abort();
+            if(Heartbeat!=null)Heartbeat.Abort();
         }
 
         private void WriteToTextBox(string message)

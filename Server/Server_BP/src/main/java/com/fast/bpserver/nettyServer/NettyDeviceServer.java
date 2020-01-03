@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -76,12 +77,13 @@ public class NettyDeviceServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //Socket 连接心跳检测
-                            ch.pipeline().addLast("idleStateHandler", new IdleStateHandler(15, 0, 0, TimeUnit.MINUTES));
+                            ch.pipeline().addLast("idleStateHandler", new IdleStateHandler(2, 0, 0, TimeUnit.MINUTES));
 
                             ch.pipeline().addLast("socketChoose",new SocketChooseHandler());
                             ch.pipeline().addLast("active",channelActiveHandle);
-
-                            ch.pipeline().addLast(new StringEncoder(),new StringDecoder());
+//                            ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,0));
+                            ch.pipeline().addLast(new MessagePacketDecoder());
+                            ch.pipeline().addLast(new StringEncoder());
                             ch.pipeline().addLast("commonhandler",nettyChannelHandler);
 
                         }

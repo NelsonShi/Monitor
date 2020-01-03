@@ -127,7 +127,7 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
                  errorChartVo.setErrorCount(errorChartVo.getErrorCount()+1);
                 //设置 errorType
                  ProcessErrorInfoVo errorCode=errorCodeMap.get(errorType);
-                 String description=errorType.equals("unDefined")?"Error detial in logs":"defined error,error descripyion should be defined";
+                 String description=errorType.equals("unDefined")?"Error detail in logs":"defined error,error description should be defined";
                  if(errorCode==null){
                      errorCode=new ProcessErrorInfoVo(errorType,1,description);
                      errorCodeMap.put(errorType,errorCode);
@@ -143,7 +143,7 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
              vo.setLogs(logs);
          }
          //当该process 无error 时  设置request time 或者 terminated 时间
-        if(vo.getErrorCount()<=0&&requestStopTime!=null){
+        if(vo.getErrorCount()<=0&&requestStopTime.getTime()>0){
             vo.setRequestedStoped(true);
             vo.setRequestedTime(sdf.format(requestStopTime));
         }

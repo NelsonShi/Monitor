@@ -26,12 +26,14 @@ public class Cachelistener implements CommandLineRunner {
     @Autowired
     private CacheUtil cacheUtil;
     @Autowired
-    private NettyDeviceServer nettyServer;
+    private NettyServer nettyServer;
     @Override
     public void run(String... args) throws Exception {
          log.info("--------------------- init system cache -------------------------");
          cacheUtil.InitCache();
          log.info("---------------------cache init completed ------------------------");
+//         ChannelFuture start= nettyServer.start();
+//         start.channel().closeFuture().sync();
 
     }
 }

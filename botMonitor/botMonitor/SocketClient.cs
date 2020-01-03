@@ -39,7 +39,7 @@ namespace botMonitor
 
         public void StopSocket()
         {
-            if (socketSend!=null)
+            if (socketSend != null)
             {
                 socketSend.Close();
             }
@@ -99,7 +99,7 @@ namespace botMonitor
                     HasReturn = true;
                     //信息显示
                     ReturnStr = Encoding.UTF8.GetString(buffer, 0, r);
-                    if(string.IsNullOrEmpty(ReturnStr))break;
+                    if (string.IsNullOrEmpty(ReturnStr)) break;
                     var botCommand = JsonJavaScriptSerializer.FromJSON<BotCommand>(ReturnStr);
                     acceptMsgEvent?.Invoke(botCommand);
                 }
@@ -108,20 +108,30 @@ namespace botMonitor
             {
             }
         }
-
+        /// <summary>
+        /// 发送数据给服务端 
+        /// </summary>
+        /// <param name="message">json 格式内容</param>
         public void SendMessageToServer(string message)
         {
             if (socketSend == null) return;
             try
-            {
-                byte[] buffer = Encoding.UTF8.GetBytes(message);
-                //将字节数组传递给客户端
-                socketSend.Send(buffer);
+            {             
+                
+                    byte[] buffer = Encoding.UTF8.GetBytes(message);
+                    //将字节数组传递给客户端
+                    byte[] lengthBytes = BitConverter.GetBytes(buffer.Length);
+                    byte[] sendBytes = new byte[lengthBytes.Length + buffer.Length];                
+                    lengthBytes.CopyTo(sendBytes, 0);
+                    buffer.CopyTo(sendBytes, 4);
+                    socketSend.Send(sendBytes);
+                          
             }
             catch (Exception ex)
             {
                 IsConnect = false;
             }
         }
+
     }
 }

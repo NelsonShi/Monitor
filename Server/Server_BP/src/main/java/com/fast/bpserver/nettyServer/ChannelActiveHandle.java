@@ -39,12 +39,12 @@ public class ChannelActiveHandle extends ChannelInboundHandlerAdapter {
         logger.debug("心跳检测", ctx.channel().toString());
         if (evt instanceof IdleStateEvent) {
             IdleState state = ((IdleStateEvent) evt).state();
-            PingWebSocketFrame ping = new PingWebSocketFrame();
+//            PingWebSocketFrame ping = new PingWebSocketFrame();
             if (state == IdleState.READER_IDLE) {
                 // 在规定时间内没有收到客户端的上行数据, 主动向客户端发送ping  未回应则断开
-             ChannelFuture channelFuture= ctx.writeAndFlush(ping);
+//             ChannelFuture channelFuture= ctx.writeAndFlush(ping);
              logger.info("在规定时间内没有收到客户端的上行数据");
-               // ctx.disconnect();
+             ctx.disconnect();
             }
         } else {
             super.userEventTriggered(ctx, evt);
