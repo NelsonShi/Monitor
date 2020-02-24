@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IBPAUserDao extends JpaRepository<BPAUser,String> {
+    BPAUser findByUserId(String id);
 }

@@ -29,6 +29,10 @@ public class BPAProcess {
     private Boolean sharedObject;
     private Boolean forceLiteralForm;
     private Boolean useLegacyNamespace;
+    @Transient
+    private String runTimeStr;
+    @Transient
+    private Integer runTimeMins;
 
     public String getProcessid() {
         return processid;
@@ -165,5 +169,21 @@ public class BPAProcess {
 
     public void setUseLegacyNamespace(Boolean useLegacyNamespace) {
         this.useLegacyNamespace = useLegacyNamespace;
+    }
+
+    public String getRunTimeStr() {
+        return runTimeStr;
+    }
+
+    public void setRunTimeStr(String runTimeStr) {
+        this.runTimeStr = runTimeStr;
+    }
+
+    public Integer getRunTimeMins() {
+        return runTimeMins;
+    }
+
+    public void setRunTimeMins(Integer runTimeMins) {
+        this.runTimeMins = runTimeMins;
     }
 }

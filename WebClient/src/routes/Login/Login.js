@@ -74,12 +74,12 @@ class Login extends Component {
               >
                 Log in
               </Button>
-              <p style={{ color: "#bfbfbf" }}>
+              {/* <p style={{ color: "#bfbfbf" }}>
                 <span style={{ margin: "0px 10px 0 10px" }}>
                   Username: Nelson
                 </span>
                 <span style={{ margin: "0px 10px 0 10px" }}>Password: 1</span>
-              </p>
+              </p> */}
             </Form.Item>
           </Form>
         </div>

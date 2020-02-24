@@ -19,6 +19,14 @@ public class BPAResourceVo {
     private String DisplayStatus;
     private String botIp;
     private Integer isNettyConnected;
+    //当前resource 是否可用
+    private boolean available;
+    //当前resource 是否被选择
+    private boolean checked;
+
+    public BPAResourceVo(){
+        this.checked=false;
+    }
 
     public String getResourceid() {
         return resourceid;
@@ -123,5 +131,21 @@ public class BPAResourceVo {
 
     public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

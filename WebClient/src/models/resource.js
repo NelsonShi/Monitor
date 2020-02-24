@@ -61,6 +61,7 @@ export default {
 
     *freshResourceConnectedStatus({ payload: { bots } }, { put, select }) {
       const list = yield select(state => state.resource.list);
+      // eslint-disable-next-line
       list.map(l =>{
         let bot;
         bot =
@@ -77,7 +78,7 @@ export default {
           list: list //网络返回的要保留的数据
         }
       });
-    }
+    },
   },
 
   subscriptions: {

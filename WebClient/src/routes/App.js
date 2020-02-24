@@ -30,6 +30,7 @@ class App extends Component {
     icons.set("Process", "project");
     icons.set("Users", "team");
     icons.set("Detial", "bar-chart");
+    icons.set("Control", "control");
   }
 
   onCollapse = () => {
@@ -75,6 +76,10 @@ class App extends Component {
               <Menu.Item key="/Process">
                 <Icon type="project" />
                 <span>Process</span>
+              </Menu.Item>
+              <Menu.Item key="/Control">
+                <Icon type="control" />
+                <span>Control</span>
               </Menu.Item>
               <Menu.Item key="/Users">
                 <Icon type="team" />

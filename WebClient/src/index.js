@@ -34,6 +34,7 @@ app.model(require('./models/resource').default);
 app.model(require('./models/timer').default);
 app.model(require('./models/login').default);
 app.model(require('./models/process').default);
+app.model(require('./models/control').default);
 
 // 4. Router
 app.router(require('./router').default);

@@ -12,7 +12,6 @@ class ResourceExpander extends Component {
     }
   }
 
-
   onClick = (processId, botIp, { key }) => {
     const { dispatch } = this.props;
     message.info(`trigger :  ${botIp}, ${key},${processId}`);

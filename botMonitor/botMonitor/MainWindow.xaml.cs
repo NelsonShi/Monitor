@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Xml.Linq;
 using botMonitor.entity;
@@ -89,6 +90,20 @@ namespace botMonitor
                 }
             });
             Heartbeat.Start();
+            HideWindow();
+        }
+
+        private void HideWindow()
+        {
+            Task task=new Task(() =>
+            {
+                Thread.Sleep(3000);
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    this.Hide();
+                }));
+            });
+            task.Start();
         }
 
         //初始化Timer和基础类
@@ -171,11 +186,11 @@ namespace botMonitor
             var resultLits = FindProcessListWithNames( processArray);
             if (resultLits != null || resultLits.Count > 0) { cd.processList = resultLits; } else { cd.processList = null; }
             bool needTosend= cd.NeedToSend(lastComputerData);
+            this.Dispatcher.Invoke(new Action(() => {
+                FillDataToUI(cd);
+            }));
             if (needTosend)
-            {
-                this.Dispatcher.Invoke(new Action(() => {
-                         FillDataToUI(cd);
-                }));
+            {          
                 var jsonData = JsonJavaScriptSerializer.ToJSON(cd);
                 SendDataToServer(jsonData);
                 CopyDataToObject(cd, lastComputerData);

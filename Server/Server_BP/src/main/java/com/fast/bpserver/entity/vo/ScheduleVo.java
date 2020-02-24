@@ -76,7 +76,19 @@ public class ScheduleVo {
                lastEndTime=timeSlots.get(i-1).getEndMinutes();
            }
            double marginLeft=(timeSlots.get(i).getSatrtMinutes()-lastEndTime)*100.0/timeSpan;
-           timeSlots.get(i).setMarginLeft(sd.format(marginLeft));
+           if(marginLeft<0){
+               String width=timeSlots.get(i).getWidth();
+               Double widthd=Double.parseDouble(width);
+               Double newWidth=widthd+marginLeft;
+               if(newWidth<=0){
+                   newWidth=0.0;
+               }
+               timeSlots.get(i).setWidth(newWidth.toString());
+               timeSlots.get(i).setMarginLeft("0");
+           }else {
+               timeSlots.get(i).setMarginLeft(sd.format(marginLeft));
+           }
+
            timeSlots.get(i).setIndex(i);
         }
    }

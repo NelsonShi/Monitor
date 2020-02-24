@@ -1,5 +1,6 @@
 package com.fast.bpserver.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,8 +13,10 @@ import java.util.Date;
 @Table(name = "BPAUser")
 public class BPAUser {
     @Id
-    private String userid;
-    private String username;
+    @Column(name = "userid")
+    private String userId;
+    @Column(name = "username")
+    private String userName;
     private Date validfromdate;
     private Date validtodate;
     private Date passwordexpirydate;
@@ -30,20 +33,20 @@ public class BPAUser {
     private Integer loginattempts;
     private Date lastsignedin;
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Date getValidfromdate() {

@@ -20,6 +20,7 @@ public class User {
     private String password;
     @Column(name = "department_id")
     private Integer departmentId;
+    private String bpUserId;
 
     public long getId() {
         return Id;
@@ -67,5 +68,13 @@ public class User {
 
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public String getBpUserId() {
+        return bpUserId;
+    }
+
+    public void setBpUserId(String bpUserId) {
+        this.bpUserId = bpUserId;
     }
 }

@@ -26,6 +26,7 @@ export default {
               }
             })
             sessionStorage.setItem('hasLogin', true);
+            sessionStorage.setItem('userId',result.data.bpUserId)
             sessionStorage.setItem('username', result.data.loginName);
             yield put((routerRedux.push('/Resource')));
        }else{

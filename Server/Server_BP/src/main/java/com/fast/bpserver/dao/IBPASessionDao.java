@@ -1,7 +1,9 @@
 package com.fast.bpserver.dao;
 
+import com.fast.bpserver.entity.BPAProcess;
 import com.fast.bpserver.entity.BPASession;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * Created by sjlor on 2019/10/29.
  */
 @Repository
-public interface IBPASessionDao extends JpaRepository<BPASession,String> {
+public interface IBPASessionDao extends JpaRepository<BPASession,String>,JpaSpecificationExecutor<BPASession> {
     @Query(value="Select * FROM (SELECT *,Row_Number() OVER (PARTITION BY runningresourceid ORDER BY startdatetime DESC ) as rank from BPASession ) temp where rank=1", nativeQuery=true)
     List<BPASession> findRecentSession();
 
@@ -21,4 +23,10 @@ public interface IBPASessionDao extends JpaRepository<BPASession,String> {
 
     @Query(value = "SELECT MAX(S.lastupdated) FROM BPASession S")
     Object[] findMaxLastUpdatedItem();
+
+    BPASession findByProcessidAndStatusid(String processId,Integer status);
+
+    BPASession findByRunningresourceidAndStatusid(String resourceId,Integer status);
+
+    List<BPASession> findByStatusid(Integer status);
 }

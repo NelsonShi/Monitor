@@ -32,6 +32,10 @@ function RouterConfig({ history, app }) {
     app,
     component: () => import("./routes/Pages/Resource")
   });
+  const Control = dynamic({
+    app,
+    component: () => import("./routes/Pages/Control")
+  });
   return (
     <ConnectedRouter history={history}>
       <Switch>
@@ -44,6 +48,7 @@ function RouterConfig({ history, app }) {
             <PrivateRoute path={"/Resource"} exact component={Resource} />         
             <PrivateRoute path={"/Process/Detial"}  component={ProcessDetial} />
             <PrivateRoute path={"/Process"} exact component={Process} />
+            <PrivateRoute path={"/Control"} exact component={Control} />
             {
             //子路由实现方式
             // <Route

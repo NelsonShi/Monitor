@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by sjlor on 2019/10/29.
  */
@@ -15,6 +17,13 @@ import org.springframework.stereotype.Service;
 public class IBPAUserImpl extends AbstractService<BPAUser> implements IBPAUser{
     @Autowired
     private IBPAUserDao ibpaUserDao;
-    @Autowired
+    @Override
     public JpaRepository<BPAUser,String> getRepository(){return ibpaUserDao;}
+
+    public List<BPAUser> findAll(){
+        return  ibpaUserDao.findAll();
+    }
+    public BPAUser findById(String id){
+       return  ibpaUserDao.findByUserId(id);
+    }
 }

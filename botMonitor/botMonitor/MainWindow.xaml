@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Foreground="{DynamicResource Disabled}"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:botMonitor" Closing="MainWindow_OnClosed"
-        mc:Ignorable="d" Loaded="Window_Loaded"
+        mc:Ignorable="d" Loaded="Window_Loaded" 
         Title="Bot Monitor" Height="450" Width="600">
     <DockPanel Background="#242C37">
         <Grid Background="#553399ff" >

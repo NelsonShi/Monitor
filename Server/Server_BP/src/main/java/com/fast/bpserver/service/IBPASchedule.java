@@ -13,6 +13,7 @@ import java.util.Map;
  */
 public interface IBPASchedule extends IService<BPASchedule> {
     List<BPASchedule> findUnRetireScheduleList();
+    List<ScheduleVo> GenrateResourceScheduleVosWithTimeSpan(Date startTime,Date endTime,Integer timeZone);
     List<ScheduleVo> GenrateResourceScheduleVos(List<BPASchedule> scheduleList, Map<String, BPAScheduleTrigger> triggerMap, Map<String, BPAProcess> processMap, Map<String, BPAEnvironmentVar> environmentVarMap,
                                                 Map<String, BPATask> taskMap, Map<String, BPATaskSession> taskSessionMap, Map<String, BPAResource> resourceNameMap, Date startTime,Date endTime,Integer timeZone);
 }

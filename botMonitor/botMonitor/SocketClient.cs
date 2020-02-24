@@ -119,7 +119,6 @@ namespace botMonitor
             {             
                 
                     byte[] buffer = Encoding.UTF8.GetBytes(message);
-                    //将字节数组传递给客户端
                     byte[] lengthBytes = BitConverter.GetBytes(buffer.Length);
                     byte[] sendBytes = new byte[lengthBytes.Length + buffer.Length];                
                     lengthBytes.CopyTo(sendBytes, 0);

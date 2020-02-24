@@ -28,6 +28,5 @@ public class ResourceFlagSchedule {
          Date dateBegin=new Date();
          Boolean updated=ibpaResourceService.UpdateCacheResourceList();
          if(updated) log.info("schedule 耗时：：{}",new Date().getTime()-dateBegin.getTime());
-
     }
 }

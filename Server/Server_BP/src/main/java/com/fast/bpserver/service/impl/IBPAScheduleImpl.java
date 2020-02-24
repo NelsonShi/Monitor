@@ -7,6 +7,10 @@ import com.fast.bpserver.entity.vo.ScheduleTimeSlot;
 import com.fast.bpserver.entity.vo.ScheduleVo;
 import com.fast.bpserver.service.IBPASchedule;
 import com.fast.bpserver.ScheduleTimeSlotModule;
+import com.fast.bpserver.service.IBPAScheduleTrigger;
+import com.fast.bpserver.service.IBPATask;
+import com.fast.bpserver.service.IBPATaskSession;
+import com.fast.bpserver.utils.CacheUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -22,6 +26,16 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
     private static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
     @Autowired
     private IBPAScheduleDao scheduleDao;
+    @Autowired
+    private CacheUtil cacheUtil;
+    @Autowired
+    private IBPASchedule ibpaScheduleService;
+    @Autowired
+    private IBPAScheduleTrigger scheduleTriggerSevice;
+    @Autowired
+    private IBPATask taskService;
+    @Autowired
+    private IBPATaskSession taskSessionService;
 
     @Override
     public JpaRepository<BPASchedule, String> getRepository() {
@@ -33,6 +47,34 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
         return scheduleDao.findByRetired(false);
     }
 
+    @Override
+    public List<ScheduleVo> GenrateResourceScheduleVosWithTimeSpan(Date startTime, Date endTime, Integer timeZone) {
+        List<BPASchedule> scheduleList=ibpaScheduleService.findUnRetireScheduleList();
+        List<BPAScheduleTrigger> bpaScheduleTriggerList=scheduleTriggerSevice.findAll();
+        List<BPATask> taskList=taskService.findAll();
+        List<BPATaskSession> taskSessionList=taskSessionService.findAll();
+        List<BPAResource> resourceList=cacheUtil.getResourceList();
+        Map<String,BPAScheduleTrigger> triggerMap=new HashMap<>();
+        Map<String,BPATask> taskMap=new HashMap<>();
+        Map<String,BPATaskSession> taskSessionMap=new HashMap<>();
+        Map<String,BPAResource> resourceMap=new HashMap<>();
+        for (BPAScheduleTrigger trigger:bpaScheduleTriggerList){
+            triggerMap.put(trigger.getScheduleid().toString(),trigger);
+        }
+        for (BPATask task:taskList){
+            taskMap.put(task.getScheduleid().toString(),task);
+        }
+        for (BPATaskSession taskSession:taskSessionList){
+            taskSessionMap.put(taskSession.getTaskid().toString(),taskSession);
+        }
+        for (BPAResource resource:resourceList){
+            resourceMap.put(resource.getName(),resource);
+        }
+        Map<String,BPAProcess> processMap=cacheUtil.getProcessList();
+        Map<String,BPAEnvironmentVar> envarMap=cacheUtil.getBPEnvVars();
+        return  GenrateResourceScheduleVos(scheduleList,triggerMap,processMap,envarMap,taskMap,taskSessionMap,resourceMap,startTime,endTime,timeZone);
+    }
+
     public List<ScheduleVo> GenrateResourceScheduleVos(List<BPASchedule> scheduleList, Map<String, BPAScheduleTrigger> triggerMap, Map<String, BPAProcess> processMap, Map<String, BPAEnvironmentVar> environmentVarMap,
                                                        Map<String, BPATask> taskMap, Map<String, BPATaskSession> taskSessionMap, Map<String, BPAResource> resourceNameMap,Date startTime,Date endTime,Integer timeZone) {
         Map<String, ScheduleVo> voMap = new HashMap<>();
@@ -42,8 +84,11 @@ public class IBPAScheduleImpl extends AbstractService<BPASchedule> implements IB
             BPATask refTask = taskMap.get(schedule.getId().toString());
             if (refTask == null || refTrigger == null) continue;
             BPATaskSession refTaskSession = taskSessionMap.get(refTask.getId().toString());
+            if(refTaskSession==null)continue;
+            BPAEnvironmentVar environmentVar=environmentVarMap.get("RT - " + processMap.get(refTaskSession.getProcessid()).getName());
+            if(environmentVar==null)continue;
             ScheduleVo vo = voMap.get(refTaskSession.getResourcename());
-            String runTime = environmentVarMap.get("RT - " + processMap.get(refTaskSession.getProcessid()).getName()).getValue();
+            String runTime = environmentVar.getValue();
             ScheduleTimeSlotModule module = createModule(startTime, endTime, refTrigger, runTime, processMap.get(refTaskSession.getProcessid()).getName(), refTrigger.getId().toString(),timeZone);
             if (vo == null && module.getNeedToStart()) {
                 vo = new ScheduleVo();

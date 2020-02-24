@@ -138,10 +138,10 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
                  logs.add(new ProcessErrorLogVo(i,sdf.format(TimeZoneUtil.formateDateToZone(log.getStartdatetime(),timeZone)),log.getStagename(),log.getResult()));
                  i++;
              }
-             vo.setErrorChart(errorChartVoList);
-             vo.setErrorCodes(new ArrayList<>(errorCodeMap.values()));
-             vo.setLogs(logs);
          }
+        vo.setErrorChart(errorChartVoList);
+        vo.setErrorCodes(new ArrayList<>(errorCodeMap.values()));
+        vo.setLogs(logs);
          //当该process 无error 时  设置request time 或者 terminated 时间
         if(vo.getErrorCount()<=0&&requestStopTime.getTime()>0){
             vo.setRequestedStoped(true);
@@ -155,9 +155,9 @@ public class IBPAProcessImpl extends AbstractService<BPAProcess> implements IBPA
     private String getErrorType(String stageName,String result){
         Boolean definedError=StringUtils.isEmpty(stageName)?false:(stageName.toUpperCase().startsWith("BE:")||stageName.toUpperCase().startsWith("SE:"));
         Boolean undefinedError=StringUtils.isEmpty(result)?false:result.toUpperCase().contains("ERROR:");
-        if(definedError&&undefinedError)return null;
         if(definedError){
-            return stageName.split(" ")[0];
+            String errorCode=stageName.split(" ")[0];
+            return errorCode==null?stageName:errorCode;
         }
         if(undefinedError){
             return "unDefined";

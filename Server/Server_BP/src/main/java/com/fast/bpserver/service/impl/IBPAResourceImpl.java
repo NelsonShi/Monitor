@@ -76,14 +76,14 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
                     vo.setTimeSlot("");
                 }
             } else {
-                vo.setProcessStatus(0);
+                vo.setProcessStatus(-1);
                 vo.setProcessName("");
                 vo.setTimeSlot("");
             }
             vo.setLastupdated(sdf.format(TimeZoneUtil.formateDateToZone(resource.getLastupdated(), timeSpan)));
             vo.setAttributeID(resource.getAttributeID());
             vo.setFQDN(resource.getFQDN());
-            vo.setUserName(resource.getUserID() == null ? "" : userMap.get(resource.getUserID()) == null ? "" : userMap.get(resource.getUserID()).getUsername());
+            vo.setUserName(resource.getUserID() == null ? "" : userMap.get(resource.getUserID()) == null ? "" : userMap.get(resource.getUserID()).getUserName());
             vo.setStatusid(resource.getStatusid());
             vo.setDisplayStatus(resource.getDisplayStatus());
             if (computerDataMap == null || computerDataMap.isEmpty()) {
@@ -94,6 +94,7 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
                 vo.setBotIp(hasNettyConnected ? computerDataMap.get(vo.getName()).getBotIP() : "");
                 vo.setIsNettyConnected(hasNettyConnected ? 1 : 0);
             }
+            vo.setAvailable(vo.getProcessStatus()>=2&&vo.getProcessStatus()<=4);
             bpaResourceVoList.add(vo);
         }
         return bpaResourceVoList;
@@ -143,7 +144,7 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
             }
         }
         if (needToupDate) {
-            logger.info("检测到需要刷新Resource Cache，并且通知前台");
+            logger.info("检测到需要刷新Resource，并且通知前台");
             cacheUtil.updateResourceFrshData(updateList);
             WebSocketCommand command = new WebSocketCommand();
             command.setComponentName("resourceTable");

@@ -7,9 +7,9 @@ spring:
      password: root
    secondary:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-      url: jdbc:sqlserver://chqrpa93.database.windows.net:1433;DatabaseName=RPA_BP_Sandbox_Asia
-      username: chqrpa93_admin
-      password: yn9VDs3WcC7W6DqK
+      url: jdbc:sqlserver://chqrpa72.database.windows.net:1433;DatabaseName=RPA_BP_QA
+      username: chqrpa72_admin
+      password: Blu3Pr1s1mD3v
 
    type: com.alibaba.druid.pool.DruidDataSource
    platform: mysql
@@ -40,7 +40,8 @@ spring:
 server:
   maxHttpHeaderSize: 8192
   props:
-      timeZone: 0
+      timeZone: -8
+      DBtimeZone: 0
 
 netty:
   tcp:

@@ -2,9 +2,11 @@ package com.fast.bpserver.utils;
 
 import com.fast.bpserver.CacheKey;
 import com.fast.bpserver.dao.IBPASessionDao;
+import com.fast.bpserver.dao.IBPAStatusDao;
 import com.fast.bpserver.entity.BPAEnvironmentVar;
 import com.fast.bpserver.entity.BPAProcess;
 import com.fast.bpserver.entity.BPAResource;
+import com.fast.bpserver.entity.BPAStatus;
 import com.fast.bpserver.entity.vo.ComputerData;
 import com.fast.bpserver.service.IBPAEnviornmentVar;
 import com.fast.bpserver.service.IBPAProcess;
@@ -31,6 +33,8 @@ public class CacheUtil {
     private IBPAEnviornmentVar enviornmentVarService;
     @Autowired
     private IBPAProcess ibpaProcessService;
+    @Autowired
+    private IBPAStatusDao statusDao;
 
 
     public void InitCache() {
@@ -39,6 +43,7 @@ public class CacheUtil {
         initEnvironmentVar();
         initProcess();
         InitResourceFreshData();
+        initStatus();
     }
 
     public void InitConnectBot() {
@@ -129,6 +134,24 @@ public class CacheUtil {
         Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
         Element element = new Element(CacheKey.BluePrismProcessList, processMap);
         cache.put(element);
+    }
+
+    public void  initStatus(){
+        List<BPAStatus> statusList=statusDao.findAll();
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = new Element(CacheKey.BPAStatus, statusList);
+        cache.put(element);
+    }
+
+    public List<BPAStatus> getStatus(){
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = cache.get(CacheKey.BPAStatus);
+        if (element == null || cache.isExpired(element)) {
+            initStatus();
+            element = cache.get(CacheKey.ResourcesCacheKey);
+        }
+        List<BPAStatus> list = (List<BPAStatus>) element.getObjectValue();
+        return list;
     }
 
     public List<ComputerData> getAllBotList() {

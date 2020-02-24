@@ -35,12 +35,6 @@ public class ResourcesResoure extends BaseResource {
     private IBPASession bpaSessionService;
     @Autowired
     private IBPASchedule ibpaScheduleService;
-    @Autowired
-    private IBPAScheduleTrigger scheduleTriggerSevice;
-    @Autowired
-    private IBPATask taskService;
-    @Autowired
-    private IBPATaskSession taskSessionService;
 
 
     @RequestMapping("/resourceList")
@@ -59,34 +53,40 @@ public class ResourcesResoure extends BaseResource {
         return computerDataList;
     }
 
+    @RequestMapping("/bpaStatus")
+    public List<BPAStatus> GetStatus(){
+        return cacheUtil.getStatus();
+    }
+
 
     @RequestMapping(value = "/scheduleVos",method = RequestMethod.POST)
     public List<ScheduleVo> GetResourceSchedules(@RequestBody ScheduleVoParams scheduleVoParams){
-        List<BPASchedule> scheduleList=ibpaScheduleService.findUnRetireScheduleList();
-        List<BPAScheduleTrigger> bpaScheduleTriggerList=scheduleTriggerSevice.findAll();
-        List<BPATask> taskList=taskService.findAll();
-        List<BPATaskSession> taskSessionList=taskSessionService.findAll();
-        List<BPAResource> resourceList=cacheUtil.getResourceList();
-        Map<String,BPAScheduleTrigger> triggerMap=new HashMap<>();
-        Map<String,BPATask> taskMap=new HashMap<>();
-        Map<String,BPATaskSession> taskSessionMap=new HashMap<>();
-        Map<String,BPAResource> resourceMap=new HashMap<>();
-        for (BPAScheduleTrigger trigger:bpaScheduleTriggerList){
-            triggerMap.put(trigger.getScheduleid().toString(),trigger);
-        }
-        for (BPATask task:taskList){
-            taskMap.put(task.getScheduleid().toString(),task);
-        }
-        for (BPATaskSession taskSession:taskSessionList){
-            taskSessionMap.put(taskSession.getTaskid().toString(),taskSession);
-        }
-        for (BPAResource resource:resourceList){
-            resourceMap.put(resource.getName(),resource);
-        }
-        Map<String,BPAProcess> processMap=cacheUtil.getProcessList();
-        Map<String,BPAEnvironmentVar> envarMap=cacheUtil.getBPEnvVars();
+//        List<BPASchedule> scheduleList=ibpaScheduleService.findUnRetireScheduleList();
+//        List<BPAScheduleTrigger> bpaScheduleTriggerList=scheduleTriggerSevice.findAll();
+//        List<BPATask> taskList=taskService.findAll();
+//        List<BPATaskSession> taskSessionList=taskSessionService.findAll();
+//        List<BPAResource> resourceList=cacheUtil.getResourceList();
+//        Map<String,BPAScheduleTrigger> triggerMap=new HashMap<>();
+//        Map<String,BPATask> taskMap=new HashMap<>();
+//        Map<String,BPATaskSession> taskSessionMap=new HashMap<>();
+//        Map<String,BPAResource> resourceMap=new HashMap<>();
+//        for (BPAScheduleTrigger trigger:bpaScheduleTriggerList){
+//            triggerMap.put(trigger.getScheduleid().toString(),trigger);
+//        }
+//        for (BPATask task:taskList){
+//            taskMap.put(task.getScheduleid().toString(),task);
+//        }
+//        for (BPATaskSession taskSession:taskSessionList){
+//            taskSessionMap.put(taskSession.getTaskid().toString(),taskSession);
+//        }
+//        for (BPAResource resource:resourceList){
+//            resourceMap.put(resource.getName(),resource);
+//        }
+//        Map<String,BPAProcess> processMap=cacheUtil.getProcessList();
+//        Map<String,BPAEnvironmentVar> envarMap=cacheUtil.getBPEnvVars();
         TranslateTimeZone(scheduleVoParams);
-        return ibpaScheduleService.GenrateResourceScheduleVos(scheduleList,triggerMap,processMap,envarMap,taskMap,taskSessionMap,resourceMap,scheduleVoParams.getStartTime(),scheduleVoParams.getEndTime(),scheduleVoParams.getRequestTimeZone());
+//        return ibpaScheduleService.GenrateResourceScheduleVos(scheduleList,triggerMap,processMap,envarMap,taskMap,taskSessionMap,resourceMap,scheduleVoParams.getStartTime(),scheduleVoParams.getEndTime(),scheduleVoParams.getRequestTimeZone());
+        return ibpaScheduleService.GenrateResourceScheduleVosWithTimeSpan(scheduleVoParams.getStartTime(),scheduleVoParams.getEndTime(),scheduleVoParams.getRequestTimeZone());
     }
 
     private void TranslateTimeZone(ScheduleVoParams scheduleVoParams){
@@ -105,7 +105,7 @@ public class ResourcesResoure extends BaseResource {
 
 
     private List<BPAResourceVo> GenrateBPAResourceVo(Integer requestTimeZone){
-        List<BPAResource> resourceList=bpaResourceService.findAll();
+        List<BPAResource> resourceList=bpaResourceService.findByAttributeID();
         List<BPAUser> userList=bpaUserService.getAll();
         List<ComputerData> computerDataList=cacheUtil.getAllBotList();
         List<BPASession> runningInfo=bpaSessionService.recentlySession();
@@ -116,7 +116,7 @@ public class ResourcesResoure extends BaseResource {
             computerDataMap.put(cd.getBotName(),cd);
         }
         for (BPAUser user:userList){
-            userMap.put(user.getUserid(),user);
+            userMap.put(user.getUserId(),user);
         }
         for (BPASession info:runningInfo){
             runningInfoMap.put(info.getRunningresourceid(),info);

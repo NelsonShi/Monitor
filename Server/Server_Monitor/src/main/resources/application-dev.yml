@@ -41,6 +41,7 @@ server:
   maxHttpHeaderSize: 8192
   props:
       timeZone: -8
+      DBtimeZone: 0
 
 netty:
   tcp:
