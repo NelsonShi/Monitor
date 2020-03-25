@@ -5,6 +5,7 @@ import com.fast.bpserver.entity.BPAInternalAuth;
 import com.fast.bpserver.entity.BPASession;
 import com.fast.bpserver.service.impl.IBPAInternalAuthImpl;
 import com.fast.bpserver.service.impl.IBPASessionImpl;
+import com.fast.bpserver.utils.CacheUtil;
 import com.fast.bpserver.utils.SpringContextUtil;
 import com.fast.monitorserver.entity.RsPcUser;
 import com.fast.monitorserver.service.impl.RsPcUserImpl;
@@ -14,6 +15,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
 
 
 /**
@@ -44,7 +46,9 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
             //以下是初始化链接时与服务端的验证
             ValidateConnnect(ctx,response);
             //启动session
-            StartSession(ctx,response);
+//            StartSession(ctx,response);
+            //记录PC 回传值
+            RecordMessage(ctx,response);
         } finally {
 
         }
@@ -96,7 +100,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
 
     private void StartSession(ChannelHandlerContext ctx,String response){
         if(response.toUpperCase().contains("PARAMETERS SET")){
-            String resourceId="F5F24A95-92AC-4D4E-8DB9-E0749CAACAB4";
+            String resourceId="072A4CC3-B52D-49B0-ADD0-9BDF326CCB54";
             IBPASessionImpl ibpaSessionService=SpringContextUtil.getBean("IBPASessionImpl",IBPASessionImpl.class);
             BPASession bpaSession=ibpaSessionService.findPendingSession(resourceId);
             if(bpaSession==null){
@@ -113,5 +117,17 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
             String message="startas "+bpaInternalAuth.getUserId()+"_"+bpaInternalAuth.getToken()+" "+bpaSession.getSessionid()+"\r";
             channel.writeAndFlush(message);
         }
+    }
+
+    /**
+     * 将客户端传来的信息按照IP分类记录在缓存中(只记录最近的)
+     */
+    private void RecordMessage(ChannelHandlerContext ctx,String response){
+        if(response.toUpperCase().contains("PONG"))return;
+        String ipAddress=getRemoteIp(ctx);
+        CacheUtil cacheUtil=SpringContextUtil.getBean("cacheUtil",CacheUtil.class);
+        Map<String,String> messageMap=cacheUtil.getPCMessageMap();
+        long time=System.currentTimeMillis();
+        messageMap.put(ipAddress,time+"_"+response);
     }
 }

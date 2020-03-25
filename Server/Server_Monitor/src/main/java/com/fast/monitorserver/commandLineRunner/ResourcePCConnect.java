@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
@@ -27,12 +28,11 @@ public class ResourcePCConnect implements CommandLineRunner {
         Map<String, ResourceIpRef> map = resourceIpRefService.findResourceIpRefMap();
         if (map.values().size() <= 0) return;
         for (ResourceIpRef ref : map.values()) {
-            log.info("Begin connect to Resource PC", ref.getResourceName());
-            NettyClient client = new NettyClient(ref.getConnectIp(),Integer.parseInt(ref.getPort()));
-            client.start();
+            log.info("Begin connect to Resource PC：："+ref.getResourceName());
+            if(!StringUtils.isEmpty(ref.getConnectIp())&&ref.getStatus()==1){
+                String ip=StringUtils.isEmpty(ref.getConnectIp())?ref.getFqdn():ref.getConnectIp();
+                NettyClient client = new NettyClient(ip,Integer.parseInt(ref.getPort()));
+                client.start();}
         }
-        log.info("Begin connect to Resource PC AZURAP94");
-        NettyClient client=new NettyClient("13.75.126.156",8181);
-        client.start();
     }
 }

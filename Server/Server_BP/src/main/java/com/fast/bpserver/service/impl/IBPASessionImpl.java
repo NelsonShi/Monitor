@@ -6,6 +6,8 @@ import com.fast.bpserver.entity.*;
 import com.fast.bpserver.entity.QueryVo.BPASessionLogs;
 import com.fast.bpserver.entity.postEntity.SessionParams;
 import com.fast.bpserver.entity.postEntity.WebSocketCommand;
+import com.fast.bpserver.entity.vo.PCMessageResult;
+import com.fast.bpserver.entity.vo.SessionControlResult;
 import com.fast.bpserver.nettyServer.GlobalUserUtil;
 import com.fast.bpserver.schedules.ResourceFlagSchedule;
 import com.fast.bpserver.service.IBPAInternalAuth;
@@ -32,6 +34,7 @@ import javax.persistence.criteria.Root;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -45,20 +48,61 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
     private IBPASessionDao bpaSessionDao;
     @Autowired
     private IBPAInternalAuth ibpaInternalAuthService;
+    @Autowired
+    private CacheUtil cacheUtil;
 
 
     @Override
     public JpaRepository<BPASession,String> getRepository(){return bpaSessionDao;}
 
     @Override
-    public void PendingProcess(BPAUser bpaUser,BPAProcess bpaProcess,Integer timeSpan,Channel channel){
+    public SessionControlResult PendingProcess(BPAUser bpaUser,BPAProcess bpaProcess,Integer timeSpan,Channel channel,String ip){
+        SessionControlResult result=new SessionControlResult();
         BPASession existSession=isExisted(bpaProcess);
         if(existSession==null){
             BPAInternalAuth bpaInternalAuth=ibpaInternalAuthService.GenrateInternalAuth(bpaUser.getUserId(),bpaProcess.getProcessid());
-            NoticePCListener(bpaInternalAuth,"createas",channel);
+            result=PendingSession(bpaInternalAuth,"createas",channel,ip);
         }else {
             log.info("Process pending on Resource, ID={}",existSession.getRunningresourceid());
+            result.setResult(3);
+            result.setMessage("Process pending on Resource ,Session not exist");
         }
+        return  result;
+    }
+
+    @Override
+    public SessionControlResult DeleteSession(BPAUser bpaUser, String sessionId, Channel channel,String ip) {
+        BPASession existSession=bpaSessionDao.findBySessionid(sessionId);
+        SessionControlResult result=new SessionControlResult();
+        if(existSession==null){
+            log.info("DeleteSession seesion does not exist, sessionId={}",sessionId);
+            result.setResult(3);
+            result.setMessage("Delete Session on Resource ,Session not exist");
+            return result;
+        }
+        BPAInternalAuth bpaInternalAuth=ibpaInternalAuthService.GenrateInternalAuth(bpaUser.getUserId(),existSession.getProcessid());
+        result=  DeleteSession(bpaInternalAuth,channel,sessionId,ip);
+        return result;
+    }
+
+    @Override
+    public SessionControlResult StopSession(BPAUser bpaUser, String sessionId, Channel channel,String resourceName,String ip) {
+        BPASession existSession=bpaSessionDao.findBySessionid(sessionId);
+        SessionControlResult result=new SessionControlResult();
+        if(existSession==null){
+            log.info("StopSession seesion does not exist, sessionId={}",sessionId);
+            result.setResult(3);
+            result.setMessage("Stop Session on Resource ,Session not exist");
+            return result;
+        }
+        if(existSession.getStatusid()==1){
+           result= StopSession(channel,sessionId,bpaUser.getUserId(),resourceName,ip);
+        }else {
+            result.setResult(3);
+            result.setMessage("Stop Session on Resource ,Session not running");
+            log.info("StopSession seesion does not running, sessionId={}",sessionId);
+        }
+        return result;
     }
 
     private BPASession isExisted(BPAProcess process){
@@ -112,7 +156,7 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
     }
 
     public List<BPASession> findSessionWithParams(SessionParams params){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/DD");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
         Date startTime=GenerateTimeZoneDate(params.getStartTime(),params.getTimeZone(),sdf);
         Date endTime=GenerateTimeZoneDate(params.getEndTime(),params.getTimeZone(),sdf);
         List<BPASession> sessionList=bpaSessionDao.findAll(new Specification<BPASession>() {
@@ -156,11 +200,82 @@ public class IBPASessionImpl extends AbstractService<BPASession> implements IBPA
         return bpaSessionDao.findRecentSession();
     }
 
-
-    private void NoticePCListener(BPAInternalAuth bpaInternalAuth,String command,Channel channel){
-        if(channel==null)return;
-        String message=command+" "+bpaInternalAuth.getUserId()+"_"+bpaInternalAuth.getToken()+" "+bpaInternalAuth.getProcessId()+"\r";
+    public SessionControlResult StartSession(Channel channel,String ip,String resourceId){
+        if(channel==null)return null;
+        String lastStr=cacheUtil.getPCMessageMap().get(ip);
+        channel.writeAndFlush("startp\r");
+        SessionControlResult result=getPCResponse(lastStr,ip);
+        if(result.getResult()!=1||!(result.getMessage().toUpperCase().contains("PARAMETERS SET"))){
+            return result;
+        }
+        BPASession existSession=findPendingSession(resourceId);
+        if(existSession==null){
+            result.setResult(3);
+            result.setMessage("Session didn't exist");
+            return result;
+        }
+        BPAInternalAuth bpaInternalAuth=ibpaInternalAuthService.GenrateInternalAuth(existSession.getStarteruserid(),existSession.getProcessid());
+        lastStr=cacheUtil.getPCMessageMap().get(ip);
+        String message="startas "+bpaInternalAuth.getUserId()+"_"+bpaInternalAuth.getToken()+" "+existSession.getSessionid()+"\r";
         channel.writeAndFlush(message);
+        result=getPCResponse(lastStr,ip);
+        return  result;
     }
 
+    private SessionControlResult PendingSession(BPAInternalAuth bpaInternalAuth, String command, Channel channel, String ip){
+        if(channel==null)return null;
+        String lastStr=cacheUtil.getPCMessageMap().get(ip);
+        String message=command+" "+bpaInternalAuth.getUserId()+"_"+bpaInternalAuth.getToken()+" "+bpaInternalAuth.getProcessId()+"\r";
+        channel.writeAndFlush(message);
+        SessionControlResult result=getPCResponse(lastStr,ip);
+        return result;
+    }
+
+    private SessionControlResult DeleteSession(BPAInternalAuth bpaInternalAuth,Channel channel,String sessionId,String ip){
+        if(channel==null)return null;
+        String lastStr=cacheUtil.getPCMessageMap().get(ip);
+        String message="deleteas"+" "+bpaInternalAuth.getUserId()+"_"+bpaInternalAuth.getToken()+" "+sessionId+"\r";
+        channel.writeAndFlush(message);
+        SessionControlResult result=getPCResponse(lastStr,ip);
+        return  result;
+    }
+
+    private SessionControlResult StopSession(Channel channel,String sessionId,String userId,String resourceName,String ip){
+        if(channel==null)return null;
+        String lastStr=cacheUtil.getPCMessageMap().get(ip);
+        String message="stop"+" "+sessionId+" "+userId+" "+"name"+" "+resourceName+"\r";
+        channel.writeAndFlush(message);
+        SessionControlResult result=getPCResponse(lastStr,ip);
+        return  result;
+    }
+
+    private SessionControlResult getPCResponse(String lastStr, String ipAddress){
+        SessionControlResult result=new SessionControlResult();
+        try {
+            Map<String,String> messageMap=cacheUtil.getPCMessageMap();
+            long lastTime=lastStr==null?0:new Long(lastStr.split("_")[0]);
+            for(int i=0;i<=50;i++){
+                if(i==50){
+                    result.setResult(0);
+                    result.setMessage("get PC Response time out");
+                    break;
+                }
+                Thread.sleep(100);
+                String message=messageMap.get(ipAddress);
+                if(message==null)continue;
+                long time=new Long(message.split("_")[0]);
+                if(time>lastTime){
+                   result.setResult(1);
+                   result.setMessage(message.split("_")[1]);
+                   break;
+                }else {
+                    continue;
+                }
+            }
+        }catch (Exception ex){
+            result.setResult(2);
+            result.setMessage("Error::get pc response method exception");
+        }
+        return result;
+    }
 }

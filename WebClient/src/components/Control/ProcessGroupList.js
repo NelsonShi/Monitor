@@ -1,5 +1,6 @@
 import React from "react";
 import { Tree, Input, Checkbox, Modal, Button, Row, Col, Select } from "antd";
+import style from "./ProcessGroupList.less";
 const { TreeNode, DirectoryTree } = Tree;
 const { Search } = Input;
 const { Option } = Select;
@@ -38,13 +39,16 @@ class ProcessGroupList extends React.Component {
   };
 
   onClick = p => {
-    this.setState({
-      visible: true
-    });
     this.setState({ currentProcess: p });
     let dateNow = new Date();
     let timeZone = dateNow.getTimezoneOffset() / 60;
     const dispatch = this.props.dispatch;
+    dispatch({
+      type: "control/changeModalVisiable",
+      payload: {
+        modalVisiable:true
+      }
+    });
     dispatch({
       type: "control/loadAvailableResources",
       payload: {
@@ -53,6 +57,8 @@ class ProcessGroupList extends React.Component {
         timeSpan: p.runTimeMins
       }
     });
+    dispatch({ type: "resource/fetch", payload: { requestTimeZone: timeZone } });
+   
   };
 
   handleOk = () => {
@@ -60,18 +66,16 @@ class ProcessGroupList extends React.Component {
     // setTimeout(() => {
     //   this.setState({ loading: false, visible: false });
     // }, 3000);
-    const { dispatch, resources } = this.props;
+    const { dispatch, resources} = this.props;
     const { currentProcess } = this.state;
     const username = sessionStorage.getItem("username");
     const userId=sessionStorage.getItem("userId");
     let resourcesIds = [];
     resources.map(item => {
-      console.log(item)
       if (item.checked) {
         resourcesIds.push(item.resourceid);
       }
     });
-    console.log(username,currentProcess.processid,resourcesIds)
     dispatch({
       type: "control/pending",
       payload: {
@@ -84,11 +88,17 @@ class ProcessGroupList extends React.Component {
   };
 
   handleCancel = () => {
-    this.setState({ visible: false });
+    const dispatch = this.props.dispatch;
+    dispatch({
+      type: "control/changeModalVisiable",
+      payload: {
+        modalVisiable:false
+      }
+    });
   };
 
   modalClose = () => {
-    const { dispatch, resources } = this.props;
+    const { dispatch,resources} = this.props;
     dispatch({ type: "control/clearAvailableRs" });
     resources.map(item => {
       item.checked = false;
@@ -126,9 +136,9 @@ class ProcessGroupList extends React.Component {
   };
 
   render() {
-    const { processlist, resources, availableResources} = this.props;
+    console.log("render processGroupList",resources)
+    const { processlist, resources, availableResources,modalVisiable} = this.props;
     const {
-      visible,
       loading,
       currentProcess,
       autoExpandParent,
@@ -165,8 +175,7 @@ class ProcessGroupList extends React.Component {
                     title={
                       <span>
                         {subTitle}
-                        {"   "}
-                        <Button
+                        <Button style={{marginLeft:'3px'}}
                           shape="circle"
                           icon="play-circle"
                           size="small"
@@ -201,7 +210,7 @@ class ProcessGroupList extends React.Component {
           placeholder="Search"
           onChange={this.onChange}
         />
-        <DirectoryTree
+        <DirectoryTree className={style.normal}
           multiple={true}
           defaultExpandAll={true}
           onExpand={this.onExpand}
@@ -212,7 +221,7 @@ class ProcessGroupList extends React.Component {
         </DirectoryTree>
         <Modal
           width={820}
-          visible={visible}
+          visible={modalVisiable}
           title="Pending a process"
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -257,7 +266,7 @@ class ProcessGroupList extends React.Component {
                 <Option value="Allow">Allow</Option>
               </Select>
             </span>
-            <Checkbox.Group style={{ width: "100%" }}>
+            <Checkbox.Group style={{ width: "100%" }} defaultValue={[]}>
               <Row>
                 {resources.map(item => {
                   let nameColr = "black";
@@ -308,7 +317,6 @@ class ProcessGroupList extends React.Component {
                         style={{ margin: "5px" }}
                         value={item.resourceid}
                         disabled={!item.available}
-                        checked={item.checked}
                         onChange={this.checkBoxChanged}
                       >
                         <font size="3" color={nameColr}>

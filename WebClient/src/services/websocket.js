@@ -17,6 +17,9 @@ export function wsConnect(dispatch) {
           type: "timer/fleshResource",
           payload: { requestTimeZone: time }
         });
+        dispatch({
+          type: "control/findPendingSessions"
+        });
         break;
       default:
         break;

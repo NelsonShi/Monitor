@@ -38,6 +38,30 @@ export function startProcess (value) {
   })
 }
 
+export function deleteSession (value) {
+  return request('/bpServer/operation/deleteSession',{
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(
+      value
+    )
+  })
+}
+
+export function stopSession (value) {
+  return request('/bpServer/operation/stopSession',{
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(
+      value
+    )
+  })
+}
+
 export function findResourceTimeAvailable (value) {
   return request('/bpServer/operation/availableResource',{
     method: 'post',

@@ -1,11 +1,16 @@
 package com.fast.monitorserver.entity.vo;
 
+import com.fast.bpserver.entity.vo.SessionControlResult;
+
+import java.util.List;
+
 /**
  * Created by Nelson on 2020/1/20.
  */
 public class PendingProcessRes {
-    private Integer status;
-    private String description;
+    //1 全部通讯成功 0：异常
+   private Integer status;
+   private String message;
 
     public Integer getStatus() {
         return status;
@@ -15,11 +20,16 @@ public class PendingProcessRes {
         this.status = status;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public PendingProcessRes() {
+        this.message = "";
+        this.status=1;
     }
 }

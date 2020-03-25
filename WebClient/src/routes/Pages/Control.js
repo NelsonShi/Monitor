@@ -39,8 +39,11 @@ class Control extends Component {
       dispatch,
       pengdingSessions,
       bpaStatus,
-      sessions
+      sessions,
+      modalVisiable
     } = this.props;
+    const runningCount=sessions.length===0?0:sessions.filter(item=>item.statusid===1).length;
+    const stopCount=sessions.length===0?0:sessions.filter(item=>item.statusid===3).length;
     return (
       <div style={{ height: "1200px", background: "#F0F2F5" }}>
         <Row style={{ height: "100%" }}>
@@ -50,6 +53,7 @@ class Control extends Component {
               resources={resources}
               availableResources={availableResources}
               dispatch={dispatch}
+              modalVisiable={modalVisiable}
             ></ProcessGroup>
           </Col>
           <Col span={18} style={{ height: "100%" }}>
@@ -72,14 +76,14 @@ class Control extends Component {
                 <Col span={8} style={{ height: "100%" }}>
                   <SessionSummaryCard
                     title="Running Count"
-                    content="0"
+                    content={runningCount}
                     fontColor="#a0d911"
                   />
                 </Col>
                 <Col span={8} style={{ height: "100%" }}>
                   <SessionSummaryCard
                     title="Stopped Count"
-                    content="0"
+                    content={stopCount}
                     fontColor="#f5222d"
                   />
                 </Col>
@@ -92,6 +96,7 @@ class Control extends Component {
                 }}
               >
                 <SessionTable
+                 type={0}
                   title="Pendings"
                   fontColor="#ffc069"
                   dataSource={pengdingSessions}
@@ -119,8 +124,10 @@ class Control extends Component {
                 }}
               >
                 <SessionTable
+                  type={1}
                   title="Sessions"
                   fontColor="blue"
+                  dispatch={dispatch}
                   dataSource={sessions}
                 />
               </Row>
@@ -139,7 +146,8 @@ function mapStateToProps(state) {
     availableResources,
     pengdingSessions,
     bpaStatus,
-    sessions
+    sessions,
+    modalVisiable
   } = state.control;
   const { list: resources } = state.resource;
   return {
@@ -149,7 +157,8 @@ function mapStateToProps(state) {
     availableResources,
     pengdingSessions,
     bpaStatus,
-    sessions
+    sessions,
+    modalVisiable
   };
 }
 

@@ -9,6 +9,7 @@ import com.fast.bpserver.entity.vo.ComputerData;
 import com.fast.bpserver.nettyServer.GlobalUserUtil;
 import com.fast.bpserver.service.IBPAResource;
 import com.fast.bpserver.utils.CacheUtil;
+import com.fast.bpserver.utils.EntityUtils;
 import com.fast.bpserver.utils.JsonToObjectUtil;
 import com.fast.bpserver.utils.TimeZoneUtil;
 import io.netty.channel.Channel;
@@ -41,6 +42,11 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
 
     public List<BPAResource> findAll() {
         return bpaResourceDao.findAll();
+    }
+
+    public Object[] findMaxUpdatedItem(){
+        Object[] resource=bpaResourceDao.findMaxLastUpdatedItem();
+        return resource;
     }
 
     @Override
@@ -98,6 +104,11 @@ public class IBPAResourceImpl extends AbstractService<BPAResource> implements IB
             bpaResourceVoList.add(vo);
         }
         return bpaResourceVoList;
+    }
+
+    @Override
+    public BPAResource findById(String Id) {
+        return bpaResourceDao.findByResourceid(Id);
     }
 
     @Override

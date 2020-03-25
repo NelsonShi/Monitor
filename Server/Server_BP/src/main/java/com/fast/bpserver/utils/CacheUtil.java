@@ -44,6 +44,26 @@ public class CacheUtil {
         initProcess();
         InitResourceFreshData();
         initStatus();
+        //初始化bot socket通讯回复数据的存储结构
+        initPCListenerMessage();
+    }
+
+    private void initPCListenerMessage() {
+        Map<String,String> messageMap=new HashMap<>();
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = new Element(CacheKey.PCSocketMessage, messageMap);
+        cache.put(element);
+    }
+
+    public Map<String,String> getPCMessageMap(){
+        Cache cache = SpringContextUtil.getBean(CacheKey.DicCaching, Cache.class);
+        Element element = cache.get(CacheKey.PCSocketMessage);
+        if (element == null || cache.isExpired(element)) {
+            initPCListenerMessage();
+            element = cache.get(CacheKey.PCSocketMessage);
+        }
+        Map<String,String> map = (Map<String,String>) element.getObjectValue();
+        return map;
     }
 
     public void InitConnectBot() {

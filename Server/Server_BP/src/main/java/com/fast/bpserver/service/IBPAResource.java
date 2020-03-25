@@ -19,4 +19,6 @@ public interface IBPAResource extends IService<BPAResource> {
     List<BPAResourceVo> GenrateListWithResourceAndUser(Map<String, ComputerData> computerDataMap, Map<String, BPAUser> userMap,
                                                        List<BPAResource> resourceList, Map<String, BPASession> sessionMap, Map<String, BPAProcess> processMap,
                                                        Map<String, BPAEnvironmentVar> envMap,Integer timeSpan);
+    BPAResource findById(String Id);
+    Object[] findMaxUpdatedItem();
 }

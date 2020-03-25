@@ -1,9 +1,8 @@
 package com.fast.monitorserver.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * Created by Nelson on 2019/12/6.
@@ -12,6 +11,8 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User {
     @Id
+    @GeneratedValue(generator="generator")
+    @GenericGenerator(name="generator", strategy = "native")
     private long Id;
     private String name;
     private Integer gender;
@@ -21,6 +22,8 @@ public class User {
     @Column(name = "department_id")
     private Integer departmentId;
     private String bpUserId;
+    //状态标识， 0  一切正常
+    private Integer status;
 
     public long getId() {
         return Id;
@@ -76,5 +79,13 @@ public class User {
 
     public void setBpUserId(String bpUserId) {
         this.bpUserId = bpUserId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

@@ -12,7 +12,7 @@ export default{
    }
   },
 
-  publicPath,
+  publicPath:"/",
   define: {
     'process.env': {},
     'process.env.NODE_ENV': process.env.NODE_ENV,

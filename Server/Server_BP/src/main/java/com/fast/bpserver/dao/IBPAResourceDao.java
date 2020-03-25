@@ -18,4 +18,5 @@ public interface IBPAResourceDao extends JpaRepository<BPAResource,String> {
      @Query(value = "SELECT A.resourceid,A.DisplayStatus,A.userID,temp.statusid FROM BPAResource A,(SELECT B.statusid,B.runningresourceid , Row_Number() OVER(partition BY runningresourceid ORDER BY startdatetime DESC) as rank from BPASession B) temp where temp.rank=1 and a.resourceid=temp.runningresourceid and a.AttributeID=0"
      ,nativeQuery = true)
      List<Object[]> findResourceFreshDatas();
+     BPAResource findByResourceid(String id);
 }

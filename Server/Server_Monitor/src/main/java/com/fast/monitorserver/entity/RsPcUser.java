@@ -1,5 +1,7 @@
 package com.fast.monitorserver.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,8 +15,10 @@ import javax.persistence.Table;
 public class RsPcUser {
     @Id
     @GeneratedValue(generator="generator")
+    @GenericGenerator(name="generator", strategy = "native")
     private Integer id;
     private String userId;
+    private String loginName;
 
     public Integer getId() {
         return id;
@@ -30,5 +34,13 @@ public class RsPcUser {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

@@ -5,8 +5,8 @@ const { Option } = Select;
 
 class SreachBar extends React.Component {
   state = {
-    selectedResource: "",
-    selectedStatus: "",
+    selectedResource: '',
+    selectedStatus: '',
     startDate: '',
     endDate: ''
   };
@@ -17,20 +17,26 @@ class SreachBar extends React.Component {
     month = month < 10 ? "0" + month : month;
     let day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
     let startDate = today.getFullYear() + "/" + month + "/" + day;
-    console.log('componentDidMount',startDate)
-    this.setState({startDate:'2020/01/21'})
+    this.setState({startDate:startDate})
+    this.onClick(startDate);
   }
 
-  onClick = () => {
+  onClick = (value) => {
     const { dispatch } = this.props;
     const { selectedResource, selectedStatus, startDate, endDate } = this.state;
+    let searchDate;
+    if(startDate.length>0){
+      searchDate=startDate;
+    }else{
+      searchDate=value;
+    }
     let timeZone = new Date().getTimezoneOffset() / 60;
     dispatch({
       type: "control/loadSessions",
       payload: {
         resourceId: selectedResource,
         status: selectedStatus,
-        startTime: startDate,
+        startTime: searchDate,
         endTime: endDate,
         timeZone: timeZone
       }
@@ -42,18 +48,32 @@ class SreachBar extends React.Component {
   };
 
   statusOnChanged = value => {
-    this.setState({ selectedStatus: value });
+    this.setState({ selectedStatus: value });  
   };
 
   startDateOnChanged = (date, dateString) => {
-    console.log("startDateOnChanged", dateString);
-    this.setState({ startDate: dateString });
+    this.setState({ startDate: dateString });  
   };
 
   endDateOnChanged = (date, dateString) => {
-    console.log("endDateOnChanged", dateString);
     this.setState({ endDate: dateString });
   };
+
+  changeSearchValue(){
+    const { dispatch } = this.props;
+    const { selectedResource, selectedStatus, startDate, endDate } = this.state;
+    let timeZone = new Date().getTimezoneOffset() / 60;
+    dispatch({
+      type: "control/changeSearchValue",
+      payload:{
+        resourceId: selectedResource,
+        status: selectedStatus,
+        startTime: startDate,
+        endTime: endDate,
+        timeZone: timeZone
+      }
+    })
+  }
 
   render() {
     const dateFormat = "YYYY/MM/DD";

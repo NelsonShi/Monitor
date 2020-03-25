@@ -5,22 +5,31 @@ import style from "./SessionTable.less";
 class SessionTable extends React.Component {
   menuOnClick = (record, { key }) => {
     const {dispatch}=this.props;
+    const userId=sessionStorage.getItem("userId");
     dispatch({
       type: "control/"+key,
       payload: {
         resourceId:record.starterresourceid,
+        sessionId:record.sessionid,
+        userId:userId
       }
     });
   };
 
   render() {
-    const { title, fontColor, dataSource } = this.props;
-    const menu = ({record}) => (
+    const { title, fontColor, dataSource,type} = this.props;
+    const pendingMenu = ({record}) => (
       <Menu onClick={this.menuOnClick.bind(this, record)}>
         <Menu.Item key="start">Start</Menu.Item>
         <Menu.Item key="delete">Delete</Menu.Item>
       </Menu>
     );
+    const seesionMenu=({record})=>(
+      <Menu onClick={this.menuOnClick.bind(this, record)}>
+         <Menu.Item key="stop" disabled={record.statusid!==1}>Stop</Menu.Item>
+      </Menu>
+    );
+    let meun=type===0?pendingMenu:seesionMenu;
     const columns = [
       {
         title: "ID",
@@ -82,7 +91,7 @@ class SessionTable extends React.Component {
         render(record) {    
           return (
             <Dropdown
-              overlay={menu({record:record})}
+              overlay={meun({record:record})}
               placement="bottomCenter"
               trigger={["click"]}
             >

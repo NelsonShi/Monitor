@@ -29,4 +29,6 @@ public interface IBPASessionDao extends JpaRepository<BPASession,String>,JpaSpec
     BPASession findByRunningresourceidAndStatusid(String resourceId,Integer status);
 
     List<BPASession> findByStatusid(Integer status);
+
+    BPASession findBySessionid(String sessionId);
 }

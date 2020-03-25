@@ -6,6 +6,7 @@ import com.fast.bpserver.entity.postEntity.BotCommand;
 import com.fast.bpserver.entity.postEntity.BotCommandResult;
 import com.fast.bpserver.entity.postEntity.SessionParams;
 import com.fast.bpserver.entity.vo.ScheduleVo;
+import com.fast.bpserver.entity.vo.SessionControlResult;
 import com.fast.bpserver.nettyServer.GlobalUserUtil;
 import com.fast.bpserver.service.*;
 import com.fast.bpserver.utils.CacheUtil;
@@ -44,6 +45,8 @@ public class OperationResource extends BaseResource {
     @Autowired
     private IBPAGroup ibpaGroupService;
     @Autowired
+    private  IBPAResource resourceService;
+    @Autowired
     private TimeAvailableResourceService timeAvailableResourceService;
     @Autowired
     private IResourceIpRef resourceIpRefService;
@@ -71,26 +74,117 @@ public class OperationResource extends BaseResource {
 
     @RequestMapping(value = "/pending", method = RequestMethod.POST)
     public PendingProcessRes PendingProcess(@RequestBody PendingProcessPara para) {
+        PendingProcessRes result = new PendingProcessRes();
+        try{
         int sysTimeZone = TimeZone.getDefault().getOffset(new Date().getTime()) / (1000 * 60 * 60);
         BPAUser user = userService.findById(para.getUserId());
         Map<String, BPAProcess> processeMap = cacheUtil.getProcessList();
         BPAProcess process = processeMap.get(para.getProcessId());
         Map<String, ResourceIpRef> resourceIpRefMap = resourceIpRefService.findResourceIpRefMap();
-        PendingProcessRes result = new PendingProcessRes();
+
+//        List<SessionControlResult> list=new ArrayList<>();
         for (String resourceId : para.getResourceIds()) {
             ResourceIpRef rir = resourceIpRefMap.get(resourceId);
             Channel channel = RsPcClient.tcpClientMap.get(rir.getConnectIp());
-            bpaSessionService.PendingProcess(user, process, sysTimeZone - DBTimeZone, channel);
+            SessionControlResult res= bpaSessionService.PendingProcess(user, process, sysTimeZone - DBTimeZone, channel,rir.getConnectIp());
+            if(res==null){
+                result.setStatus(0);
+                result.setMessage("Error: channel do not exist");
+                continue;
+            }
+            res.setResourceName(rir.getResourceName());
+            if(res.getResult()!=1){
+                result.setStatus(0);
+            }
+            result.setMessage(result.getMessage()+(" "+res.getResourceName()+":"+res.getMessage()));
+        }
+       }catch (Exception ex){
+            result.setStatus(0);
+            result.setMessage(ex.getMessage());
         }
         return result;
     }
 
     @RequestMapping(value = "/startSession",method = RequestMethod.POST)
-    public void StartSession(@RequestBody ControlSessionPara para) {
+    public PendingProcessRes StartSession(@RequestBody ControlSessionPara para) {
+        PendingProcessRes result = new PendingProcessRes();
         ResourceIpRef ref=resourceIpRefService.findById(para.getResourceId());
-        if(ref==null)return;
+        if(ref==null){
+            result.setStatus(0);
+            result.setMessage("Resource reference didn't exist");
+            return result;
+        }
         Channel channel = RsPcClient.tcpClientMap.get(ref.getConnectIp());
-        channel.writeAndFlush("startp\r");
+//        channel.writeAndFlush("startp\r");
+        SessionControlResult res= bpaSessionService.StartSession(channel,ref.getConnectIp(),ref.getResourceId());
+        if(res==null){
+            result.setStatus(0);
+            result.setMessage("Error: channel do not exist");
+            return result;
+        }
+        res.setResourceName(ref.getResourceName());
+        if(res.getResult()!=1){
+            result.setStatus(0);
+        }else {
+            result.setStatus(1);
+        }
+        result.setMessage(res.getResourceName()+":"+res.getMessage());
+        return result;
+    }
+
+    @RequestMapping(value = "/deleteSession",method = RequestMethod.POST)
+    public PendingProcessRes DeleteSession(@RequestBody ControlSessionPara para) {
+        PendingProcessRes result = new PendingProcessRes();
+        ResourceIpRef ref=resourceIpRefService.findById(para.getResourceId());
+        BPAUser user = userService.findById(para.getUserId());
+        if(ref==null||user==null){
+            result.setStatus(0);
+            result.setMessage("Resource reference didn't exist");
+            return result;
+        }
+        Channel channel = RsPcClient.tcpClientMap.get(ref.getConnectIp());
+        SessionControlResult res=bpaSessionService.DeleteSession(user,para.getSessionId(),channel,ref.getConnectIp());
+        if(res==null){
+            result.setStatus(0);
+            result.setMessage("Error: channel do not exist");
+            return result;
+        }
+        res.setResourceName(ref.getResourceName());
+        if(res.getResult()!=1){
+            result.setStatus(0);
+        }else {
+            result.setStatus(1);
+        }
+        result.setMessage(res.getResourceName()+":"+res.getMessage());
+        return result;
+    }
+
+    @RequestMapping(value = "/stopSession",method = RequestMethod.POST)
+    public PendingProcessRes StopSession(@RequestBody ControlSessionPara para) {
+        PendingProcessRes result = new PendingProcessRes();
+        ResourceIpRef ref=resourceIpRefService.findById(para.getResourceId());
+        BPAUser user = userService.findById(para.getUserId());
+        BPAResource resource=resourceService.findById(para.getResourceId());
+        if(ref==null||user==null){
+            result.setStatus(0);
+            result.setMessage("Resource reference didn't exist");
+            return result;
+        };
+        Channel channel = RsPcClient.tcpClientMap.get(ref.getConnectIp());
+        SessionControlResult res= bpaSessionService.StopSession(user,para.getSessionId(),channel,resource.getName(),ref.getConnectIp());
+        if(res==null){
+            result.setStatus(0);
+            result.setMessage("Error: channel do not exist");
+            return result;
+        }
+        res.setResourceName(ref.getResourceName());
+        if(res.getResult()!=1){
+            result.setStatus(0);
+        }else {
+            result.setStatus(1);
+        }
+        result.setMessage(res.getResourceName()+":"+res.getMessage());
+        return result;
     }
 
     @RequestMapping(value = "/findSessions",method = RequestMethod.POST)
@@ -107,7 +201,7 @@ public class OperationResource extends BaseResource {
         for(BPAResource resource:resources){
             resourceMap.put(resource.getResourceid(),resource);
         }
-        SimpleDateFormat sdf=new SimpleDateFormat("yy/MM/DD HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yy/MM/dd HH:mm:ss");
         for (BPASession session:list){
             session.SetDispalyNames(processMap.get(session.getProcessid()).getName(),resourceMap.get(session.getStarterresourceid()).getName(),userMap.get(session.getStarteruserid()).getUserName(),sdf);
         }
@@ -134,7 +228,7 @@ public class OperationResource extends BaseResource {
         for(BPAResource resource:resources){
             resourceMap.put(resource.getResourceid(),resource);
         }
-        SimpleDateFormat sdf=new SimpleDateFormat("yy/MM/DD HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yy/MM/dd HH:mm:ss");
         for (BPASession session:sessionList){
             session.SetDispalyNames(processMap.get(session.getProcessid()).getName(),resourceMap.get(session.getStarterresourceid()).getName(),userMap.get(session.getStarteruserid()).getUserName(),sdf);
         }

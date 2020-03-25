@@ -15,7 +15,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/server$MonitorserverApplication.coverage" NAME="MonitorserverApplication Coverage Results" MODIFIED="1575601731114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Server$MonitorserverApplication.coverage" NAME="MonitorserverApplication Coverage Results" MODIFIED="1579228734116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Server$MonitorserverApplication.coverage" NAME="MonitorserverApplication Coverage Results" MODIFIED="1584696042379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -29,14 +29,112 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/resources/application.yml">
+      <file leaf-file-name="ResourceIpRef.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/ResourceIpRef.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="207">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
               <folding>
-                <marker date="1582505488864" expanded="true" signature="0:32" ph="spring: &lt;1 key&gt;" />
-                <marker date="1582505488864" expanded="true" signature="10:32" ph="profiles: &lt;1 key&gt;" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#647#648#0" expanded="false" />
+                <element signature="e#682#683#0" expanded="false" />
+                <element signature="e#738#739#0" expanded="false" />
+                <element signature="e#786#787#0" expanded="false" />
+                <element signature="e#823#824#0" expanded="false" />
+                <element signature="e#856#857#0" expanded="false" />
+                <element signature="e#908#909#0" expanded="false" />
+                <element signature="e#952#953#0" expanded="false" />
+                <element signature="e#988#989#0" expanded="false" />
+                <element signature="e#1020#1021#0" expanded="false" />
+                <element signature="e#1070#1071#0" expanded="false" />
+                <element signature="e#1112#1113#0" expanded="false" />
+                <element signature="e#1143#1144#0" expanded="false" />
+                <element signature="e#1170#1171#0" expanded="false" />
+                <element signature="e#1210#1211#0" expanded="false" />
+                <element signature="e#1242#1243#0" expanded="false" />
+                <element signature="e#1275#1276#0" expanded="false" />
+                <element signature="e#1304#1305#0" expanded="false" />
+                <element signature="e#1348#1349#0" expanded="false" />
+                <element signature="e#1384#1385#0" expanded="false" />
+                <element signature="e#1415#1416#0" expanded="false" />
+                <element signature="e#1442#1443#0" expanded="false" />
+                <element signature="e#1482#1483#0" expanded="false" />
+                <element signature="e#1514#1515#0" expanded="false" />
+                <element signature="e#1548#1549#0" expanded="false" />
+                <element signature="e#1577#1578#0" expanded="false" />
+                <element signature="e#1622#1623#0" expanded="false" />
+                <element signature="e#1658#1659#0" expanded="false" />
+                <element signature="e#1694#1695#0" expanded="false" />
+                <element signature="e#1728#1729#0" expanded="false" />
+                <element signature="e#1780#1781#0" expanded="false" />
+                <element signature="e#1826#1827#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceIpRefImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/ResourceIpRefImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1794">
+              <caret line="101" column="19" lean-forward="false" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1151#1152#0" expanded="false" />
+                <element signature="e#1190#1191#0" expanded="false" />
+                <element signature="e#1252#1253#0" expanded="false" />
+                <element signature="e#1312#1313#0" expanded="false" />
+                <element signature="e#1720#1721#0" expanded="false" />
+                <element signature="e#1776#1777#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RsPcUserImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/RsPcUserImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#671#672#0" expanded="false" />
+                <element signature="e#705#706#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RsPcConnectCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/RsPcConnectCommand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="42" />
+              <folding>
+                <element signature="e#556#557#0" expanded="false" />
+                <element signature="e#581#582#0" expanded="false" />
+                <element signature="e#618#619#0" expanded="false" />
+                <element signature="e#646#647#0" expanded="false" />
+                <element signature="e#681#682#0" expanded="false" />
+                <element signature="e#711#712#0" expanded="false" />
+                <element signature="e#758#759#0" expanded="false" />
+                <element signature="e#796#797#0" expanded="false" />
+                <element signature="e#842#843#0" expanded="false" />
+                <element signature="e#884#885#0" expanded="false" />
+                <element signature="e#954#955#0" expanded="false" />
+                <element signature="e#1016#1017#0" expanded="false" />
+                <element signature="e#1048#1049#0" expanded="false" />
+                <element signature="e#1075#1076#0" expanded="false" />
+                <element signature="e#1116#1117#0" expanded="false" />
+                <element signature="e#1148#1149#0" expanded="false" />
+                <element signature="e#1182#1183#0" expanded="false" />
+                <element signature="e#1212#1213#0" expanded="false" />
+                <element signature="e#1258#1259#0" expanded="false" />
+                <element signature="e#1296#1297#0" expanded="false" />
+                <element signature="e#1328#1329#0" expanded="false" />
+                <element signature="e#1356#1357#0" expanded="false" />
+                <element signature="e#1398#1399#0" expanded="false" />
+                <element signature="e#1432#1433#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,212 +143,62 @@
       <file leaf-file-name="ResourcePCConnect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/commandLineRunner/ResourcePCConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
+            <state relative-caret-position="598">
               <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeAvailabePara.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailabePara.java">
+      <file leaf-file-name="NettyClientHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="633">
+              <caret line="92" column="75" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="75" />
+              <folding>
+                <element signature="e#2573#2574#0" expanded="true" />
+                <element signature="e#2623#2624#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessagePacketDecoder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/nettyServer/MessagePacketDecoder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeAvailableResourceVo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailableResourceVo.java">
+      <file leaf-file-name="OperationResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/OperationResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="1633">
+              <caret line="191" column="62" lean-forward="false" selection-start-line="191" selection-start-column="62" selection-end-line="191" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IBPASchedule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPASchedule.java">
+      <file leaf-file-name="MessagePacketEncoder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/nettyServer/MessagePacketEncoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IBPAScheduleImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAScheduleImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2047">
-              <caret line="109" column="27" lean-forward="false" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1425#1426#0" expanded="false" />
-                <element signature="e#1459#1460#0" expanded="false" />
-                <element signature="e#1519#1520#0" expanded="false" />
-                <element signature="e#1574#1575#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application-prod.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/resources/application-prod.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="368">
+              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScheduleTimeSlotModule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/ScheduleTimeSlotModule.java">
+      <file leaf-file-name="NettyClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6670">
-              <caret line="359" column="27" lean-forward="false" selection-start-line="359" selection-start-column="21" selection-end-line="359" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1366#1367#0" expanded="false" />
-                <element signature="e#1403#1404#0" expanded="false" />
-                <element signature="e#1461#1462#0" expanded="false" />
-                <element signature="e#1513#1514#0" expanded="false" />
-                <element signature="e#1550#1551#0" expanded="false" />
-                <element signature="e#1585#1586#0" expanded="false" />
-                <element signature="e#1639#1640#0" expanded="false" />
-                <element signature="e#1687#1688#0" expanded="false" />
-                <element signature="e#1728#1729#0" expanded="false" />
-                <element signature="e#1767#1768#0" expanded="false" />
-                <element signature="e#1829#1830#0" expanded="false" />
-                <element signature="e#1885#1886#0" expanded="false" />
-                <element signature="e#1919#1920#0" expanded="false" />
-                <element signature="e#1948#1949#0" expanded="false" />
-                <element signature="e#1993#1994#0" expanded="false" />
-                <element signature="e#2029#2030#0" expanded="false" />
-                <element signature="e#2069#2070#0" expanded="false" />
-                <element signature="e#2104#2105#0" expanded="false" />
-                <element signature="e#2161#2162#0" expanded="false" />
-                <element signature="e#2209#2210#0" expanded="false" />
-                <element signature="e#2248#2249#0" expanded="false" />
-                <element signature="e#2282#2283#0" expanded="false" />
-                <element signature="e#2337#2338#0" expanded="false" />
-                <element signature="e#2383#2384#0" expanded="false" />
-                <element signature="e#2420#2421#0" expanded="false" />
-                <element signature="e#2452#2453#0" expanded="false" />
-                <element signature="e#2503#2504#0" expanded="false" />
-                <element signature="e#2545#2546#0" expanded="false" />
-                <element signature="e#2583#2584#0" expanded="false" />
-                <element signature="e#2616#2617#0" expanded="false" />
-                <element signature="e#2669#2670#0" expanded="false" />
-                <element signature="e#2713#2714#0" expanded="false" />
-                <element signature="e#2752#2753#0" expanded="false" />
-                <element signature="e#2786#2787#0" expanded="false" />
-                <element signature="e#2841#2842#0" expanded="false" />
-                <element signature="e#2887#2888#0" expanded="false" />
-                <element signature="e#2926#2927#0" expanded="false" />
-                <element signature="e#2960#2961#0" expanded="false" />
-                <element signature="e#3015#3016#0" expanded="false" />
-                <element signature="e#3061#3062#0" expanded="false" />
-                <element signature="e#3095#3096#0" expanded="false" />
-                <element signature="e#3124#3125#0" expanded="false" />
-                <element signature="e#3169#3170#0" expanded="false" />
-                <element signature="e#3205#3206#0" expanded="false" />
-                <element signature="e#3241#3242#0" expanded="false" />
-                <element signature="e#3273#3274#0" expanded="false" />
-                <element signature="e#3313#3314#0" expanded="false" />
-                <element signature="e#3351#3352#0" expanded="false" />
-                <element signature="e#3411#3412#0" expanded="false" />
-                <element signature="e#3465#3466#0" expanded="false" />
-                <element signature="e#3515#3516#0" expanded="false" />
-                <element signature="e#3557#3558#0" expanded="false" />
-                <element signature="e#3829#3830#0" expanded="false" />
-                <element signature="e#3862#3863#0" expanded="false" />
-                <element signature="e#3915#3916#0" expanded="false" />
-                <element signature="e#3959#3960#0" expanded="false" />
-                <element signature="e#3995#3996#0" expanded="false" />
-                <element signature="e#4026#4027#0" expanded="false" />
-                <element signature="e#4075#4076#0" expanded="false" />
-                <element signature="e#4115#4116#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScheduleVo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/ScheduleVo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1403">
-              <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#419#420#0" expanded="false" />
-                <element signature="e#452#453#0" expanded="false" />
-                <element signature="e#504#505#0" expanded="false" />
-                <element signature="e#548#549#0" expanded="false" />
-                <element signature="e#587#588#0" expanded="false" />
-                <element signature="e#622#623#0" expanded="false" />
-                <element signature="e#678#679#0" expanded="false" />
-                <element signature="e#726#727#0" expanded="false" />
-                <element signature="e#778#779#0" expanded="false" />
-                <element signature="e#810#811#0" expanded="false" />
-                <element signature="e#876#877#0" expanded="false" />
-                <element signature="e#918#919#0" expanded="false" />
-                <element signature="e#959#960#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="false" />
-                <element signature="e#1054#1055#0" expanded="false" />
-                <element signature="e#1104#1105#0" expanded="false" />
-                <element signature="e#1140#1141#0" expanded="false" />
-                <element signature="e#1171#1172#0" expanded="false" />
-                <element signature="e#1220#1221#0" expanded="false" />
-                <element signature="e#1260#1261#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScheduleTimeSlot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/ScheduleTimeSlot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="897">
-              <caret line="61" column="16" lean-forward="false" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-              <folding>
-                <element signature="e#435#436#0" expanded="false" />
-                <element signature="e#470#471#0" expanded="false" />
-                <element signature="e#527#528#0" expanded="false" />
-                <element signature="e#575#576#0" expanded="false" />
-                <element signature="e#613#614#0" expanded="false" />
-                <element signature="e#646#647#0" expanded="false" />
-                <element signature="e#699#700#0" expanded="false" />
-                <element signature="e#743#744#0" expanded="false" />
-                <element signature="e#781#782#0" expanded="false" />
-                <element signature="e#815#816#0" expanded="false" />
-                <element signature="e#869#870#0" expanded="false" />
-                <element signature="e#915#916#0" expanded="false" />
-                <element signature="e#950#951#0" expanded="false" />
-                <element signature="e#981#982#0" expanded="false" />
-                <element signature="e#1029#1030#0" expanded="false" />
-                <element signature="e#1069#1070#0" expanded="false" />
-                <element signature="e#1101#1102#0" expanded="false" />
-                <element signature="e#1129#1130#0" expanded="false" />
-                <element signature="e#1171#1172#0" expanded="false" />
-                <element signature="e#1205#1206#0" expanded="false" />
-                <element signature="e#1242#1243#0" expanded="false" />
-                <element signature="e#1275#1276#0" expanded="false" />
-                <element signature="e#1408#1409#0" expanded="false" />
-                <element signature="e#1441#1442#0" expanded="false" />
-                <element signature="e#1493#1494#0" expanded="false" />
-                <element signature="e#1537#1538#0" expanded="false" />
-                <element signature="e#1570#1571#0" expanded="false" />
-                <element signature="e#1598#1599#0" expanded="false" />
-                <element signature="e#1641#1642#0" expanded="false" />
-                <element signature="e#1675#1676#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="391">
+              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -261,17 +209,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>import com.blueprismserver.entity.BPATask;</find>
-      <find>import com.blueprismserver.entity</find>
-      <find>import com.blueprismserver</find>
-      <find>远程主机强迫关闭了一个现有的连接</find>
       <find>GenrateScheduleList</find>
       <find>timeZone</find>
       <find>NettyMessageDecoder</find>
@@ -298,6 +242,10 @@
       <find>bpaResource</find>
       <find>stage</find>
       <find>bpaResourceVoList</find>
+      <find>StartSession</find>
+      <find>timeSpan</find>
+      <find>PendingSession</find>
+      <find>Resource ip ref Sync form Bp</find>
     </findStrings>
     <replaceStrings>
       <replace>import com.fast.bpserver.entity</replace>
@@ -312,19 +260,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/dao/IRsPcUserDao.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IRsPcUser.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/RsPcUserImpl.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAInternalAuth.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAInternalAuthImpl.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClientHandler.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/schedules/ResourcePcClientHeartBeat.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAGroupDao.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAGroupProcessDao.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAGroup.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAGroup.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAGroupProcess.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPASessionDao.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAProcess.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAGroupImpl.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/BPAResourceVo.java" />
@@ -333,36 +268,49 @@
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailabePara.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailableResourceVo.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/other/TimeAvailableResourceService.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PendingProcessRes.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PendingProcessPara.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IResourceIpRef.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/ResourceIpRefImpl.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAUser.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAUser.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAUserDao.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAUserImpl.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/User.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPASession.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/ResourceIpRef.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/dao/IResourceIpRefDao.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/SessionPara.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAStatus.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAStatusDao.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/CacheKey.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/utils/CacheUtil.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/resource/ResourcesResoure.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPASession.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/ControlSessionPara.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/postEntity/SessionParams.java" />
-        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/OperationResource.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPASessionImpl.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAScheduleImpl.java" />
-        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAResourceImpl.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAProcessImpl.java" />
         <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/ScheduleVo.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/resources/application-prod.yml" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/resource/ProcessResource.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/RsPcUserImpl.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPASessionDao.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/ControlSessionPara.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/CacheKey.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/utils/CacheUtil.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClientHandler.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PCMessageResult.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/PCMessageResult.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/SessionControlResult.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PendingProcessRes.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPASession.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/OperationResource.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPASessionImpl.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAResourceDao.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/ResourceIpRef.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAResource.java" />
+        <option value="$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAResourceImpl.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/dao/IResourceIpRefDao.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IResourceIpRef.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IUser.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/schedules/SyncFromBpToLocal.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/User.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/RsPcUser.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/UserImpl.java" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/commandLineRunner/ResourcePCConnect.java" />
+        <option value="$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/ResourceIpRefImpl.java" />
       </list>
     </option>
   </component>
@@ -401,10 +349,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="1" />
-    <option name="width" value="1934" />
-    <option name="height" value="1036" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -423,6 +371,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -553,6 +502,112 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server_Monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monitorserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server_Monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monitorserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schedules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server_Monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monitorserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="RSListenerClient" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -622,44 +677,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Server_Monitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monitorserver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -823,31 +840,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
+              <option name="myItemId" value="nettyServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server_BP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bpserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CEFServer/pom.xml" />
     <property name="ToolWindowCoverage.ShowToolbar" value="false" />
     <property name="ToolWindowBean Validation.ShowToolbar" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.fast.bpserver.entity.vo" />
       <recent name="com.fast.monitorserver.RSListenerClient" />
       <recent name="com.fast.monitorserver.resource" />
       <recent name="com.fast.bpserver.nettyServer" />
       <recent name="com.fast.monitorserver.configuration" />
-      <recent name="com.fast.monitorserver.commandLineRunner" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Codes\Monitor\Server\Server_BP\src\main\java\com\fast\bpserver\resource" />
@@ -1758,11 +1808,25 @@
       <workItem from="1581325626786" duration="1290000" />
       <workItem from="1581573766709" duration="635000" />
       <workItem from="1582505470417" duration="9425000" />
+      <workItem from="1582593189446" duration="2695000" />
+      <workItem from="1582608220407" duration="9957000" />
+      <workItem from="1582683246221" duration="2105000" />
+      <workItem from="1583898700311" duration="1252000" />
+      <workItem from="1584077150527" duration="2573000" />
+      <workItem from="1584319446956" duration="13315000" />
+      <workItem from="1584405042608" duration="19419000" />
+      <workItem from="1584493532909" duration="11462000" />
+      <workItem from="1584579045213" duration="21026000" />
+      <workItem from="1584665158492" duration="6840000" />
+      <workItem from="1584682140896" duration="5785000" />
+      <workItem from="1584923413531" duration="6224000" />
+      <workItem from="1585012079824" duration="19245000" />
+      <workItem from="1585096305541" duration="2094000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="482542000" />
+    <option name="totallyTimeSpent" value="606534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1774,33 +1838,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="1" width="1934" height="1036" extended-state="0" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08659491" sideWeight="0.48740742" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08637339" sideWeight="0.47479674" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297456" sideWeight="0.48740742" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.4813008" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.4814815" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.46829268" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5143513" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3952435" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23476702" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30351076" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3139785" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297456" sideWeight="0.47555557" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25160944" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.46341464" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1808,10 +1871,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23329559" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3888889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297456" sideWeight="0.52444446" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34994337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08637339" sideWeight="0.5252032" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23782559" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1822,7 +1886,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="471" />
+      <option name="time" value="520" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
@@ -1839,519 +1903,497 @@
     <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="19" />
+          <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/UserResource.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAUserImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        <state relative-caret-position="368">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IResourceIpRef.java">
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/ControlSessionPara.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        <state relative-caret-position="115">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAInternalAuthDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/RsPcClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="161">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAGroupProcessDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAGroupDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/nettyServer/SocketChooseHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAUserDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/tcpServer/NettyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="24" />
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPATaskSessionDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/CacheKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="391">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPATaskDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/utils/CacheUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="874">
+          <caret line="58" column="82" lean-forward="false" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPASessionLogNonUnicodeDao.java">
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PCMessageResult.java" />
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/PCMessageResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="391">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAScheduleTriggerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAScheduleDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAEnvironmentVarDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/dao/IResourceIpRefDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/ResourceIpRefImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="28" column="42" lean-forward="false" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PendingProcessPara.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/SessionControlResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAStatusDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/CacheKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/utils/CacheUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="145" column="36" lean-forward="false" selection-start-line="145" selection-start-column="27" selection-end-line="145" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/ControlSessionPara.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/postEntity/SessionParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/jakarta/persistence/jakarta.persistence-api/2.2.3/jakarta.persistence-api-2.2.3.jar!/javax/persistence/criteria/CriteriaBuilder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2093">
-          <caret line="102" column="48" lean-forward="false" selection-start-line="102" selection-start-column="48" selection-end-line="102" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPASession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/OperationResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2277">
-          <caret line="124" column="80" lean-forward="false" selection-start-line="124" selection-start-column="80" selection-end-line="124" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/ResourceIpRef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClient.java">
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/PendingProcessRes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPATaskImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1771">
-          <caret line="92" column="71" lean-forward="false" selection-start-line="92" selection-start-column="71" selection-end-line="92" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAResourceDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/resources/application-dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPASessionDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPASessionImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="96" column="59" lean-forward="false" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
+        <state relative-caret-position="299">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPASession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="391">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/resource/ProcessResource.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPASessionImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="63" column="62" lean-forward="false" selection-start-line="63" selection-start-column="62" selection-end-line="63" selection-end-column="62" />
+        <state relative-caret-position="1173">
+          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAProcess.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/resource/ResourcesResoure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAProcessImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        <state relative-caret-position="299">
+          <caret line="29" column="14" lean-forward="false" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPAResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="368">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/utils/EntityUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAResourceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1679">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1450#1451#0" expanded="false" />
-            <element signature="e#1487#1488#0" expanded="false" />
-            <element signature="e#1529#1530#0" expanded="false" />
-            <element signature="e#1576#1577#0" expanded="false" />
-            <element signature="e#4830#4831#0" expanded="false" />
-            <element signature="e#4888#4889#0" expanded="false" />
-            <element signature="e#7259#7260#0" expanded="false" />
-            <element signature="e#7322#7323#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="318">
+          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/resource/ResourcesResoure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1610">
-          <caret line="88" column="57" lean-forward="false" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1837#1838#0" expanded="false" />
-            <element signature="e#1881#1882#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/IBPASchedule.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/ScheduleTimeSlot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="61" column="16" lean-forward="false" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-          <folding>
-            <element signature="e#435#436#0" expanded="false" />
-            <element signature="e#470#471#0" expanded="false" />
-            <element signature="e#527#528#0" expanded="false" />
-            <element signature="e#575#576#0" expanded="false" />
-            <element signature="e#613#614#0" expanded="false" />
-            <element signature="e#646#647#0" expanded="false" />
-            <element signature="e#699#700#0" expanded="false" />
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#781#782#0" expanded="false" />
-            <element signature="e#815#816#0" expanded="false" />
-            <element signature="e#869#870#0" expanded="false" />
-            <element signature="e#915#916#0" expanded="false" />
-            <element signature="e#950#951#0" expanded="false" />
-            <element signature="e#981#982#0" expanded="false" />
-            <element signature="e#1029#1030#0" expanded="false" />
-            <element signature="e#1069#1070#0" expanded="false" />
-            <element signature="e#1101#1102#0" expanded="false" />
-            <element signature="e#1129#1130#0" expanded="false" />
-            <element signature="e#1171#1172#0" expanded="false" />
-            <element signature="e#1205#1206#0" expanded="false" />
-            <element signature="e#1242#1243#0" expanded="false" />
-            <element signature="e#1275#1276#0" expanded="false" />
-            <element signature="e#1408#1409#0" expanded="false" />
-            <element signature="e#1441#1442#0" expanded="false" />
-            <element signature="e#1493#1494#0" expanded="false" />
-            <element signature="e#1537#1538#0" expanded="false" />
-            <element signature="e#1570#1571#0" expanded="false" />
-            <element signature="e#1598#1599#0" expanded="false" />
-            <element signature="e#1641#1642#0" expanded="false" />
-            <element signature="e#1675#1676#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/ScheduleTimeSlotModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6670">
-          <caret line="359" column="27" lean-forward="false" selection-start-line="359" selection-start-column="21" selection-end-line="359" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1366#1367#0" expanded="false" />
-            <element signature="e#1403#1404#0" expanded="false" />
-            <element signature="e#1461#1462#0" expanded="false" />
-            <element signature="e#1513#1514#0" expanded="false" />
-            <element signature="e#1550#1551#0" expanded="false" />
-            <element signature="e#1585#1586#0" expanded="false" />
-            <element signature="e#1639#1640#0" expanded="false" />
-            <element signature="e#1687#1688#0" expanded="false" />
-            <element signature="e#1728#1729#0" expanded="false" />
-            <element signature="e#1767#1768#0" expanded="false" />
-            <element signature="e#1829#1830#0" expanded="false" />
-            <element signature="e#1885#1886#0" expanded="false" />
-            <element signature="e#1919#1920#0" expanded="false" />
-            <element signature="e#1948#1949#0" expanded="false" />
-            <element signature="e#1993#1994#0" expanded="false" />
-            <element signature="e#2029#2030#0" expanded="false" />
-            <element signature="e#2069#2070#0" expanded="false" />
-            <element signature="e#2104#2105#0" expanded="false" />
-            <element signature="e#2161#2162#0" expanded="false" />
-            <element signature="e#2209#2210#0" expanded="false" />
-            <element signature="e#2248#2249#0" expanded="false" />
-            <element signature="e#2282#2283#0" expanded="false" />
-            <element signature="e#2337#2338#0" expanded="false" />
-            <element signature="e#2383#2384#0" expanded="false" />
-            <element signature="e#2420#2421#0" expanded="false" />
-            <element signature="e#2452#2453#0" expanded="false" />
-            <element signature="e#2503#2504#0" expanded="false" />
-            <element signature="e#2545#2546#0" expanded="false" />
-            <element signature="e#2583#2584#0" expanded="false" />
-            <element signature="e#2616#2617#0" expanded="false" />
-            <element signature="e#2669#2670#0" expanded="false" />
-            <element signature="e#2713#2714#0" expanded="false" />
-            <element signature="e#2752#2753#0" expanded="false" />
-            <element signature="e#2786#2787#0" expanded="false" />
-            <element signature="e#2841#2842#0" expanded="false" />
-            <element signature="e#2887#2888#0" expanded="false" />
-            <element signature="e#2926#2927#0" expanded="false" />
-            <element signature="e#2960#2961#0" expanded="false" />
-            <element signature="e#3015#3016#0" expanded="false" />
-            <element signature="e#3061#3062#0" expanded="false" />
-            <element signature="e#3095#3096#0" expanded="false" />
-            <element signature="e#3124#3125#0" expanded="false" />
-            <element signature="e#3169#3170#0" expanded="false" />
-            <element signature="e#3205#3206#0" expanded="false" />
-            <element signature="e#3241#3242#0" expanded="false" />
-            <element signature="e#3273#3274#0" expanded="false" />
-            <element signature="e#3313#3314#0" expanded="false" />
-            <element signature="e#3351#3352#0" expanded="false" />
-            <element signature="e#3411#3412#0" expanded="false" />
-            <element signature="e#3465#3466#0" expanded="false" />
-            <element signature="e#3515#3516#0" expanded="false" />
-            <element signature="e#3557#3558#0" expanded="false" />
-            <element signature="e#3829#3830#0" expanded="false" />
-            <element signature="e#3862#3863#0" expanded="false" />
-            <element signature="e#3915#3916#0" expanded="false" />
-            <element signature="e#3959#3960#0" expanded="false" />
-            <element signature="e#3995#3996#0" expanded="false" />
-            <element signature="e#4026#4027#0" expanded="false" />
-            <element signature="e#4075#4076#0" expanded="false" />
-            <element signature="e#4115#4116#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/vo/ScheduleVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1403">
-          <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#419#420#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-            <element signature="e#504#505#0" expanded="false" />
-            <element signature="e#548#549#0" expanded="false" />
-            <element signature="e#587#588#0" expanded="false" />
-            <element signature="e#622#623#0" expanded="false" />
-            <element signature="e#678#679#0" expanded="false" />
-            <element signature="e#726#727#0" expanded="false" />
-            <element signature="e#778#779#0" expanded="false" />
-            <element signature="e#810#811#0" expanded="false" />
-            <element signature="e#876#877#0" expanded="false" />
-            <element signature="e#918#919#0" expanded="false" />
-            <element signature="e#959#960#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="false" />
-            <element signature="e#1054#1055#0" expanded="false" />
-            <element signature="e#1104#1105#0" expanded="false" />
-            <element signature="e#1140#1141#0" expanded="false" />
-            <element signature="e#1171#1172#0" expanded="false" />
-            <element signature="e#1220#1221#0" expanded="false" />
-            <element signature="e#1260#1261#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAScheduleImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2047">
-          <caret line="109" column="27" lean-forward="false" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1425#1426#0" expanded="false" />
-            <element signature="e#1459#1460#0" expanded="false" />
-            <element signature="e#1519#1520#0" expanded="false" />
-            <element signature="e#1574#1575#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/resources/application-prod.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/dao/IBPAResourceDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/dao/IResourceIpRefDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.2.1.RELEASE/spring-core-5.2.1.RELEASE.jar!/org/springframework/util/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/commandLineRunner/Cachelistener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAInternalAuth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPAGroupProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IResourceIpRef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/schedules/ResourcePcClientHeartBeat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/entity/BPASession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="21" column="60" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="21" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IRsPcUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/IUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/schedules/SyncFromBpToLocal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="44" column="23" lean-forward="false" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/RsPcUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="e#826#827#0" expanded="false" />
+            <element signature="e#858#859#0" expanded="false" />
+            <element signature="e#908#909#0" expanded="false" />
+            <element signature="e#950#951#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="14" column="60" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="14" selection-end-column="60" />
+          <folding>
+            <element signature="e#664#665#0" expanded="false" />
+            <element signature="e#689#690#0" expanded="false" />
+            <element signature="e#723#724#0" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#777#778#0" expanded="false" />
+            <element signature="e#804#805#0" expanded="false" />
+            <element signature="e#844#845#0" expanded="false" />
+            <element signature="e#876#877#0" expanded="false" />
+            <element signature="e#910#911#0" expanded="false" />
+            <element signature="e#939#940#0" expanded="false" />
+            <element signature="e#984#985#0" expanded="false" />
+            <element signature="e#1020#1021#0" expanded="false" />
+            <element signature="e#1056#1057#0" expanded="false" />
+            <element signature="e#1088#1089#0" expanded="false" />
+            <element signature="e#1138#1139#0" expanded="false" />
+            <element signature="e#1180#1181#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+            <element signature="e#1246#1247#0" expanded="false" />
+            <element signature="e#1294#1295#0" expanded="false" />
+            <element signature="e#1334#1335#0" expanded="false" />
+            <element signature="e#1374#1375#0" expanded="false" />
+            <element signature="e#1409#1410#0" expanded="false" />
+            <element signature="e#1466#1467#0" expanded="false" />
+            <element signature="e#1514#1515#0" expanded="false" />
+            <element signature="e#1549#1550#0" expanded="false" />
+            <element signature="e#1580#1581#0" expanded="false" />
+            <element signature="e#1628#1629#0" expanded="false" />
+            <element signature="e#1668#1669#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/UserImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="56" column="44" lean-forward="false" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1097#1098#0" expanded="false" />
+            <element signature="e#1127#1128#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/service/impl/IBPAInternalAuthImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
-            <marker date="1582505488864" expanded="true" signature="0:32" ph="spring: &lt;1 key&gt;" />
-            <marker date="1582505488864" expanded="true" signature="10:32" ph="profiles: &lt;1 key&gt;" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1011#1012#0" expanded="false" />
+            <element signature="e#1053#1054#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/RsPcConnectCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/RsPcConnectCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="42" />
+          <folding>
+            <element signature="e#556#557#0" expanded="false" />
+            <element signature="e#581#582#0" expanded="false" />
+            <element signature="e#618#619#0" expanded="false" />
+            <element signature="e#646#647#0" expanded="false" />
+            <element signature="e#681#682#0" expanded="false" />
+            <element signature="e#711#712#0" expanded="false" />
+            <element signature="e#758#759#0" expanded="false" />
+            <element signature="e#796#797#0" expanded="false" />
+            <element signature="e#842#843#0" expanded="false" />
+            <element signature="e#884#885#0" expanded="false" />
+            <element signature="e#954#955#0" expanded="false" />
+            <element signature="e#1016#1017#0" expanded="false" />
+            <element signature="e#1048#1049#0" expanded="false" />
+            <element signature="e#1075#1076#0" expanded="false" />
+            <element signature="e#1116#1117#0" expanded="false" />
+            <element signature="e#1148#1149#0" expanded="false" />
+            <element signature="e#1182#1183#0" expanded="false" />
+            <element signature="e#1212#1213#0" expanded="false" />
+            <element signature="e#1258#1259#0" expanded="false" />
+            <element signature="e#1296#1297#0" expanded="false" />
+            <element signature="e#1328#1329#0" expanded="false" />
+            <element signature="e#1356#1357#0" expanded="false" />
+            <element signature="e#1398#1399#0" expanded="false" />
+            <element signature="e#1432#1433#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/RsPcUserImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#671#672#0" expanded="false" />
+            <element signature="e#705#706#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/service/impl/ResourceIpRefImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1794">
+          <caret line="101" column="19" lean-forward="false" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1190#1191#0" expanded="false" />
+            <element signature="e#1252#1253#0" expanded="false" />
+            <element signature="e#1312#1313#0" expanded="false" />
+            <element signature="e#1720#1721#0" expanded="false" />
+            <element signature="e#1776#1777#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/ResourceIpRef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#647#648#0" expanded="false" />
+            <element signature="e#682#683#0" expanded="false" />
+            <element signature="e#738#739#0" expanded="false" />
+            <element signature="e#786#787#0" expanded="false" />
+            <element signature="e#823#824#0" expanded="false" />
+            <element signature="e#856#857#0" expanded="false" />
+            <element signature="e#908#909#0" expanded="false" />
+            <element signature="e#952#953#0" expanded="false" />
+            <element signature="e#988#989#0" expanded="false" />
+            <element signature="e#1020#1021#0" expanded="false" />
+            <element signature="e#1070#1071#0" expanded="false" />
+            <element signature="e#1112#1113#0" expanded="false" />
+            <element signature="e#1143#1144#0" expanded="false" />
+            <element signature="e#1170#1171#0" expanded="false" />
+            <element signature="e#1210#1211#0" expanded="false" />
+            <element signature="e#1242#1243#0" expanded="false" />
+            <element signature="e#1275#1276#0" expanded="false" />
+            <element signature="e#1304#1305#0" expanded="false" />
+            <element signature="e#1348#1349#0" expanded="false" />
+            <element signature="e#1384#1385#0" expanded="false" />
+            <element signature="e#1415#1416#0" expanded="false" />
+            <element signature="e#1442#1443#0" expanded="false" />
+            <element signature="e#1482#1483#0" expanded="false" />
+            <element signature="e#1514#1515#0" expanded="false" />
+            <element signature="e#1548#1549#0" expanded="false" />
+            <element signature="e#1577#1578#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
+            <element signature="e#1658#1659#0" expanded="false" />
+            <element signature="e#1694#1695#0" expanded="false" />
+            <element signature="e#1728#1729#0" expanded="false" />
+            <element signature="e#1780#1781#0" expanded="false" />
+            <element signature="e#1826#1827#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/commandLineRunner/ResourcePCConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
+        <state relative-caret-position="598">
           <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailableResourceVo.java">
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="391">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/entity/vo/TimeAvailabePara.java">
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/nettyServer/MessagePacketEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="368">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_BP/src/main/java/com/fast/bpserver/nettyServer/MessagePacketDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/resource/OperationResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1633">
+          <caret line="191" column="62" lean-forward="false" selection-start-line="191" selection-start-column="62" selection-end-line="191" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server_Monitor/src/main/java/com/fast/monitorserver/RSListenerClient/NettyClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="92" column="75" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="75" />
+          <folding>
+            <element signature="e#2573#2574#0" expanded="true" />
+            <element signature="e#2623#2624#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
